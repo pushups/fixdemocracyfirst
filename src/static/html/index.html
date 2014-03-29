@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>First Issue</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	
+	<script>
+	function handleNewItemSubmit(){
+		var image_files = $("video-input").files;
+		if (image_files.length>0){
+			//we have an image
+			var video_file = image_files[0];
+			var reader = new FileReader();
+			reader.onload(function(image_file){ 
+				return function(e){
+					video_blob = e.target.result;
+					//upload video somewhere
+				};
+			})(image_file);
+			reader.readAsBinaryString(video_file);
+		}
+		else {
+			//we have no image
+			submitItem({"description":desc});
+		}; 
+	};
+	
+	$(function() {
+		$("video-input").onchange = function () {
+			handleNewItemSubmit();
+		};
+	})
+	
+	</script>
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+</head>
+<body>
+	<div class="container">
+		<h1>Upload a video</h1>
+		<input id="video-input" type="file" accept="video/*" capture="camcorder">
+	</div>
+</body>
+</html>
