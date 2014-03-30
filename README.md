@@ -8,6 +8,7 @@ Running locally
 ---------------
 
 1. `source venv/bin/activate`
+2. `pip install -r requirements.txt`
 2. `foreman start`
 
 Dependencies you may need:
