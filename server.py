@@ -54,7 +54,6 @@ def upload_file():
                 "embeddable": "true"
             },
             "categoryId": "29", # Activism
-            "tags": ["#NHRebellion"],
             #"title": "",
             #"description": "",
             "recordingDate": datetime.datetime.now(pytz.UTC).isoformat()#,
