@@ -5,11 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Questioner</title>
+
+<!-- Custom CSS file -->
+	
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	
+	
+	
 	<!-- Latest compiled and minified CSS -->
+	
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+
+	<!-- custom css -->
+	<style>
+	/* The normal form button to upload media is ugly. This hack fixes that
+	http://stackoverflow.com/questions/11235206/twitter-bootstrap-form-file-element-upload-button*/
+	.btn-file {
+	    position: relative;
+	    overflow: hidden;
+	}
+	.btn-file input[type=file] {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    min-width: 100%;
+	    min-height: 100%;
+	    font-size: 999px;
+	    text-align: right;
+	    filter: alpha(opacity=0);
+	    opacity: 0;
+	    outline: none;
+	    background: white;
+	    cursor: inherit;
+	    display: block;
+	} 
+	</style> 
+	
+	<!-- Custom CSS file -->
+	
+		<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
@@ -18,35 +56,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 	<script>
-	function handleNewItemSubmit(){
-		//alert('in handle func');
-		var image_files = $("#video-input")[0].files;
-		if (image_files.length>0){
-			//we have an image
-			var video_file = image_files[0];
-			var reader = new FileReader();
-			reader.onload = function(e){
-				alert('in onload func')
-				video_blob = e.target.result;
-				//upload video somewhere
-
-				$.ajax("http://rossboucher.com/test/nhr/upload.php", {
-					type: 'POST',
-					data: video_blob
-				});
-			};
-			reader.readAsBinaryString(video_file);
-		}
-		else {
-			//we have no image
-			submitItem({"description":desc});
-		};
-	};
+	
 
 	$(function() {
+		$('#upload-button').hide();
 		$("#video-input").change(function () {
-			//alert('in onchange func');
-			handleNewItemSubmit();
+			$('#start-button').hide();
+			$('#upload-button').show();
 		})
 	})
 
@@ -59,34 +75,41 @@
 	    <![endif]-->
 </head>
 <body>
-	<div class="container">
-		<div class="page-header">
-		  <h1>Questioner</h1>
-		</div>
-		<p>Please record the candidate’s answer to one simple question:</p>
-		<blockquote>
-			<p>How are you going to end the system of corruption in Washington DC?</p>
-		</blockquote>
-		<p>Instructions:</p>
-		<ol>
-			<li>Tap “Choose File”</li>
-			<li>Tap “Take Video”</li>
-			<li>Tap the Recording button to start recording</li>
-			<li>Ask the candidate: “How are you going to end the system of corruption in Washington DC?"</li>
-			<li>Keep the camera pointed at them during their response</li>
-			<li>Tap the Recording button again to stop recording when they are done</li>
-			<li>Tap “Upload” when back at this screen and wait for the page confirming upload</li>
-		</ol>
-		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
-		<form role="form" action="/upload" method="post" enctype="multipart/form-data">
-			<div class="form-group">
-				<input type="file" name="file" accept="video/*" capture></br>
-				<input type="submit" name="upload" value="Upload">
-			</div>
-		</form>
-		<footer>
-			A <a href="http://NHRebellion.org">New Hampshire Rebellion</a> Project
-		</footer>
+	
+	<div class="page-header">
+	  <h1>Questioner</h1>
 	</div>
+	
+	<div class="container">
+			
+			<h3 class="panel-title">Press Start</h3>
+			<p class="start"start>Please record the candidate’s answer to one simple question:</p><p class="start2">How are you going to end the system of corruption in Washington DC?</p>
+			
+		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
+
+		<form role="form" action="/upload" method="post" enctype="multipart/form-data">
+		<div>
+		
+			<div id="button">
+				
+				
+				<div id="start-button">
+					<span class="btn btn-danger btn-file">
+						Start<input id='video-input' type="file" name="file" accept="video/*" capture>
+					</span>
+				</div>
+				
+				
+				<div id="upload-button">
+					<input class="btn btn-primary" type="submit" name="upload" value="Upload">
+				</div>
+			</div>
+		</div>
+		</form>
+		
+	</div>
+	<footer>
+		A <a href="http://NHRebellion.org">New Hampshire Rebellion</a> Project
+	</footer>
 </body>
 </html>
