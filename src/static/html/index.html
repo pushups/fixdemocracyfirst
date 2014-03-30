@@ -11,6 +11,31 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
+	<!-- custom css -->
+	<style>
+	/* The normal form button to upload media is ugly. This hack fixes that
+	http://stackoverflow.com/questions/11235206/twitter-bootstrap-form-file-element-upload-button*/
+	.btn-file {
+	    position: relative;
+	    overflow: hidden;
+	}
+	.btn-file input[type=file] {
+	    position: absolute;
+	    top: 0;
+	    right: 0;
+	    min-width: 100%;
+	    min-height: 100%;
+	    font-size: 999px;
+	    text-align: right;
+	    filter: alpha(opacity=0);
+	    opacity: 0;
+	    outline: none;
+	    background: white;
+	    cursor: inherit;
+	    display: block;
+	}
+	</style>
+
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
@@ -67,22 +92,40 @@
 		<blockquote>
 			<p>How are you going to end the system of corruption in Washington DC?</p>
 		</blockquote>
-		<p>Instructions:</p>
-		<ol>
-			<li>Tap “Choose File”</li>
-			<li>Tap “Take Video”</li>
-			<li>Tap the Recording button to start recording</li>
-			<li>Ask the candidate: “How are you going to end the system of corruption in Washington DC?"</li>
-			<li>Keep the camera pointed at them during their response</li>
-			<li>Tap the Recording button again to stop recording when they are done</li>
-			<li>Tap “Upload” when back at this screen and wait for the page confirming upload</li>
-		</ol>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Instructions</h3>
+			</div>
+			<div class="panel-content list-group">
+
+					<li class="list-group-item">Tap “Record Video”</li>
+					<li class="list-group-item">Tap “Take Video”</li>
+					<li class="list-group-item">Tap the Recording button to start recording</li>
+					<li class="list-group-item">Ask the candidate: “How are you going to end the system of corruption in Washington DC?"</li>
+					<li class="list-group-item">Keep the camera pointed at them during their response</li>
+					<li class="list-group-item">Tap the Recording button again to stop recording when they are done</li>
+					<li class="list-group-item">Tap "Use Video"</li>
+					<li class="list-group-item">Tap “Upload” when back at this screen and wait for the page confirming upload</li>
+
+			</div>
+		</div>
 		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
 		<form role="form" action="https://6796f2aa.ngrok.com/upload" method="post" enctype="multipart/form-data">
-			<div class="form-group">
-				<input type="file" name="file" accept="video/*" capture></br>
-				<input type="submit" name="upload" value="Upload">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Recording Controls</h3>
 			</div>
+			<div class="panel-content list-group">
+				<div class="form-group list-group-item">
+					<span class="btn btn-danger btn-file">
+						Record Video<input type="file" name="file" accept="video/*" capture>
+					</span>
+				</div>
+				<div class="form-group list-group-item">
+					<input class="btn btn-primary" type="submit" name="upload" value="Upload">
+				</div>
+			</div>
+		</div>
 		</form>
 		<footer>
 			A <a href="http://NHRebellion.org">New Hampshire Rebellion</a> Project
