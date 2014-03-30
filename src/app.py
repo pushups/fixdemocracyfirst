@@ -27,9 +27,9 @@ def upload_file():
         r = requests.post(YT_TOKEN_URL, data=REFRESH_DATA)
         print r.text
         access_token = r.json()['access_token']
-        stream = f.stream
-        stream.seek(0)
+        f.stream.seek(0)
         content_length = len(f.stream.read())
+        f.stream.seek(0)
         headers = {
             'Authorization': 'Bearer %s' % access_token,
             'content-type': 'application/json; charset=utf-8',
@@ -48,10 +48,11 @@ def upload_file():
             'Authorization': 'Bearer %s' % access_token,
             'content-type': f.content_type,
             'content-length': content_length,
+            'content-range': 'bytes 0-%s/%s' % (content_length-1, content_length)
         }
         r = requests.put(r.headers['Location'], headers=headers, data=f.stream)
         print r.text
-        return '<p>Thanks for the video! View it <a href="%s">here</a></p>' % video_url
+        return '<p>Thanks for the video! View it <a href="http://youtube.com/watch?v=%s">here</a></p>' % r.json()['id']
     else:
         return "Hello"
         
