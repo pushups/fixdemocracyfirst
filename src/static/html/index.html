@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>First Issue</title>
+	<title>Questioner</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
@@ -60,20 +60,33 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Upload a video</h1>
-		<h2>Pure HTML</h2>
-		<p>Capture a video using camcorder without Javascript (<a href="http://www.francesco.iovine.name/w3c/mediacapture/">inspiration</a>)</p>
-		<form action="upload.php" method="post" enctype="multipart/form-data">
-			<input type="file" name="file" accept="video/*" capture></br>
-			<input type="submit" name="upload" value="Upload">
+		<div class="page-header">
+		  <h1>Questioner</h1>
+		</div>
+		<p>Please record the candidate's answer to one simple question:</p>
+		<blockquote>
+			<p>How are you going to end the system of corruption in Washington DC?</p>
+		</blockquote>
+		<p>Instructions:</p>
+		<ol>
+			<li>Tap "Choose File"</li>
+			<li>Tap "Take Video"</li>
+			<li>Tap the Recording button to start recording</li>
+			<li>Ask the candidate: "How are you going to end the system of corruption in Washington DC?"</li>
+			<li>Keep the camera pointed at them during their response</li>
+			<li>Tap the Recording button again to stop recording when they are done</li>
+			<li>Tap "Upload" when back at this screen and wait for the page confirming upload</li>
+		</ol>
+		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
+		<form role="form" action="https://6796f2aa.ngrok.com/upload" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<input type="file" name="file" accept="video/*" capture></br>
+				<input type="submit" name="upload" value="Upload">
+			</div>
 		</form>
-		
-		<h2>AJAX</h2>
-		<a href="http://www.html5rocks.com/en/tutorials/file/dndfiles/?redirect_from_locale=tw">inspiration</a>
-		<form>
-			<input id="video-input" type="file" accept="video/*" capture="camcorder"></br>
-			<input type="submit">Submit</input>
-		</form>
+		<footer>
+			A <a href="http://NHRebellion.org">New Hampshire Rebellion</a> Project
+		</footer>
 	</div>
 </body>
 </html>
