@@ -48,7 +48,7 @@ p.start2 {
 	padding:0 20px;
 	font-size: 120%;
 	font-weight: 200;
-	color:#777;
+	color:#666;
 	font-weight:500;
 	
 }
@@ -85,6 +85,7 @@ footer {
    background:#000000;
    text-align:center;
    color:#888;
+   padding-top:15px;
 }
 
 footer a{
@@ -93,3 +94,10 @@ footer a{
 }
 
 .black{margin-top:10px;}
+
+
+span.btn.btn-danger.btn-file{font-size:300%; padding-top:34px;}
+input.btn.btn-primary{font-size:200%;}
+
+
+form.start{margin-top:50px;}
