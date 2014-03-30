@@ -59,9 +59,10 @@
 	
 
 	$(function() {
+		$('#upload-button').hide();
 		$("#video-input").change(function () {
-			//alert('in onchange func');
-			handleNewItemSubmit();
+			$('#start-button').hide();
+			$('#upload-button').show();
 		})
 	})
 
@@ -80,19 +81,10 @@
 	</div>
 	
 	<div class="container">
-		
-		
-		
 			
 			<h3 class="panel-title">Press Start</h3>
 			<p class="start"start>Please record the candidate’s answer to one simple question:</p><p class="start2">How are you going to end the system of corruption in Washington DC?</p>
 			
-			
-			
-			
-			
-			
-		
 		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
 		<form role="form" action="https://6796f2aa.ngrok.com/upload" method="post" enctype="multipart/form-data">
 		<div>
@@ -100,14 +92,14 @@
 			<div id="button">
 				
 				
-				<div>
-					<span id='start-button' class="btn btn-danger btn-file">
-						Start<input type="file" name="file" accept="video/*" >
+				<div id="start-button">
+					<span class="btn btn-danger btn-file">
+						Start<input id='video-input' type="file" name="file" accept="video/*" >
 					</span>
 				</div>
 				
 				
-				<div>
+				<div id="upload-button">
 					<input class="btn btn-primary" type="submit" name="upload" value="Upload">
 				</div>
 			</div>
