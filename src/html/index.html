@@ -80,7 +80,7 @@
 		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
 		<form role="form" action="https://nhr-video-uploads.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
 			<div class="form-group">
-				<input type="hidden" name="key" value="uploads/${filename}">
+				<input type="hidden" name="key" value="${filename}">
 				<input type="hidden" name="AWSAccessKeyId" value="{{access_key}}"> 
 				<input type="hidden" name="acl" value="private"> 
 				<input type="hidden" name="success_action_redirect" value="http://nhr-questioner.herokuapp.com/s3upload">

@@ -4,7 +4,7 @@ import os
 import datetime
 import pytz
 import base64
-import hmac, hashlib
+import hmac, sha
 
 
 import httplib2
@@ -102,10 +102,10 @@ def upload_file():
 def index():
     #AKIAJ75RWBGKTAGQXP3Q    
     policy_doc = json.dumps({
-        "expiration": (datetime.datetime.now(pytz.UTC) + datetime.timedelta(days=1)).isoformat(),
+        "expiration": (datetime.datetime.now() + datetime.timedelta(days=1)).isoformat()+"Z",
         "conditions": [ 
             {"bucket": "nhr-video-uploads"}, 
-            ["starts-with", "$key", "uploads/"],
+            ["starts-with", "$key", ""],
             {"acl": "private"},
             {"success_action_redirect": "http://nhr-questioner.herokuapp.com/s3upload"},
             ["content-length-range", 0, 204857600] # ~200MB, overkill I'm sure
@@ -113,9 +113,9 @@ def index():
     })
 
     policy = base64.b64encode(policy_doc)
-    signature = base64.b64encode(hmac.new(AWS_SECRET_KEY, policy, hashlib.sha1).digest())
+    signature = base64.b64encode(hmac.new(AWS_SECRET_KEY, policy, sha).digest())
 
-    return render_template('index.html', signature=signature, policy=policy_doc, access_key=AWS_ACCESS_KEY)
+    return render_template('index.html', signature=signature, policy=policy, access_key=AWS_ACCESS_KEY)
 
 
 
