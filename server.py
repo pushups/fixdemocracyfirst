@@ -39,7 +39,7 @@ def upload_file():
             'X-Upload-content-type': f.content_type,  # trust client ContentType?
             #'X-upload-content-type': 'application/octet-stream',
         }
-        data = {"status": {"privacyStatus": "public"}}
+        data = {"status": {"privacyStatus": "private"}}
         params = {
             "part": "status",
             "uploadType": "resumable",
