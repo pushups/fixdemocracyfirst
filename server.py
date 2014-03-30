@@ -56,7 +56,7 @@ def upload_file():
         stream.seek(0)
         r = requests.put(r.headers['Location'], headers=headers, data=stream)
         print r.text
-        return '<p>Thanks for the video! View it <a href="%s">here</a></p>' % video_url
+        return '<p>Thanks for the video! View it <a href="http://youtube.com/watch?v=%s">here</a></p>' % r.json()['id']
     else:
         return "Hello"
 
