@@ -56,30 +56,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 
 	<script>
-	function handleNewItemSubmit(){
-		//alert('in handle func');
-		var image_files = $("#video-input")[0].files;
-		if (image_files.length>0){
-			//we have an image
-			var video_file = image_files[0];
-			var reader = new FileReader();
-			reader.onload = function(e){
-				alert('in onload func')
-				video_blob = e.target.result;
-				//upload video somewhere
-
-				$.ajax("http://rossboucher.com/test/nhr/upload.php", {
-					type: 'POST',
-					data: video_blob
-				});
-			};
-			reader.readAsBinaryString(video_file);
-		}
-		else {
-			//we have no image
-			submitItem({"description":desc});
-		};
-	};
+	
 
 	$(function() {
 		$("#video-input").change(function () {
@@ -124,7 +101,7 @@
 				
 				
 				<div>
-					<span class="btn btn-danger btn-file">
+					<span id='start-button' class="btn btn-danger btn-file">
 						Start<input type="file" name="file" accept="video/*" >
 					</span>
 				</div>
