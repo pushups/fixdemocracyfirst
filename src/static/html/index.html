@@ -13,10 +13,10 @@
 
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-	
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	
+
 	<script>
 	function handleNewItemSubmit(){
 		//alert('in handle func');
@@ -25,11 +25,11 @@
 			//we have an image
 			var video_file = image_files[0];
 			var reader = new FileReader();
-			reader.onload = function(e){ 
+			reader.onload = function(e){
 				alert('in onload func')
 				video_blob = e.target.result;
 				//upload video somewhere
-				
+
 				$.ajax("http://rossboucher.com/test/nhr/upload.php", {
 					type: 'POST',
 					data: video_blob
@@ -40,16 +40,16 @@
 		else {
 			//we have no image
 			submitItem({"description":desc});
-		}; 
+		};
 	};
-	
+
 	$(function() {
 		$("#video-input").change(function () {
 			//alert('in onchange func');
 			handleNewItemSubmit();
 		})
 	})
-	
+
 	</script>
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -63,19 +63,19 @@
 		<div class="page-header">
 		  <h1>Questioner</h1>
 		</div>
-		<p>Please record the candidate's answer to one simple question:</p>
+		<p>Please record the candidate’s answer to one simple question:</p>
 		<blockquote>
 			<p>How are you going to end the system of corruption in Washington DC?</p>
 		</blockquote>
 		<p>Instructions:</p>
 		<ol>
-			<li>Tap "Choose File"</li>
-			<li>Tap "Take Video"</li>
+			<li>Tap “Choose File”</li>
+			<li>Tap “Take Video”</li>
 			<li>Tap the Recording button to start recording</li>
-			<li>Ask the candidate: "How are you going to end the system of corruption in Washington DC?"</li>
+			<li>Ask the candidate: “How are you going to end the system of corruption in Washington DC?"</li>
 			<li>Keep the camera pointed at them during their response</li>
 			<li>Tap the Recording button again to stop recording when they are done</li>
-			<li>Tap "Upload" when back at this screen and wait for the page confirming upload</li>
+			<li>Tap “Upload” when back at this screen and wait for the page confirming upload</li>
 		</ol>
 		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
 		<form role="form" action="https://6796f2aa.ngrok.com/upload" method="post" enctype="multipart/form-data">
