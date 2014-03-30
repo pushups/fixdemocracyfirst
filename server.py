@@ -51,7 +51,10 @@ def upload_file():
             'content-type': f.content_type,
             'content-length': content_length,
         }
-        r = requests.put(r.headers['Location'], headers=headers, data=f.stream)
+
+        stream = f.stream
+        stream.seek(0)
+        r = requests.put(r.headers['Location'], headers=headers, data=stream)
         print r.text
         return '<p>Thanks for the video! View it <a href="%s">here</a></p>' % video_url
     else:
