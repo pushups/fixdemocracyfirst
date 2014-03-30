@@ -1,5 +1,6 @@
 from flask import Flask
 from flask import abort, redirect, url_for, session, request, render_template, Response
+import os
 
 import httplib2
 httplib2.debuglevel = 4
@@ -10,13 +11,9 @@ import json
 
 app = Flask(__name__, static_folder="src/static", template_folder="src/html")
 
-REFRESH_DATA = {
-  'client_id': '1000384659684-0oiu6g9qe0ibbv6cc2q48lbs21gc2fnl.apps.googleusercontent.com',
-  'client_secret': 'bFEOEoJrpKvyniKljImuwdnj',
-  'refresh_token': '1/jHDB9tLI-scfKwtnFLOzfm62nIdQNIWmL28HaEo_fXU',
-  'grant_type': 'refresh_token'
-}
-
+YT_CLIENT_ID = os.environ['YT_CLIENT_ID']
+YT_CLIENT_SECRET = os.environ['YT_CLIENT_SECRET']
+YT_REFRESH_TOKEN = os.environ['YT_REFRESH_TOKEN']
 YT_TOKEN_URL = 'https://accounts.google.com/o/oauth2/token'
 YT_VIDEOS_URL = 'https://www.googleapis.com/upload/youtube/v3/videos'
 
@@ -26,9 +23,16 @@ def upload_file():
         print request
         f = request.files['file']
         #f.save('/tmp/uploaded_file.mp4')
-        r = requests.post(YT_TOKEN_URL, data=REFRESH_DATA)
+        r = requests.post(YT_TOKEN_URL, data={
+            'client_id' : YT_CLIENT_ID,
+            'client_secret' : YT_CLIENT_SECRET,
+            'refresh_token' : YT_REFRESH_TOKEN,
+            'grant_type' : 'refresh_token'
+        })
+
         print r.text
         access_token = r.json()['access_token']
+
         stream = f.stream
         stream.seek(0)
         content_length = len(f.stream.read())
