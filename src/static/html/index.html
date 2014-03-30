@@ -61,8 +61,17 @@
 <body>
 	<div class="container">
 		<h1>Upload a video</h1>
+		<h2>Pure HTML</h2>
+		<p>Capture a video using camcorder without Javascript (<a href="http://www.francesco.iovine.name/w3c/mediacapture/">inspiration</a>)</p>
+		<form action="upload.php" method="post" enctype="multipart/form-data">
+			<input type="file" name="file" accept="video/*" capture></br>
+			<input type="submit" name="upload" value="Upload">
+		</form>
+		
+		<h2>AJAX</h2>
+		<a href="http://www.html5rocks.com/en/tutorials/file/dndfiles/?redirect_from_locale=tw">inspiration</a>
 		<form>
-			<input id="video-input" type="file" accept="video/*" capture="camcorder">
+			<input id="video-input" type="file" accept="video/*" capture="camcorder"></br>
 			<input type="submit">Submit</input>
 		</form>
 	</div>
