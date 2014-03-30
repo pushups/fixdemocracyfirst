@@ -1,6 +1,8 @@
 from flask import Flask
 from flask import abort, redirect, url_for, session, request, render_template, Response
 import os
+import datetime
+import pytz
 
 import httplib2
 httplib2.debuglevel = 4
@@ -36,6 +38,7 @@ def upload_file():
         stream = f.stream
         stream.seek(0)
         content_length = len(f.stream.read())
+
         headers = {
             'Authorization': 'Bearer %s' % access_token,
             'content-type': 'application/json; charset=utf-8',
@@ -43,13 +46,36 @@ def upload_file():
             'X-Upload-content-type': f.content_type,  # trust client ContentType?
             #'X-upload-content-type': 'application/octet-stream',
         }
-        data = {"status": {"privacyStatus": "private"}}
+
+        data = {
+            "status": {
+                "privacyStatus": "private",
+                "license": "creativeCommon",
+                "embeddable": "true"
+            },
+            "categoryId": "29", # Activism
+            "tags": ["#NHRebellion"],
+            #"title": "",
+            #"description": "",
+            "recordingDate": datetime.datetime.now(pytz.UTC).isoformat()#,
+            #"locationDescription"
+        }
+
+        #if request.location:
+        #    data["location"]: {
+        #        "latitude":
+        #        "longitude":
+        #    }
+
         params = {
             "part": "status",
             "uploadType": "resumable",
             "alt": "json",
         }
+
         r = requests.post(YT_VIDEOS_URL, headers=headers, data=json.dumps(data), params=params)
+        print r.text
+
         headers = {
             'Authorization': 'Bearer %s' % access_token,
             'content-type': f.content_type,
@@ -68,6 +94,7 @@ def upload_file():
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 
 if __name__ == "__main__":
