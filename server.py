@@ -3,6 +3,9 @@ from flask import abort, redirect, url_for, session, request, render_template, R
 import os
 import datetime
 import pytz
+import base64
+import hmac, hashlib
+
 
 import httplib2
 httplib2.debuglevel = 4
@@ -11,6 +14,7 @@ httplib.HTTPConnection.debuglevel = 1
 import requests
 import json
 
+
 app = Flask(__name__, static_folder="src/static", template_folder="src/html")
 
 YT_CLIENT_ID = os.environ['YT_CLIENT_ID']
@@ -18,6 +22,8 @@ YT_CLIENT_SECRET = os.environ['YT_CLIENT_SECRET']
 YT_REFRESH_TOKEN = os.environ['YT_REFRESH_TOKEN']
 YT_TOKEN_URL = 'https://accounts.google.com/o/oauth2/token'
 YT_VIDEOS_URL = 'https://www.googleapis.com/upload/youtube/v3/videos'
+AWS_ACCESS_KEY = os.environ['AWS_ACCESS_KEY']
+AWS_SECRET_KEY = os.environ['AWS_SECRET_KEY']
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
@@ -90,9 +96,26 @@ def upload_file():
         return "Hello"
 
 
+
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    #AKIAJ75RWBGKTAGQXP3Q    
+    policy_doc = json.dumps({
+        "expiration": (datetime.datetime.now(pytz.UTC) + datetime.timedelta(days=1)).isoformat(),
+        "conditions": [ 
+            {"bucket": "nhr-video-uploads"}, 
+            ["starts-with", "$key", "uploads/"],
+            {"acl": "private"},
+            {"success_action_redirect": "http://nhr-questioner.herokuapp.com/s3upload"},
+            ["content-length-range", 0, 204857600] # ~200MB, overkill I'm sure
+        ]
+    })
+
+    policy = base64.b64encode(policy_doc)
+    signature = base64.b64encode(hmac.new(AWS_SECRET_KEY, policy, hashlib.sha1).digest())
+
+    return render_template('index.html', signature=signature, policy=policy_doc, access_key=AWS_ACCESS_KEY)
 
 
 

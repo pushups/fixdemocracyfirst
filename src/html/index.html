@@ -78,8 +78,15 @@
 			<li>Tap “Upload” when back at this screen and wait for the page confirming upload</li>
 		</ol>
 		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
-		<form role="form" action="/upload" method="post" enctype="multipart/form-data">
+		<form role="form" action="https://nhr-video-uploads.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
 			<div class="form-group">
+				<input type="hidden" name="key" value="uploads/${filename}">
+				<input type="hidden" name="AWSAccessKeyId" value="{{access_key}}"> 
+				<input type="hidden" name="acl" value="private"> 
+				<input type="hidden" name="success_action_redirect" value="http://nhr-questioner.herokuapp.com/s3upload">
+				<input type="hidden" name="policy" value="{{policy}}">
+				<input type="hidden" name="signature" value="{{signature}}">
+
 				<input type="file" name="file" accept="video/*" capture></br>
 				<input type="submit" name="upload" value="Upload">
 			</div>
