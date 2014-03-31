@@ -83,24 +83,27 @@
 			
 		<!-- PURE HTML Method. Inspired by: http://www.francesco.iovine.name/w3c/mediacapture/-->
 
-		<form role="form" action="/upload" method="post" enctype="multipart/form-data">
-		<div>
-		
-			<div id="button">
-				
-				
-				<div id="start-button">
-					<span class="btn btn-danger btn-file">
-						Start<input id='video-input' type="file" name="file" accept="video/*" capture>
-					</span>
-				</div>
-				
-				
-				<div id="upload-button">
-					<input class="btn btn-primary" type="submit" name="upload" value="Upload">
+		<form role="form" action="https://nhr-video-uploads.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="key" value="{{prefix}}${filename}">
+			<input type="hidden" name="AWSAccessKeyId" value="{{access_key}}"> 
+			<input type="hidden" name="acl" value="private"> 
+			<input type="hidden" name="success_action_redirect" value="http://localhost:5000/s3upload">
+			<input type="hidden" name="policy" value="{{policy}}">
+			<input type="hidden" name="signature" value="{{signature}}">
+
+			<div>
+				<div id="button">
+					<div id="start-button">
+						<span class="btn btn-danger btn-file">
+							Start<input id='video-input' type="file" name="file" accept="video/*" capture>
+						</span>
+					</div>				
+					
+					<div id="upload-button">
+						<input class="btn btn-primary" type="submit" name="upload" value="Upload">
+					</div>
 				</div>
 			</div>
-		</div>
 		</form>
 		
 	</div>
