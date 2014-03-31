@@ -96,18 +96,21 @@ def upload_file():
         return "Hello"
 
 
+@app.route('/s3upload')
+def s3upload():
+    return request.args.get("key")
 
 
 @app.route('/')
 def index():
-    #AKIAJ75RWBGKTAGQXP3Q    
+    prefix = datetime.datetime.now().isoformat()+"-"
     policy_doc = json.dumps({
         "expiration": (datetime.datetime.now() + datetime.timedelta(days=1)).isoformat()+"Z",
         "conditions": [ 
             {"bucket": "nhr-video-uploads"}, 
-            ["starts-with", "$key", ""],
+            ["starts-with", "$key", prefix],
             {"acl": "private"},
-            {"success_action_redirect": "http://nhr-questioner.herokuapp.com/s3upload"},
+            {"success_action_redirect": "http://localhost:5000/s3upload"},
             ["content-length-range", 0, 204857600] # ~200MB, overkill I'm sure
         ]
     })
@@ -115,7 +118,7 @@ def index():
     policy = base64.b64encode(policy_doc)
     signature = base64.b64encode(hmac.new(AWS_SECRET_KEY, policy, sha).digest())
 
-    return render_template('index.html', signature=signature, policy=policy, access_key=AWS_ACCESS_KEY)
+    return render_template('index.html', signature=signature, policy=policy, access_key=AWS_ACCESS_KEY, prefix=prefix)
 
 
 
