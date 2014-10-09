@@ -40,7 +40,47 @@
 	    background: white;
 	    cursor: inherit;
 	    display: block;
-	} 
+	}
+	#video-popover {
+	    content: "";
+	    position: absolute;
+	    top: 0;
+	    bottom: 0;
+	    left: 0;
+	    right: 0;
+	    text-align: center;
+	    background-color: rgba(0, 0, 0, 0.5);
+	    vertical-align: middle;
+	    cursor: pointer;
+	}
+	#video-wrapper {
+	    width: 90%;
+	    margin: auto;
+	    max-width: 640px;
+	    margin-top: 20px;
+	    background: white;
+	    padding: 10px;
+	    position: relative;
+	}
+	#video-wrapper:after {
+	    content: "X";
+	    color: white;
+	    font-size: 20px;
+	    font-weight: bold;
+	    position: absolute;
+	    top: -15px;
+	    right: -15px;
+	    width: 40px;
+	    line-height: 36px;
+	    text-align: center;
+	    background-color: black;
+	    border-radius: 1000px;
+	    border: 2px solid white;
+	    box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+	}
+	#video-wrapper iframe {
+	    width: 100%;
+	}
 	</style> 
 	
 	<link rel="stylesheet" href="../static/css/style.css" type="text/css" media="screen" title="no title" charset="utf-8">
@@ -55,6 +95,9 @@
 	<script>
 	
 	$(function() {
+		$('#video-popover').click(function(){
+		  $(this).hide();
+		});
 		$('#upload-button').hide();
 		$("#video-input").change(function () {
 			$('#start-button').hide();
@@ -107,5 +150,10 @@
 	<footer>
 		A <a href="http://NHRebellion.org">New Hampshire Rebellion</a> Project
 	</footer>
+	<div id="video-popover">
+	  <div id="video-wrapper">
+		  <iframe width="640" height="390" src="//www.youtube.com/embed/yuGTg2CLwPc" frameborder="0" allowfullscreen></iframe>
+    </div>
+	</div>
 </body>
 </html>
