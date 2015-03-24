@@ -16,6 +16,9 @@
 !/log/.keep
 /tmp
 
+# Ignore bower dependency tree
+/node_modules
+
 # Legacy ignores for original python server
 venv
 *.pyc
