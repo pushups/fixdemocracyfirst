@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First:</strong>
+  <%= @candidate.first %>
+</p>
+
+<p>
+  <strong>Last:</strong>
+  <%= @candidate.last %>
+</p>
+
+<p>
+  <strong>Party:</strong>
+  <%= @candidate.party %>
+</p>
+
+<p>
+  <strong>District:</strong>
+  <%= @candidate.district %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @candidate.state %>
+</p>
+
+<%= link_to 'Edit', edit_candidate_path(@candidate) %> |
+<%= link_to 'Back', candidates_path %>

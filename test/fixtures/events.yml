@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  start_time: 2015-03-22 22:59:41
+  end_time: 2015-03-22 22:59:41
+  location_text: 'San Francisco, CA'
+  location_coords: '37.779320,-122.419167'
+
+two:
+  name: MyString
+  start_time: 2015-03-22 22:59:41
+  end_time: 2015-03-22 22:59:41
+  location_text: 'San Francisco, CA'
+  location_coords: '37.779320,-122.419167'
