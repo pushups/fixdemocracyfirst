@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get 'static_pages/index'
-  root 'static_pages#index'
+  root 'videos#new'
   resources :events
   resources :campaigns
   resources :candidates

@@ -25,6 +25,8 @@ class VideosController < ApplicationController
   # POST /videos.json
   def create
     @video = Video.new(video_params)
+    @video.title = "New Video Uploaded #{DateTime.now}"
+    @video.upload(params[:video][:v])
 
     respond_to do |format|
       if @video.save
