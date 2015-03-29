@@ -36,6 +36,7 @@ class Video < ActiveRecord::Base
       post_body << 'rn--#{BOUNDARY}--rn'
       uri = URI(YT_VIDEOS_URL)
       http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri)
       request.body = post_body.join
       request['Content-Type'] = "multipart/form-data, boundary=#{BOUNDARY}"
