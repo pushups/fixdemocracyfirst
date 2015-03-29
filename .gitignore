@@ -23,3 +23,5 @@
 venv
 *.pyc
 launch.sh
+
+/upload_cache/*
