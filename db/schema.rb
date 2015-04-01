@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330014434) do
+ActiveRecord::Schema.define(version: 20150401165438) do
 
   create_table "attendees", force: :cascade do |t|
     t.integer  "user_id",      limit: 4
@@ -20,6 +20,9 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "updated_at",             null: false
   end
 
+  add_index "attendees", ["event_day_id", "user_id"], name: "index_attendees_on_event_day_id_and_user_id", using: :btree
+  add_index "attendees", ["user_id", "event_day_id"], name: "index_attendees_on_user_id_and_event_day_id", using: :btree
+
   create_table "campaigns", force: :cascade do |t|
     t.integer  "rwu_id",       limit: 4
     t.integer  "candidate_id", limit: 4
@@ -27,6 +30,10 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "campaigns", ["candidate_id"], name: "index_campaigns_on_candidate_id", using: :btree
+  add_index "campaigns", ["election_id"], name: "index_campaigns_on_election_id", using: :btree
+  add_index "campaigns", ["rwu_id"], name: "index_campaigns_on_rwu_id", using: :btree
 
   create_table "candidates", force: :cascade do |t|
     t.integer  "rwu_id",     limit: 4
@@ -37,6 +44,10 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  add_index "candidates", ["office_id"], name: "index_candidates_on_office_id", using: :btree
+  add_index "candidates", ["person_id"], name: "index_candidates_on_person_id", using: :btree
+  add_index "candidates", ["rwu_id"], name: "index_candidates_on_rwu_id", using: :btree
 
   create_table "candidates_events", id: false, force: :cascade do |t|
     t.integer "candidate_id", limit: 4, null: false
@@ -58,6 +69,10 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "updated_at",                 null: false
   end
 
+  add_index "elections", ["election_id"], name: "index_elections_on_election_id", using: :btree
+  add_index "elections", ["office_type_id"], name: "index_elections_on_office_type_id", using: :btree
+  add_index "elections", ["rwu_id"], name: "index_elections_on_rwu_id", using: :btree
+
   create_table "event_days", force: :cascade do |t|
     t.integer  "rwu_id",     limit: 4
     t.integer  "event_id",   limit: 4
@@ -67,6 +82,9 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "created_at",           null: false
     t.datetime "updated_at",           null: false
   end
+
+  add_index "event_days", ["event_id"], name: "index_event_days_on_event_id", using: :btree
+  add_index "event_days", ["rwu_id"], name: "index_event_days_on_rwu_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.integer  "rwu_id",      limit: 4
@@ -78,6 +96,9 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "updated_at",              null: false
   end
 
+  add_index "events", ["rwu_id"], name: "index_events_on_rwu_id", using: :btree
+  add_index "events", ["venue_id"], name: "index_events_on_venue_id", using: :btree
+
   create_table "people", force: :cascade do |t|
     t.integer  "rwu_id",      limit: 4
     t.string   "first_name",  limit: 255
@@ -88,6 +109,8 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
+
+  add_index "people", ["rwu_id"], name: "index_people_on_rwu_id", using: :btree
 
   create_table "statements", force: :cascade do |t|
     t.integer  "rwu_id",       limit: 4
@@ -103,15 +126,21 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "updated_at",               null: false
   end
 
+  add_index "statements", ["campaign_id"], name: "index_statements_on_campaign_id", using: :btree
+  add_index "statements", ["candidate_id"], name: "index_statements_on_candidate_id", using: :btree
+  add_index "statements", ["event_day_id"], name: "index_statements_on_event_day_id", using: :btree
+  add_index "statements", ["rwu_id"], name: "index_statements_on_rwu_id", using: :btree
+  add_index "statements", ["user_id"], name: "index_statements_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "fullname",   limit: 255
     t.string   "email",      limit: 255
     t.string   "location",   limit: 255
     t.string   "fb_uid",     limit: 255
     t.string   "fb_token",   limit: 255
-    t.boolean  "admin",      limit: 1,   default: false, null: false
-    t.datetime "created_at",                             null: false
-    t.datetime "updated_at",                             null: false
+    t.boolean  "admin",      limit: 1
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "users", ["fb_uid"], name: "index_users_on_fb_uid", using: :btree
@@ -131,5 +160,7 @@ ActiveRecord::Schema.define(version: 20150330014434) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
+
+  add_index "venues", ["rwu_id"], name: "index_venues_on_rwu_id", using: :btree
 
 end
