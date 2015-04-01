@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rwu_id: 1
+  first_name: MyString
+  nickname: MyString
+  middle_name: MyString
+  last_name: MyString
+  suffix: MyString
+
+two:
+  rwu_id: 1
+  first_name: MyString
+  nickname: MyString
+  middle_name: MyString
+  last_name: MyString
+  suffix: MyString

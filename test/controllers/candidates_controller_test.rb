@@ -18,7 +18,7 @@ class CandidatesControllerTest < ActionController::TestCase
 
   test "should create candidate" do
     assert_difference('Candidate.count') do
-      post :create, candidate: { district: @candidate.district, first: @candidate.first, last: @candidate.last, party: @candidate.party, state: @candidate.state }
+      post :create, candidate: { district: @candidate.district, office_id: @candidate.office_id, person_id: @candidate.person_id, position: @candidate.position, rwu_id: @candidate.rwu_id }
     end
 
     assert_redirected_to candidate_path(assigns(:candidate))
@@ -35,7 +35,7 @@ class CandidatesControllerTest < ActionController::TestCase
   end
 
   test "should update candidate" do
-    patch :update, id: @candidate, candidate: { district: @candidate.district, first: @candidate.first, last: @candidate.last, party: @candidate.party, state: @candidate.state }
+    patch :update, id: @candidate, candidate: { district: @candidate.district, office_id: @candidate.office_id, person_id: @candidate.person_id, position: @candidate.position, rwu_id: @candidate.rwu_id }
     assert_redirected_to candidate_path(assigns(:candidate))
   end
 

@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
-  root 'videos#new'
-  resources :events
-  resources :campaigns
+  resources :statements
+  resources :people
   resources :candidates
-  resources :users
-  resources :videos
+  resources :elections
+  resources :campaigns
+  resources :attendees
+  resources :event_days
+  resources :events
+  resources :venues
+  root 'statements#new'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,1 +1,1 @@
-json.extract! @candidate, :id, :first, :last, :party, :district, :state, :created_at, :updated_at
+json.extract! @candidate, :id, :rwu_id, :person_id, :office_id, :position, :district, :created_at, :updated_at

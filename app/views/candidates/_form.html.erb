@@ -12,24 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :first %><br>
-    <%= f.text_field :first %>
+    <%= f.label :rwu_id %><br>
+    <%= f.number_field :rwu_id %>
   </div>
   <div class="field">
-    <%= f.label :last %><br>
-    <%= f.text_field :last %>
+    <%= f.label :person_id %><br>
+    <%= f.number_field :person_id %>
   </div>
   <div class="field">
-    <%= f.label :party %><br>
-    <%= f.number_field :party %>
+    <%= f.label :office_id %><br>
+    <%= f.text_field :office_id %>
+  </div>
+  <div class="field">
+    <%= f.label :position %><br>
+    <%= f.text_field :position %>
   </div>
   <div class="field">
     <%= f.label :district %><br>
     <%= f.text_field :district %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
   </div>
   <div class="actions">
     <%= f.submit %>

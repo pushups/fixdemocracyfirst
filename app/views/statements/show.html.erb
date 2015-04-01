@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rwu:</strong>
+  <%= @statement.rwu_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @statement.user_id %>
+</p>
+
+<p>
+  <strong>Event day:</strong>
+  <%= @statement.event_day_id %>
+</p>
+
+<p>
+  <strong>Campaign:</strong>
+  <%= @statement.campaign_id %>
+</p>
+
+<p>
+  <strong>Candidate:</strong>
+  <%= @statement.candidate_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @statement.title %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @statement.url %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @statement.description %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @statement.approved %>
+</p>
+
+<%= link_to 'Edit', edit_statement_path(@statement) %> |
+<%= link_to 'Back', statements_path %>

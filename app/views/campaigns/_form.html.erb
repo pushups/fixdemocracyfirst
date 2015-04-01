@@ -12,8 +12,16 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :rwu_id %><br>
+    <%= f.number_field :rwu_id %>
+  </div>
+  <div class="field">
+    <%= f.label :candidate_id %><br>
+    <%= f.number_field :candidate_id %>
+  </div>
+  <div class="field">
+    <%= f.label :election_id %><br>
+    <%= f.number_field :election_id %>
   </div>
   <div class="actions">
     <%= f.submit %>

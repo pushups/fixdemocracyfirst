@@ -12,24 +12,24 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.label :rwu_id %><br>
+    <%= f.number_field :rwu_id %>
   </div>
   <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :location_text %><br>
-    <%= f.text_area :location_text %>
+    <%= f.label :venue_id %><br>
+    <%= f.number_field :venue_id %>
   </div>
   <div class="field">
-    <%= f.label :location_coords %><br>
-    <%= f.text_field :location_coords %>
+    <%= f.label :public %><br>
+    <%= f.check_box :public %>
   </div>
   <div class="actions">
     <%= f.submit %>

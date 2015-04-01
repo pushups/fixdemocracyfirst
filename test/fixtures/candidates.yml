@@ -1,15 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  first: MyString
-  last: MyString
-  party: 1
+  rwu_id: 1
+  person_id: 1
+  office_id: MyString
+  position: MyString
   district: MyString
-  state: MyString
 
 two:
-  first: MyString
-  last: MyString
-  party: 1
+  rwu_id: 1
+  person_id: 1
+  office_id: MyString
+  position: MyString
   district: MyString
-  state: MyString

@@ -5,11 +5,11 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Start Time</th>
-      <th>End Time</th>
-      <th>Location Text</th>
-      <th>Location Coords</th>
+      <th>Rwu</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Venue</th>
+      <th>Public</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -17,11 +17,11 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.name %></td>
-        <td><%= event.start_time %></td>
-        <td><%= event.end_time %></td>
-        <td><%= event.location_text %></td>
-        <td><%= event.location_coords %></td>
+        <td><%= event.rwu_id %></td>
+        <td><%= event.title %></td>
+        <td><%= event.description %></td>
+        <td><%= event.venue_id %></td>
+        <td><%= event.public %></td>
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>

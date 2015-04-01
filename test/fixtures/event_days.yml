@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rwu_id: 1
+  event_id: 1
+  date: 2015-03-29 16:12:50
+  start_time: 2015-03-29 16:12:50
+  end_time: 2015-03-29 16:12:50
+
+two:
+  rwu_id: 1
+  event_id: 1
+  date: 2015-03-29 16:12:50
+  start_time: 2015-03-29 16:12:50
+  end_time: 2015-03-29 16:12:50

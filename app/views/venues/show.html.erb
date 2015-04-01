@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rwu:</strong>
+  <%= @venue.rwu_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @venue.name %>
+</p>
+
+<p>
+  <strong>Street address1:</strong>
+  <%= @venue.street_address1 %>
+</p>
+
+<p>
+  <strong>Street address2:</strong>
+  <%= @venue.street_address2 %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @venue.unit %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @venue.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @venue.state %>
+</p>
+
+<p>
+  <strong>Postal code:</strong>
+  <%= @venue.postal_code %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @venue.url %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @venue.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @venue.longitude %>
+</p>
+
+<%= link_to 'Edit', edit_venue_path(@venue) %> |
+<%= link_to 'Back', venues_path %>

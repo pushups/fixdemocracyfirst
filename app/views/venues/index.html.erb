@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Venues</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rwu</th>
+      <th>Name</th>
+      <th>Street address1</th>
+      <th>Street address2</th>
+      <th>Unit</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Postal code</th>
+      <th>Url</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @venues.each do |venue| %>
+      <tr>
+        <td><%= venue.rwu_id %></td>
+        <td><%= venue.name %></td>
+        <td><%= venue.street_address1 %></td>
+        <td><%= venue.street_address2 %></td>
+        <td><%= venue.unit %></td>
+        <td><%= venue.city %></td>
+        <td><%= venue.state %></td>
+        <td><%= venue.postal_code %></td>
+        <td><%= venue.url %></td>
+        <td><%= venue.latitude %></td>
+        <td><%= venue.longitude %></td>
+        <td><%= link_to 'Show', venue %></td>
+        <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
+        <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Venue', new_venue_path %>

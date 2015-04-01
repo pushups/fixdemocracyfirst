@@ -1,0 +1,45 @@
+<%= form_for(@election) do |f| %>
+  <% if @election.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@election.errors.count, "error") %> prohibited this election from being saved:</h2>
+
+      <ul>
+      <% @election.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :rwu_id %><br>
+    <%= f.number_field :rwu_id %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :election_id %><br>
+    <%= f.number_field :election_id %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br>
+    <%= f.text_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :office_type_id %><br>
+    <%= f.text_field :office_type_id %>
+  </div>
+  <div class="field">
+    <%= f.label :special %><br>
+    <%= f.check_box :special %>
+  </div>
+  <div class="field">
+    <%= f.label :election_year %><br>
+    <%= f.number_field :election_year %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

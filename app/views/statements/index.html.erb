@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Statements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rwu</th>
+      <th>User</th>
+      <th>Event day</th>
+      <th>Campaign</th>
+      <th>Candidate</th>
+      <th>Title</th>
+      <th>Url</th>
+      <th>Description</th>
+      <th>Approved</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @statements.each do |statement| %>
+      <tr>
+        <td><%= statement.rwu_id %></td>
+        <td><%= statement.user_id %></td>
+        <td><%= statement.event_day_id %></td>
+        <td><%= statement.campaign_id %></td>
+        <td><%= statement.candidate_id %></td>
+        <td><%= statement.title %></td>
+        <td><%= statement.url %></td>
+        <td><%= statement.description %></td>
+        <td><%= statement.approved %></td>
+        <td><%= link_to 'Show', statement %></td>
+        <td><%= link_to 'Edit', edit_statement_path(statement) %></td>
+        <td><%= link_to 'Destroy', statement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Statement', new_statement_path %>

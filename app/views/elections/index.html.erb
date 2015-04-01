@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Elections</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Rwu</th>
+      <th>Name</th>
+      <th>Election</th>
+      <th>State</th>
+      <th>Office type</th>
+      <th>Special</th>
+      <th>Election year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @elections.each do |election| %>
+      <tr>
+        <td><%= election.rwu_id %></td>
+        <td><%= election.name %></td>
+        <td><%= election.election_id %></td>
+        <td><%= election.state %></td>
+        <td><%= election.office_type_id %></td>
+        <td><%= election.special %></td>
+        <td><%= election.election_year %></td>
+        <td><%= link_to 'Show', election %></td>
+        <td><%= link_to 'Edit', edit_election_path(election) %></td>
+        <td><%= link_to 'Destroy', election, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Election', new_election_path %>

@@ -5,7 +5,9 @@
 <table>
   <thead>
     <tr>
-      <th>Name</th>
+      <th>Rwu</th>
+      <th>Candidate</th>
+      <th>Election</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,7 +15,9 @@
   <tbody>
     <% @campaigns.each do |campaign| %>
       <tr>
-        <td><%= campaign.name %></td>
+        <td><%= campaign.rwu_id %></td>
+        <td><%= campaign.candidate_id %></td>
+        <td><%= campaign.election_id %></td>
         <td><%= link_to 'Show', campaign %></td>
         <td><%= link_to 'Edit', edit_campaign_path(campaign) %></td>
         <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' } %></td>

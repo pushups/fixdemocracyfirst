@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rwu_id: 1
+  name: MyString
+  election_id: 1
+  state: MyString
+  office_type_id: MyString
+  special: false
+  election_year: 1
+
+two:
+  rwu_id: 1
+  name: MyString
+  election_id: 1
+  state: MyString
+  office_type_id: MyString
+  special: false
+  election_year: 1

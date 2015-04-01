@@ -1,0 +1,10 @@
+<h1>Questionr</h1>
+<h2>Ask a Candidate: What specific reforms will you advance to end the corrupting influence of money in politics?</h2>
+<ol>
+	<li>Find a candidate near you <input type="text" value="postal code"/><input type="button" value="Search"/></li>
+	<li>Ask the Question and Video the Response <br/><iframe width="160" height="90" src="https://www.youtube.com/embed/yuGTg2CLwPc?feature=player_detailpage" frameborder="0" allowfullscreen></iframe></li>
+	<li><%= form_for @statement do |f| %>
+				Submit your Video <%= f.file_field :s, accept: "video/*" %> <%= f.submit %>
+			<% end %>
+	</li>
+</ol>

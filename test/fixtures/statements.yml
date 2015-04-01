@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rwu_id: 1
+  user_id: 1
+  event_day_id: 1
+  campaign_id: 1
+  candidate_id: 1
+  title: MyString
+  url: MyString
+  description: MyString
+  approved: false
+
+two:
+  rwu_id: 1
+  user_id: 1
+  event_day_id: 1
+  campaign_id: 1
+  candidate_id: 1
+  title: MyString
+  url: MyString
+  description: MyString
+  approved: false

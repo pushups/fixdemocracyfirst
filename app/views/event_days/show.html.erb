@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rwu:</strong>
+  <%= @event_day.rwu_id %>
+</p>
+
+<p>
+  <strong>Event:</strong>
+  <%= @event_day.event_id %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event_day.date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @event_day.start_time %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @event_day.end_time %>
+</p>
+
+<%= link_to 'Edit', edit_event_day_path(@event_day) %> |
+<%= link_to 'Back', event_days_path %>

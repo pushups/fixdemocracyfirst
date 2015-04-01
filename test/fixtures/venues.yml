@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rwu_id: 1
+  name: MyString
+  street_address1: MyString
+  street_address2: MyString
+  unit: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  url: MyString
+  latitude: 1.5
+  longitude: 1.5
+
+two:
+  rwu_id: 1
+  name: MyString
+  street_address1: MyString
+  street_address2: MyString
+  unit: MyString
+  city: MyString
+  state: MyString
+  postal_code: MyString
+  url: MyString
+  latitude: 1.5
+  longitude: 1.5
