@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :location
       t.string :fb_uid
       t.string :fb_token
-      t.boolean :admin, null: false, default: false
+      t.boolean :admin
       t.timestamps null: false
       t.index :fb_uid
     end
