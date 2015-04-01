@@ -2,7 +2,6 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'awesome_print'
-#require 'filemagic'
 
 YT_CLIENT_ID = ENV['YT_CLIENT_ID']
 YT_CLIENT_SECRET = ENV['YT_CLIENT_SECRET']
