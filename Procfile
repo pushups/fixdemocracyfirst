@@ -1,1 +1,1 @@
-web: gunicorn server:app
+web: bundle exec puma -C config/puma.rb
