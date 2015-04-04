@@ -1,9 +1,45 @@
-<h3>Ask a Candidate: What specific reforms will you advance to end the corrupting influence of money in politics?</h3>
-<ol>
-	<li>Find a candidate near you <input type="text" value="postal code"/><input type="button" value="Search"/></li>
-	<li>Ask the Question and Video the Response <br/><iframe width="160" height="90" src="https://www.youtube.com/embed/yuGTg2CLwPc?feature=player_detailpage" frameborder="0" allowfullscreen></iframe></li>
-	<li><%= form_for @statement do |f| %>
-				Submit your Video <%= f.file_field :s, accept: "video/*" %> <%= f.submit %>
-			<% end %>
-	</li>
-</ol>
+<div class="col-lg-3">
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	    <h1 class="panel-title">1. Find a Candidate</h3>
+	  </div>
+	  <div class="panel-body">
+			<p>Fanny pack Helvetica distillery, chambray letterpress before they sold out 
+				migas craft beer Blue Bottle Austin. Heirloom American Apparel fanny pack 
+				umami Brooklyn four loko.</p>
+	     <input type="text" value="name or postal code" class="form-control"/>
+			 <input type="button" value="Search" class="col-lg-offset-7 col-lg-5 btn btn-default"/>
+	  </div>
+	</div>
+</div>
+
+<div class="col-lg-3 col-lg-offset-1">
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">2. Ask the Question</h3>
+	  </div>
+	  <div class="panel-body">
+			<p>Art party normcore actually, Vice distillery PBR&B readymade. Single-origin 
+				coffee before they sold out church-key Bushwick, pug vegan freegan irony 
+				meggings heirloom. Shoreditch tofu tattooed cred fashion axe +1 plaid food truck.</p>
+				<iframe width="240" src="https://www.youtube.com/embed/yuGTg2CLwPc?feature=player_detailpage" frameborder="0" allowfullscreen></iframe></li>
+	  </div>
+	</div>
+</div>
+
+<div class="col-lg-3 col-lg-offset-1">
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">3. Share</h3>
+	  </div>
+	  <div class="panel-body">
+			<p>Kickstarter mixtape Vice XOXO, slow-carb vegan organic cray Thundercats tofu Williamsburg before they sold out.</p>
+		 <%= form_for @statement do |f| %>
+		 	<%= f.file_field :s, accept: "video/*", class: "col-lg-5"%>
+			<%= f.submit 'Upload', class: 'col-lg-7 btn btn-default' %>
+			<p>Crucifix roof party swag retro master cleanse wolf, polaroid sustainable mixtape Tumblr.</p>
+				<%= f.submit 'Tip', class: 'col-lg-offset-5 col-lg-7 btn btn-default' %>
+		 <% end %>
+	  </div>
+	</div>
+</div>
