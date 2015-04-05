@@ -1,14 +1,15 @@
 class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
-      t.string :fullname
+      t.string :first_name
+      t.string :last_name
       t.string :email
       t.string :location
       t.string :fb_uid
       t.string :fb_token
-      t.boolean :admin
+      t.boolean :admin, null: false, default: false
+
       t.timestamps null: false
-      t.index :fb_uid
     end
   end
 end

@@ -1,7 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  fullname: MyString
+  first_name: MyString
+  last_name: MyString
   email: MyString
   location: MyString
   fb_uid: MyString
@@ -9,7 +10,8 @@ one:
   admin: false
 
 two:
-  fullname: MyString
+  first_name: MyString
+  last_name: MyString
   email: MyString
   location: MyString
   fb_uid: MyString
