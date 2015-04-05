@@ -59,16 +59,16 @@
 				<fieldset>
   				<legend>Step 1: Tell us about yourself</legend>
 					<div class="col-lg-6">
-						<input type="text" class="form-control" id="first_name" placeholder="First Name">
+						<%=f.text_field :first_name, class: "form-control", placeholder: "First Name"%>
 					</div>
 					<div class="col-lg-6">
-						<input type="text" class="form-control" id="last_name" placeholder="Last Name">
+						<%=f.text_field :last_name, class: "form-control", placeholder: "Last Name"%>
 					</div>
 					<div class="col-lg-6">
-						<input type="text" class="form-control" id="email" placeholder="Email">
+						<%=f.text_field :email, class: "form-control", placeholder: "Email"%>
 					</div>
 					<div class="col-lg-6">
-						<input type="text" class="form-control" id="last_name" placeholder="Postal Code (Zip Code)">
+						<%=f.text_field :zip_code, class: "form-control", placeholder: "Postal Code (Zip Code)"%>
 					</div>
 				</fieldset>
 				<fieldset>
@@ -86,7 +86,7 @@
 						<input type="text" class="form-control" id="event_location" placeholder="Event Location">
 					</div>
 					<div class="col-lg-12">
-						<textarea class="form-control" rows="4" id="notes"></textarea>
+						<textarea class="form-control" rows="4" id="notes" placeholder="Notes"></textarea>
 					</div>
 				</fieldset>
 				<em class="col-lg-offset-1 col-lg-11">Want to remain anonymous? That's cool. All fields are optional.</em>
@@ -98,8 +98,7 @@
 				</fieldset>
 			</div>
 	    <div class="modal-footer">
-	      <button type="button" class="col-lg-offset-3 col-lg-3 btn btn-default" data-dismiss="modal">Cancel</button>
-				<%= f.submit 'Upload', class: "col-lg-offset-1 col-lg-5 btn btn-primary" %>
+				<%= f.submit 'Upload', class: "col-lg-offset-4 col-lg-4 btn btn-primary" %>
 	    </div>
 	  </div>
 	</div>
