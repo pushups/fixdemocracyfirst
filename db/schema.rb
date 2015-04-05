@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405010730) do
+ActiveRecord::Schema.define(version: 20150405052509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,8 +125,13 @@ ActiveRecord::Schema.define(version: 20150405010730) do
     t.string   "url"
     t.string   "description"
     t.boolean  "approved"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "ugc_candidate_name"
+    t.datetime "ugc_date"
+    t.string   "ugc_event_title"
+    t.string   "ugc_event_location"
+    t.text     "ugc_notes"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_index "statements", ["campaign_id"], name: "index_statements_on_campaign_id", using: :btree
@@ -142,9 +147,10 @@ ActiveRecord::Schema.define(version: 20150405010730) do
     t.string   "location"
     t.string   "fb_uid"
     t.string   "fb_token"
-    t.boolean  "admin",      default: false, null: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "admin"
+    t.string   "postal_code"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "venues", force: :cascade do |t|

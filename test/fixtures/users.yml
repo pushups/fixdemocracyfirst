@@ -8,6 +8,7 @@ one:
   fb_uid: MyString
   fb_token: MyString
   admin: false
+  postal_code: MyString
 
 two:
   first_name: MyString
@@ -17,3 +18,4 @@ two:
   fb_uid: MyString
   fb_token: MyString
   admin: false
+  postal_code: MyString
