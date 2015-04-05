@@ -15,6 +15,7 @@ class StatementsController < ApplicationController
   # GET /statements/new
   def new
     @statement = Statement.new
+    @user
   end
 
   # GET /statements/1/edit
