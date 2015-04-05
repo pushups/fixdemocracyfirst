@@ -10,6 +10,11 @@ one:
   url: MyString
   description: MyString
   approved: false
+  ugc_candidate_name: MyString
+  ugc_date: 2015-04-04 22:11:53
+  ugc_event_title: MyString
+  ugc_event_location: MyString
+  ugc_notes: MyText
 
 two:
   rwu_id: 1
@@ -21,3 +26,8 @@ two:
   url: MyString
   description: MyString
   approved: false
+  ugc_candidate_name: MyString
+  ugc_date: 2015-04-04 22:11:53
+  ugc_event_title: MyString
+  ugc_event_location: MyString
+  ugc_notes: MyText

@@ -45,5 +45,30 @@
   <%= @statement.approved %>
 </p>
 
+<p>
+  <strong>Ugc candidate name:</strong>
+  <%= @statement.ugc_candidate_name %>
+</p>
+
+<p>
+  <strong>Ugc date:</strong>
+  <%= @statement.ugc_date %>
+</p>
+
+<p>
+  <strong>Ugc event title:</strong>
+  <%= @statement.ugc_event_title %>
+</p>
+
+<p>
+  <strong>Ugc event location:</strong>
+  <%= @statement.ugc_event_location %>
+</p>
+
+<p>
+  <strong>Ugc notes:</strong>
+  <%= @statement.ugc_notes %>
+</p>
+
 <%= link_to 'Edit', edit_statement_path(@statement) %> |
 <%= link_to 'Back', statements_path %>

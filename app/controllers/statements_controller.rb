@@ -72,6 +72,6 @@ class StatementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def statement_params
-      params.require(:statement).permit(:rwu_id, :user_id, :event_day_id, :campaign_id, :candidate_id, :title, :url, :description, :approved)
+      params.require(:statement).permit(:rwu_id, :user_id, :event_day_id, :campaign_id, :candidate_id, :title, :url, :description, :approved, :ugc_candidate_name, :ugc_date, :ugc_event_title, :ugc_event_location, :ugc_notes)
     end
 end
