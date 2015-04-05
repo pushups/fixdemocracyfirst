@@ -11,6 +11,10 @@ YT_VIDEOS_URL = 'https://www.googleapis.com/upload/youtube/v3/videos'
 BOUNDARY = '¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>'
 
 class Statement < ActiveRecord::Base
+  belongs_to :user
+  belongs_to :event_day
+  belongs_to :campaign
+  belongs_to :candidate
       
   def upload(video)
     logger.debug ap(video)
