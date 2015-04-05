@@ -18,7 +18,7 @@ class ElectionsControllerTest < ActionController::TestCase
 
   test "should create election" do
     assert_difference('Election.count') do
-      post :create, election: { election_id: @election.election_id, election_year: @election.election_year, name: @election.name, office_type_id: @election.office_type_id, rwu_id: @election.rwu_id, special: @election.special, state: @election.state }
+      post :create, election: { election_year: @election.election_year, name: @election.name, office_type_id: @election.office_type_id, rwu_id: @election.rwu_id, special: @election.special, state: @election.state }
     end
 
     assert_redirected_to election_path(assigns(:election))
@@ -35,7 +35,7 @@ class ElectionsControllerTest < ActionController::TestCase
   end
 
   test "should update election" do
-    patch :update, id: @election, election: { election_id: @election.election_id, election_year: @election.election_year, name: @election.name, office_type_id: @election.office_type_id, rwu_id: @election.rwu_id, special: @election.special, state: @election.state }
+    patch :update, id: @election, election: { election_year: @election.election_year, name: @election.name, office_type_id: @election.office_type_id, rwu_id: @election.rwu_id, special: @election.special, state: @election.state }
     assert_redirected_to election_path(assigns(:election))
   end
 

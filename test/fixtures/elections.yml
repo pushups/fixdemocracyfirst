@@ -3,7 +3,6 @@
 one:
   rwu_id: 1
   name: MyString
-  election_id: 1
   state: MyString
   office_type_id: MyString
   special: false
@@ -12,7 +11,6 @@ one:
 two:
   rwu_id: 1
   name: MyString
-  election_id: 1
   state: MyString
   office_type_id: MyString
   special: false
