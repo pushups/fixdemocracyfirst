@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405052509) do
+ActiveRecord::Schema.define(version: 20150405061629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 20150405052509) do
   create_table "elections", force: :cascade do |t|
     t.integer  "rwu_id"
     t.string   "name"
-    t.integer  "election_id"
     t.string   "state"
     t.string   "office_type_id"
     t.boolean  "special"
@@ -71,10 +70,6 @@ ActiveRecord::Schema.define(version: 20150405052509) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
-
-  add_index "elections", ["election_id"], name: "index_elections_on_election_id", using: :btree
-  add_index "elections", ["office_type_id"], name: "index_elections_on_office_type_id", using: :btree
-  add_index "elections", ["rwu_id"], name: "index_elections_on_rwu_id", using: :btree
 
   create_table "event_days", force: :cascade do |t|
     t.integer  "rwu_id"

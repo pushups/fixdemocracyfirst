@@ -46,7 +46,7 @@
 </div>
 
 <style>fieldset { margin-top: 30px }</style>
-<%= form_for @user, html: { class: "col-lg-12 form-horizontal" } do |f| %>
+<%= form_for @statement, html: { class: "col-lg-12 form-horizontal" } do |f| %>
 <div class="modal fade" id="upload_modal" tabindex="-1" role="dialog" aria-labelledby="upload_title" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -56,37 +56,39 @@
 			</div>
       <div class="modal-body">
 				<em class="col-lg-12">By sharing with Questionr, you grant us permission to edit and distribute your content.</em>
+			<%= fields_for :user, @statement.user do |u| %>
 				<fieldset>
   				<legend>Step 1: Tell us about yourself</legend>
 					<div class="col-lg-6">
-						<%=f.text_field :first_name, class: "form-control", placeholder: "First Name"%>
+						<%=u.text_field :first_name, class: "form-control", placeholder: "First Name"%>
 					</div>
 					<div class="col-lg-6">
-						<%=f.text_field :last_name, class: "form-control", placeholder: "Last Name"%>
+						<%=u.text_field :last_name, class: "form-control", placeholder: "Last Name"%>
 					</div>
 					<div class="col-lg-6">
-						<%=f.text_field :email, class: "form-control", placeholder: "Email"%>
+						<%=u.text_field :email, class: "form-control", placeholder: "Email"%>
 					</div>
 					<div class="col-lg-6">
-						<%=f.text_field :postal_code, class: "form-control", placeholder: "Postal Code (Zip Code)"%>
+						<%=u.text_field :postal_code, class: "form-control", placeholder: "Postal Code (Zip Code)"%>
 					</div>
 				</fieldset>
+			<% end %>
 				<fieldset>
   				<legend>Step 2: Tell us what you're sharing</legend>
 					<div class="col-lg-6">
-						<input type="text" class="form-control" id="candidate_name" placeholder="Candidate Name">
+						<%=f.text_field :ugc_candidate_name, class: "form-control", placeholder: "Candidate Name"%>
 					</div>
 					<div class="col-lg-6">
-						<input type="text" class="form-control" id="statement_date" placeholder="Date">
+						<%=f.date_field :ugc_date, class: "form-control", placeholder: "Event Date"%>
 					</div>
 					<div class="col-lg-6">
-						<input type="text" class="form-control" id="event_title" placeholder="Event Title">
+						<%=f.text_field :ugc_event_title, class: "form-control", placeholder: "Event Title"%>
 					</div>
 					<div class="col-lg-6">
-						<input type="text" class="form-control" id="event_location" placeholder="Event Location">
+						<%=f.text_field :ugc_event_location, class: "form-control", placeholder: "Event Location"%>
 					</div>
 					<div class="col-lg-12">
-						<textarea class="form-control" rows="4" id="notes" placeholder="Notes"></textarea>
+						<%=f.text_area :ugc_notes, class: "form-control", placeholder: "Notes"%>
 					</div>
 				</fieldset>
 				<em class="col-lg-offset-1 col-lg-11">Want to remain anonymous? That's cool. All fields are optional.</em>
