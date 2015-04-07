@@ -1,3 +1,5 @@
+require 'aws-sdk'
+
 class StatementsController < ApplicationController
   before_action :set_statement, only: [:show, :edit, :update, :destroy]
 
@@ -14,6 +16,10 @@ class StatementsController < ApplicationController
 
   # GET /statements/new
   def new
+    @s3_direct_post = S3_BUCKET.presigned_post({ key: "uploads/#{SecureRandom.uuid}/${filename}", 
+                                                 acl: 'public-read', 
+                                                 success_action_status: '201', 
+                                                 metadata: { 'original-filename' => '${filename}' } })
     @statement = Statement.new
     @statement.user_id = @user.id
   end
@@ -27,7 +33,6 @@ class StatementsController < ApplicationController
   def create
     @statement = Statement.new(statement_params)
     @statement.title = "New Video Uploaded #{DateTime.now}"
-    @statement.upload(params[:statement][:s])
 
     respond_to do |format|
       if @statement.save
