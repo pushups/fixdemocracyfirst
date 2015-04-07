@@ -25,3 +25,5 @@ venv
 launch.sh
 
 /upload_cache/*
+
+.env
