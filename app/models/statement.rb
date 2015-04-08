@@ -11,6 +11,7 @@ YT_VIDEOS_URL = 'https://www.googleapis.com/upload/youtube/v3/videos'
 BOUNDARY = '¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>'
 
 class Statement < ActiveRecord::Base
+  include DirtyColumns
   belongs_to :user
   belongs_to :event_day
   belongs_to :campaign

@@ -36,6 +36,9 @@ gem 'aws-sdk'
 # manage env variables and launch configurations
 gem 'foreman'
 
+# use a bitmask on every table to mark fields as dirty
+gem 'flag_shih_tzu'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

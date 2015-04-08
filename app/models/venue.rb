@@ -1,3 +1,6 @@
 class Venue < ActiveRecord::Base
-  has_many :events
+  include DirtyColumns
+  has_many :events  
 end
+
+
