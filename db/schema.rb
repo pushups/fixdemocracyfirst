@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405061629) do
+ActiveRecord::Schema.define(version: 20150408045754) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,8 +19,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
   create_table "attendees", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "event_day_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "dirty",        default: 0, null: false
   end
 
   add_index "attendees", ["event_day_id", "user_id"], name: "index_attendees_on_event_day_id_and_user_id", using: :btree
@@ -30,8 +31,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.integer  "rwu_id"
     t.integer  "candidate_id"
     t.integer  "election_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "dirty",        default: 0, null: false
   end
 
   add_index "campaigns", ["candidate_id"], name: "index_campaigns_on_candidate_id", using: :btree
@@ -44,8 +46,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.string   "office_id"
     t.string   "position"
     t.string   "district"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "dirty",      default: 0, null: false
   end
 
   add_index "candidates", ["office_id"], name: "index_candidates_on_office_id", using: :btree
@@ -67,8 +70,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.string   "office_type_id"
     t.boolean  "special"
     t.integer  "election_year"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "dirty",          default: 0, null: false
   end
 
   create_table "event_days", force: :cascade do |t|
@@ -77,8 +81,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.datetime "date"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "dirty",      default: 0, null: false
   end
 
   add_index "event_days", ["event_id"], name: "index_event_days_on_event_id", using: :btree
@@ -90,8 +95,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.string   "description"
     t.integer  "venue_id"
     t.boolean  "public"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "dirty",       default: 0, null: false
   end
 
   add_index "events", ["rwu_id"], name: "index_events_on_rwu_id", using: :btree
@@ -104,8 +110,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.string   "middle_name"
     t.string   "last_name"
     t.string   "suffix"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "dirty",       default: 0, null: false
   end
 
   add_index "people", ["rwu_id"], name: "index_people_on_rwu_id", using: :btree
@@ -125,8 +132,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.string   "ugc_event_title"
     t.string   "ugc_event_location"
     t.text     "ugc_notes"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "dirty",              default: 0, null: false
   end
 
   add_index "statements", ["campaign_id"], name: "index_statements_on_campaign_id", using: :btree
@@ -144,8 +152,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.string   "fb_token"
     t.boolean  "admin"
     t.string   "postal_code"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "dirty",       default: 0, null: false
   end
 
   create_table "venues", force: :cascade do |t|
@@ -160,8 +169,9 @@ ActiveRecord::Schema.define(version: 20150405061629) do
     t.string   "url"
     t.float    "latitude"
     t.float    "longitude"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "dirty",           default: 0, null: false
   end
 
   add_index "venues", ["rwu_id"], name: "index_venues_on_rwu_id", using: :btree
