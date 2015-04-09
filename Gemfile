@@ -31,7 +31,8 @@ gem 'awesome_print'
 gem 'rails_12factor', group: :production
 
 # for s3
-gem 'aws-sdk'
+gem 'aws-sdk-core'
+gem 'aws-sdk-resources'
 
 # manage env variables and launch configurations
 gem 'foreman'

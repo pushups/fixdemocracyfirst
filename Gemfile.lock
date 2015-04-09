@@ -38,8 +38,6 @@ GEM
       tzinfo (~> 1.1)
     arel (6.0.0)
     awesome_print (1.6.1)
-    aws-sdk (2.0.34)
-      aws-sdk-resources (= 2.0.34)
     aws-sdk-core (2.0.34)
       builder (~> 3.0)
       jmespath (~> 1.0)
@@ -169,7 +167,8 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  aws-sdk
+  aws-sdk-core
+  aws-sdk-resources
   bower-rails
   byebug
   coffee-rails (~> 4.1.0)

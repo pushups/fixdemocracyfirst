@@ -16,6 +16,7 @@ class Statement < ActiveRecord::Base
   belongs_to :event_day
   belongs_to :campaign
   belongs_to :candidate
+  accepts_nested_attributes_for :user, allow_destroy: false
       
   def upload(video)
     logger.debug ap(video)
