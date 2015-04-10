@@ -16,7 +16,6 @@ class StatementsController < ApplicationController
   def new
     @s3_direct_post = S3_BUCKET.presigned_post({ key: "uploads/#{SecureRandom.uuid}/${filename}", 
                                                  acl: 'public-read', 
-                                                 content_length_range: 0..1024,
                                                  success_action_status: '201', 
                                                  metadata: { 'original-filename' => '${filename}' } })
     @statement = Statement.new
