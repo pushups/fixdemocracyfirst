@@ -47,17 +47,17 @@
 
 <style>fieldset { margin-top: 30px }</style>
 <%= form_for @statement, html: { class: "direct-upload col-lg-12 form-horizontal" } do |f| %>
-<div class="modal fade" id="upload_modal" tabindex="-1" role="dialog" aria-labelledby="upload_title" aria-hidden="true">
+<div class="modal fade col-lg-12" id="upload_modal" tabindex="-1" role="dialog" aria-labelledby="upload_title" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content col-lg-12">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button id="close-button" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h2 class="modal-title" id="upload_title">Share Video or Audio</h2>
 			</div>
-      <div class="modal-body">
+      <div class="modal-body col-lg-12">
 				<em class="col-lg-12">By sharing with Questionr, you grant us permission to edit and distribute your content.</em>
 			<%= fields_for :user, @statement.user do |u| %>
-				<fieldset>
+				<fieldset class="col-lg-12">
   				<legend>Step 1: Tell us about yourself</legend>
 					<div class="col-lg-6">
 						<%=u.text_field :first_name, class: "form-control", placeholder: "First Name"%>
@@ -73,13 +73,16 @@
 					</div>
 				</fieldset>
 			<% end %>
-				<fieldset>
+				<fieldset class="col-lg-12">
   				<legend>Step 2: Tell us what you're sharing</legend>
 					<div class="col-lg-6">
 						<%=f.text_field :ugc_candidate_name, class: "form-control", placeholder: "Candidate Name"%>
-					</div>
-					<div class="col-lg-6">
-						<%=f.date_field :ugc_date, class: "form-control", placeholder: "Event Date"%>
+					</div>					
+          <div class="input-group col-lg-6" id="ugc_date">
+						<%=f.text_field :ugc_date, class: "form-control", placeholder: "Event Date"%>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
 					</div>
 					<div class="col-lg-6">
 						<%=f.text_field :ugc_event_title, class: "form-control", placeholder: "Event Title"%>
@@ -92,14 +95,14 @@
 					</div>
 				</fieldset>
 				<em class="col-lg-offset-1 col-lg-11">Want to remain anonymous? That's cool. All fields are optional.</em>
-				<fieldset>
+				<fieldset class="col-lg-12">
   				<legend>Step 3: Select the video file</legend>
 					<div class="col-lg-12">
 						<%= f.file_field :url, accept: "video/*", id: 'direct-upload', class: "col-lg-5" %>
 					</div>
 				</fieldset>
 			</div>
-	    <div class="modal-footer">
+	    <div class="modal-footer col-lg-12">
 				<%= f.submit 'Upload', class: "col-lg-offset-4 col-lg-4 btn btn-primary" %>
 	    </div>
 	  </div>
@@ -121,6 +124,12 @@
 </style>			
 <script>
 	$(function() {
+    $('#ugc_date').datetimepicker({
+			format: 'MM/DD/YYYY'
+    });
+  });
+	
+	$(function() {
 		var file_input = $('#direct-upload');	
 		var form = $(file_input.parents('form:first'));
 	  var submit_button = form.find('input[type="submit"]');
@@ -133,8 +142,8 @@
 	    type: 'POST',
 	    autoUpload: true,
 	    formData: <%= @s3_direct_post.fields.to_json.html_safe %>,
-	    paramName: 'file', // S3 does not like nested name fields i.e. name="user[avatar_url]"
-	    dataType: 'XML',  // S3 returns XML if success_action_status is set to 201
+	    paramName: 'file',
+	    dataType: 'XML',
 	    replaceFileInput: false,
 			progressall: function (e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
@@ -148,15 +157,23 @@
           css('display', 'block').
           css('width', '0%').
 				  css('height', '20px').
-          text("Loading...");
+          text("Uploading...");
+					$('#upload_modal').modal({
+					  backdrop: 'static',
+					  keyboard: false
+					});
+					$('#close_button').prop('disabled', true);
       },
       done: function(e, data) {
         submit_button.prop('disabled', false);
+				$('#upload_modal').modal({
+				  backdrop: true,
+				  keyboard: true
+				});
+				$('#close_button').prop('disabled', false);
         progress_bar.text("Uploading done!");
-        // extract key and generate URL from response
         var key   = $(data.jqXHR.responseXML).find("Key").text();
         var url   = '//<%= URI(@s3_direct_post.url).host %>/' + key;
-        // create hidden field
         var input = $("<input />", { type:'hidden', name: file_input.attr('name'), value: url })
         form.append(input);
       },
@@ -164,9 +181,14 @@
 				console.log(e);
 				console.log(data);
         submit_button.prop('disabled', false);
+				$('#upload_modal').modal({
+				  backdrop: true,
+				  keyboard: true
+				});
+				$('#close_button').prop('disabled', false);
         progress_bar.
           css("background", "red").
-          text("Failed");
+          text("Upload failed");
       }
 	  });
 	});
