@@ -40,6 +40,13 @@ gem 'foreman'
 # use a bitmask on every table to mark fields as dirty
 gem 'flag_shih_tzu'
 
+# bootstrap date picker
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
+
+gem "therubyracer"
+gem "twitter-bootstrap-rails"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
