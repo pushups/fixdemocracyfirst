@@ -32,6 +32,7 @@ class StatementsController < ApplicationController
   def create
     @statement = Statement.new(statement_params)
     @statement.title = "New Video Uploaded #{DateTime.now}"
+    @statement.ugc_date = DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date
 
     respond_to do |format|
       if @statement.save
