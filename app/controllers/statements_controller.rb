@@ -30,8 +30,8 @@ class StatementsController < ApplicationController
   # POST /statements.json
   def create
     @statement = Statement.new(statement_params)
-    @statement.title = "New Video Uploaded #{DateTime.now}"
-    @statement.ugc_date = DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date
+    @statement.title = "New #{@statement.url.blank? ? 'Tip' : 'Video'} #{DateTime.now}"
+    @statement.ugc_date = !statement_params[:ugc_date].empty? ? DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date : nil
 
     respond_to do |format|
       if @statement.save
