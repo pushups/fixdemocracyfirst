@@ -27,3 +27,5 @@ launch.sh
 /upload_cache/*
 
 .env
+
+/bower_components/*
