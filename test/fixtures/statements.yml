@@ -11,7 +11,7 @@ one:
   description: MyString
   approved: false
   ugc_candidate_name: MyString
-  ugc_date: 2015-04-04 22:11:53
+  ugc_date: 05/01/2015
   ugc_event_title: MyString
   ugc_event_location: MyString
   ugc_notes: MyText
@@ -27,7 +27,7 @@ two:
   description: MyString
   approved: false
   ugc_candidate_name: MyString
-  ugc_date: 2015-04-04 22:11:53
+  ugc_date: 05/24/2015
   ugc_event_title: MyString
   ugc_event_location: MyString
   ugc_notes: MyText
