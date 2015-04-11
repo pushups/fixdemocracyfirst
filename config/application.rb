@@ -45,3 +45,4 @@ module NhrQuestioner
 end
 
 REDIS = Redis.new(url: ENV['REDISTOGO_URL'])
+Resque.redis = REDIS
