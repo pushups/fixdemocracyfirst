@@ -34,8 +34,8 @@
 		    </div>
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#">Events<span class="sr-only">(current)</span></a></li>
-		        <li><a href="#">Candidates</a></li>
+		        <li<%= URI(request.url).path.starts_with?('/events') ? ' class=active' : '' %>><%= link_to 'Events', :events %></li>
+		        <li<%= URI(request.url).path.starts_with?('/candidates') ? ' class=active' : '' %>><%= link_to 'Candidates', :candidates %></li>
 		      </ul>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
@@ -52,7 +52,7 @@
 		            <li><%=link_to 'Users', :users%></li>
 		            <li><%=link_to 'Venues', :venues%></li>
 								<li class="divider"></li>
-		            <li><%=link_to 'Resque Web Console', 'resque_web'%></li>								
+		            <li><%=link_to 'Resque Web Console', 'resque_web', target: '_blank'%></li>								
 		          </ul>
 		        </li>
 		      </ul>
