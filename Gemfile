@@ -27,8 +27,13 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'awesome_print'
 
+# non-volitle, fast in-memory key/value store
 gem 'redis'
+
+# simple queueing system built atop redis
 gem 'resque'
+gem 'resque-scheduler'
+gem 'resque-web', require: 'resque_web'
 
 # for heroku
 gem 'rails_12factor', group: :production
@@ -68,4 +73,7 @@ group :development, :test do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+  # sample data generator
+  gem 'faker'
 end
