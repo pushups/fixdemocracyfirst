@@ -6,7 +6,18 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module NhrQuestioner
+# wraps basic auth around the resque_web route (and nowhere else)
+class ResqueAuth < Rack::Auth::Basic
+  def call(env)
+    if Rack::Request.new(env).path =~ /\A\/resque_web\/?/
+      super
+    else
+      @app.call(env)
+    end
+  end
+end
+
+module NhrQuestioner  
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -26,6 +37,10 @@ module NhrQuestioner
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
+    # authenticate against these hardcoded values for resque web access
+    config.middleware.use ResqueAuth do |username, password|
+      username == "questionr" and password == ENV['RESQUE_ADMIN_PASSWORD']
+    end
   end
 end
 

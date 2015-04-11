@@ -1,3 +1,5 @@
+require 'resque_web'
+
 Rails.application.routes.draw do
   resources :users
   resources :statements
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
   resources :events
   resources :venues
   root 'statements#new'
+  mount ResqueWeb::Engine => "/resque_web"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
