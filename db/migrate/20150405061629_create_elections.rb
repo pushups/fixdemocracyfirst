@@ -7,8 +7,8 @@ class CreateElections < ActiveRecord::Migration
       t.string :office_type_id
       t.boolean :special
       t.integer :election_year
-
       t.timestamps null: false
+      t.index :rwu_id
     end
   end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150408045754) do
+ActiveRecord::Schema.define(version: 20150411190531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 20150408045754) do
     t.integer  "dirty",      default: 0, null: false
   end
 
-  add_index "candidates", ["office_id"], name: "index_candidates_on_office_id", using: :btree
   add_index "candidates", ["person_id"], name: "index_candidates_on_person_id", using: :btree
   add_index "candidates", ["rwu_id"], name: "index_candidates_on_rwu_id", using: :btree
 
@@ -74,6 +73,8 @@ ActiveRecord::Schema.define(version: 20150408045754) do
     t.datetime "updated_at",                 null: false
     t.integer  "dirty",          default: 0, null: false
   end
+
+  add_index "elections", ["rwu_id"], name: "index_elections_on_rwu_id", using: :btree
 
   create_table "event_days", force: :cascade do |t|
     t.integer  "rwu_id"
@@ -155,6 +156,8 @@ ActiveRecord::Schema.define(version: 20150408045754) do
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "dirty",       default: 0, null: false
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "venues", force: :cascade do |t|
