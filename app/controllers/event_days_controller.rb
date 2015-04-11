@@ -1,4 +1,5 @@
 class EventDaysController < ApplicationController
+  before_filter :require_admin, except: [:index, :show]
   before_action :set_event_day, only: [:show, :edit, :update, :destroy]
 
   # GET /event_days

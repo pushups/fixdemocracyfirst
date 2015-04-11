@@ -1,4 +1,5 @@
 class CampaignsController < ApplicationController
+  before_filter :require_admin
   before_action :set_campaign, only: [:show, :edit, :update, :destroy]
 
   # GET /campaigns

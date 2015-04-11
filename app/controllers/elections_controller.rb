@@ -1,4 +1,5 @@
 class ElectionsController < ApplicationController
+  before_filter :require_admin
   before_action :set_election, only: [:show, :edit, :update, :destroy]
 
   # GET /elections

@@ -1,4 +1,5 @@
 class CandidatesController < ApplicationController
+  before_filter :require_admin, except: [:index, :show]
   before_action :set_candidate, only: [:show, :edit, :update, :destroy]
 
   # GET /candidates

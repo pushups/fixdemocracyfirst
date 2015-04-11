@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+  before_filter :require_admin
   before_action :set_person, only: [:show, :edit, :update, :destroy]
 
   # GET /people

@@ -30,4 +30,8 @@ class ApplicationController < ActionController::Base
     cookies[:user_id] = { value: @user.id, :expires => Time.now + 365 * 24 * 60 * 60 }
     @user
   end
+  
+  def require_admin
+    redirect_to '/' unless @user.admin?
+  end
 end

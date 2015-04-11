@@ -1,4 +1,5 @@
 class StatementsController < ApplicationController
+  before_filter :require_admin, except: [:new, :create]
   before_action :set_statement, only: [:show, :edit, :update, :destroy]
 
   # GET /statements

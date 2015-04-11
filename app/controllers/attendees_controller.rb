@@ -1,4 +1,5 @@
 class AttendeesController < ApplicationController
+  before_filter :require_admin, except: [:create, :destroy]
   before_action :set_attendee, only: [:show, :edit, :update, :destroy]
 
   # GET /attendees
