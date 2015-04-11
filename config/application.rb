@@ -28,3 +28,5 @@ module NhrQuestioner
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
   end
 end
+
+REDIS = Redis.new(url: ENV['REDISTOGO_URL'])

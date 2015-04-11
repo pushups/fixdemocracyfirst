@@ -27,6 +27,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'awesome_print'
 
+gem 'redis'
+gem 'resque'
+
 # for heroku
 gem 'rails_12factor', group: :production
 
