@@ -9,7 +9,6 @@ class CreateCandidates < ActiveRecord::Migration
       t.timestamps null: false
       t.index :rwu_id
       t.index :person_id
-      t.index :office_id
     end
   end
 end
