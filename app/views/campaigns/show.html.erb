@@ -5,20 +5,24 @@
 	</div>
 <% end %>
 
-<p>
-  <strong>RepsWithUs ID:</strong>
-  <%= @campaign.rwu_id %>
-</p>
+<div class="well bs-component col-lg-12">
+  <p>
+    <strong>RepsWithUs ID:</strong>
+    <%= @campaign.rwu_id %>
+  </p>
 
-<p>
-  <strong>Candidate:</strong>
-  <%= @campaign.candidate_id %>
-</p>
+  <p>
+    <strong>Candidate:</strong>
+    <%= @campaign.candidate_name %>
+  </p>
 
-<p>
-  <strong>Election:</strong>
-  <%= @campaign.election_id %>
-</p>
-
-<%= link_to 'Edit', edit_campaign_path(@campaign) %> |
-<%= link_to 'Back', campaigns_path %>
+  <p>
+    <strong>Election:</strong>
+    <%= @campaign.election_name %>
+  </p>
+  
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_campaign_path(@campaign) %></li>
+  	<li class="previous"><%= link_to '← Back', campaigns_path %></li>
+  </ul>
+</div>
