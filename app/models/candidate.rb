@@ -5,7 +5,7 @@ class Candidate < ActiveRecord::Base
   has_many :statements
   has_one :campaign
 
-  before_save { |c| c.campaign_id = nil if c.campaign_id < 1 }
+  before_save { |c| c.person_id = nil if c.person_id < 1 }
 
   attr_reader :person_name
 
