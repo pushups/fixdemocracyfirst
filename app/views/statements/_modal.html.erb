@@ -132,7 +132,7 @@
 				  keyboard: true
 				});
 				$('#close_button').prop('disabled', false);
-        progress_bar.text("Uploading done!");
+        progress_bar.text("Upload complete!");
         var key   = $(data.jqXHR.responseXML).find("Key").text();
         var url   = '//<%= URI(@s3_direct_post.url).host %>/' + key;
         var input = $("<input />", { type:'hidden', name: file_input.attr('name'), value: url })
