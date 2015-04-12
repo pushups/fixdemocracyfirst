@@ -11,6 +11,6 @@ class Candidate < ActiveRecord::Base
 
   def person_name
     p = self.person
-    p ? "#{p.first_name} #{p.last_name}" : "-- Name Not Set --"
+    p ? "#{p.first_name} #{p.last_name}" : "-- No Name --"
   end
 end

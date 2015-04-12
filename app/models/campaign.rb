@@ -12,11 +12,11 @@ class Campaign < ActiveRecord::Base
 
   def candidate_name
     c = self.candidate
-    c ? c.person_name : '-- Candidate Not Set --'
+    c ? c.person_name : '-- No Candidate --'
   end
 
   def election_name
     e = self.election
-    e ? e.name : '-- Election Not Set --'
+    e ? e.name : '-- No Election --'
   end
 end
