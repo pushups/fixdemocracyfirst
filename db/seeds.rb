@@ -32,11 +32,15 @@ carly_the_person = Person.create rwu_id: nil,
                                  last_name: 'Fiorina',
                                  suffix: nil
 
-carly_for_potus = Candidate.create rwu_id: nil,
-                                   person_id: carly_the_person.id,
-                                   office_id: 'US',
-                                   position: 'President',
-                                   district: nil
+carly_the_candidate = Candidate.create rwu_id: nil,
+                                       person_id: carly_the_person.id,
+                                       office_id: 'US',
+                                       position: 'President',
+                                       district: nil
+
+carly_for_potus2016 = Campaign.create rwu_id: nil,
+                                      candidate_id: carly_the_candidate.id,
+                                      election_id: potus2016.id
 
 radisson_manchester = Venue.create rwu_id: nil,
                                    name: 'Radisson Hotel',
