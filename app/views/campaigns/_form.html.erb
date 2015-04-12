@@ -1,8 +1,7 @@
-<%= form_for(@campaign) do |f| %>
+<%= form_for(@campaign, html: { class: "form-horizontal" }) do |f| %>
   <% if @campaign.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@campaign.errors.count, "error") %> prohibited this campaign from being saved:</h2>
-
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
       <ul>
       <% @campaign.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,19 +10,45 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :rwu_id %><br>
-    <%= f.number_field :rwu_id %>
-  </div>
-  <div class="field">
-    <%= f.label :candidate_id %><br>
-    <%= f.number_field :candidate_id %>
-  </div>
-  <div class="field">
-    <%= f.label :election_id %><br>
-    <%= f.number_field :election_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="well bs-component col-lg-12">
+	  <fieldset>
+	    <legend>Create a New Campaign</legend>			
+	    <div class="form-group">
+        <label class="col-lg-2 control-label">RepsWithUs ID</label>
+        <div class="col-lg-10">
+          <%= f.number_field :rwu_id, class: "form-control" %>
+        </div>
+      </div>
+	    <div class="form-group">
+        <%= f.label :election_id, class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+    		<%= f.select :election_id, 
+    				content_tag(:option, '-- No Election --', 
+    										:value => nil) + options_from_collection_for_select(Election.all, 
+    																																			:id, 
+    																																			:name, 
+    																																			@campaign.election_id),
+    																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+	    <div class="form-group">
+        <%= f.label :candidate_id, class: "col-lg-2 control-label" %>
+        <div class="col-lg-10">
+    		<%= f.select :candidate_id, 
+    				content_tag(:option, '-- No Candidate --', 
+    										:value => nil) + options_from_collection_for_select(Candidate.all, 
+    																																			:id, 
+    																																			:person_name, 
+    																																			@campaign.candidate_id),
+    																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-10 col-lg-offset-2">
+	  	  	<%= link_to 'Cancel', campaigns_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
   </div>
 <% end %>
