@@ -36,10 +36,10 @@ class StatementsController < ApplicationController
 
     respond_to do |format|
       if @statement.save
-        format.html { redirect_to @statement, notice: 'Statement was successfully created.' }
+        format.html { redirect_to '/', notice: 'Thank you for contributing to Questionr!' }
         format.json { render :show, status: :created, location: @statement }
       else
-        format.html { render :new }
+        format.html { redirect_to '/', alert: 'Sorry, your contribution cannot be processed at this time. Please try again later.' }
         format.json { render json: @statement.errors, status: :unprocessable_entity }
       end
     end
