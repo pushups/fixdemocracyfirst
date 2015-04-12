@@ -1,8 +1,11 @@
 class Campaign < ActiveRecord::Base
   include DirtyColumns
+
   has_many :statements
   belongs_to :election
   belongs_to :candidate
+
+  before_save { |c| c.election_id = nil if c.election_id < 1 }
   
   attr_reader :candidate_name
   attr_reader :election_name
