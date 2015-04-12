@@ -11,8 +11,6 @@ class ApplicationController < ActionController::Base
     #if that fails, try to get the user_id from a cookie
     user_id = cookies[:user_id]
     
-    logger.debug "COOKIE = #{cookies[:user_id]}"
-
     #try to find the user
     if user_id
       begin
