@@ -23,7 +23,7 @@
         <div class="col-lg-4">
     		<%= f.select :event_id, 
     				content_tag(:option, '-- No Event --', 
-    										:value => nil) + options_from_collection_for_select(Event.all, 
+    										:value => -1) + options_from_collection_for_select(Event.all, 
       																																			:id, 
       																																			:title, 
       																																			@event_day.event_id),
