@@ -18,7 +18,7 @@ class EventDay < ActiveRecord::Base
   private
   
   def end_time_must_come_after_start_time
-    if end_time.present? and end_time.present? and start_time > end_time
+    if end_time.present? and end_time.present? and !start_time.nil? and !end_time.nil? and start_time > end_time
       errors.add(:end_time, "must come after start time")
     end
   end
