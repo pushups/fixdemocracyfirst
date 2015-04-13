@@ -45,8 +45,14 @@ module NhrQuestioner
 end
 
 AMERICA_NEW_YORK_TIME_ZONE = ActiveSupport::TimeZone["America/New_York"]
-def timezone_abbr
-  DateTime.now.in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).dst? ? 'EDT' : 'EST'
+class << AMERICA_NEW_YORK_TIME_ZONE
+  def abbr
+    self.now.strftime('%Z')
+  end
+
+  def desc
+    self.to_s
+  end
 end
 
 REDIS = Redis.new(url: ENV['REDISTOGO_URL'])
