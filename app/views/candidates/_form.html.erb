@@ -1,8 +1,7 @@
-<%= form_for(@candidate) do |f| %>
+<%= form_for(@candidate, html: { class: "form-horizontal" }) do |f| %>
   <% if @candidate.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@candidate.errors.count, "error") %> prohibited this candidate from being saved:</h2>
-
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
       <ul>
       <% @candidate.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,27 +10,51 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :rwu_id %><br>
-    <%= f.number_field :rwu_id %>
-  </div>
-  <div class="field">
-    <%= f.label :person_id %><br>
-    <%= f.number_field :person_id %>
-  </div>
-  <div class="field">
-    <%= f.label :office_id %><br>
-    <%= f.text_field :office_id %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br>
-    <%= f.text_field :position %>
-  </div>
-  <div class="field">
-    <%= f.label :district %><br>
-    <%= f.text_field :district %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="well bs-component col-lg-12">
+	  <fieldset>
+	    <legend>Candidate</legend>
+	    <div class="form-group">
+        <label class="col-lg-2 control-label">RepsWithUs ID</label>
+        <div class="col-lg-6">
+          <%= f.number_field :rwu_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :person_id, class: "col-lg-2 control-label" %>
+        <div class="col-lg-6">
+    		<%= f.select :person_id, 
+    				content_tag(:option, '-- No Person --', 
+    										:value => nil) + options_from_collection_for_select(Person.all, 
+    																																			:id, 
+    																																			:full_name, 
+    																																			@candidate.person_id),
+    																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Office ID</label>
+        <div class="col-lg-6">
+          <%= f.text_field :office_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :position, class: "col-lg-2 control-label" %>
+        <div class="col-lg-6">
+          <%= f.text_field :position, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :district, class: "col-lg-2 control-label" %>
+        <div class="col-lg-6">
+        <%= f.text_field :district, class: "form-control" %>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-6 col-lg-offset-2">
+	  	  	<%= link_to 'Cancel', candidates_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
   </div>
 <% end %>

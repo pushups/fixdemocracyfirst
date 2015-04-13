@@ -1,29 +1,37 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <strong>RepsWithUs ID:</strong>
-  <%= @event_day.rwu_id %>
-</p>
+<div class="well bs-component col-lg-12">
+  <p>
+    <strong>RepsWithUs ID:</strong>
+    <%= @event_day.rwu_id %>
+  </p>
 
-<p>
-  <strong>Event:</strong>
-  <%= @event_day.event_id %>
-</p>
+  <p>
+    <strong>Event:</strong>
+    <%= @event_day.event_name %>
+  </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @event_day.date %>
-</p>
+  <p>
+    <strong>Date:</strong>
+    <%= @event_day.date ? @event_day.date.strftime('%m/%d/%Y') : '' %>
+  </p>
 
-<p>
-  <strong>Start time:</strong>
-  <%= @event_day.start_time %>
-</p>
+  <p>
+    <strong>Start Time:</strong>
+    <%= @event_day.start_time ? "#{@event_day.start_time.in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%I:%M %p')} Eastern Time" : '' %>
+  </p>
 
-<p>
-  <strong>End time:</strong>
-  <%= @event_day.end_time %>
-</p>
-
-<%= link_to 'Edit', edit_event_day_path(@event_day) %> |
-<%= link_to 'Back', event_days_path %>
+  <p>
+    <strong>End Time:</strong>
+    <%= @event_day.end_time %>
+  </p>
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_event_day_path(@event_day) %></li>
+  	<li class="previous"><%= link_to '← Back', event_days_path %></li>
+  </ul>
+</div>

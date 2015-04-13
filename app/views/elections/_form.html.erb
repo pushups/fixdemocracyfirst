@@ -1,8 +1,7 @@
-<%= form_for(@election) do |f| %>
+<%= form_for(@election, html: { class: "form-horizontal" }) do |f| %>
   <% if @election.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@election.errors.count, "error") %> prohibited this election from being saved:</h2>
-
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
       <ul>
       <% @election.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,31 +10,51 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :rwu_id %><br>
-    <%= f.number_field :rwu_id %>
-  </div>
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :state %><br>
-    <%= f.text_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :office_type_id %><br>
-    <%= f.text_field :office_type_id %>
-  </div>
-  <div class="field">
-    <%= f.label :special %><br>
-    <%= f.check_box :special %>
-  </div>
-  <div class="field">
-    <%= f.label :election_year %><br>
-    <%= f.number_field :election_year %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="well bs-component col-lg-12">
+	  <fieldset>
+	    <legend>Election</legend>
+	    <div class="form-group">
+        <label class="col-lg-2 control-label">RepsWithUs ID</label>
+        <div class="col-lg-6">
+          <%= f.number_field :rwu_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, class: "col-lg-2 control-label" %>
+        <div class="col-lg-6">
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :state, class: "col-lg-2 control-label" %>
+        <div class="col-lg-6">
+          <%= f.text_field :state, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Office Type ID</label>
+        <div class="col-lg-6">
+          <%= f.text_field :office_type_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :special, class: "col-lg-2 control-label" %>
+        <div class="col-lg-6">
+          <%= f.check_box :special, class: "checkbox" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Election Year</label>
+        <div class="col-lg-6">
+          <%= f.number_field :election_year, class: "form-control" %>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-6 col-lg-offset-2">
+	  	  	<%= link_to 'Cancel', elections_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
   </div>
 <% end %>

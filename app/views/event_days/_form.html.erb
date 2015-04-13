@@ -1,8 +1,7 @@
-<%= form_for(@event_day) do |f| %>
+<%= form_for(@event_day, html: { class: "form-horizontal" }) do |f| %>
   <% if @event_day.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@event_day.errors.count, "error") %> prohibited this event_day from being saved:</h2>
-
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
       <ul>
       <% @event_day.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,28 +9,75 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :rwu_id %><br>
-    <%= f.number_field :rwu_id %>
-  </div>
-  <div class="field">
-    <%= f.label :event_id %><br>
-    <%= f.number_field :event_id %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.datetime_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_select :start_time %>
-  </div>
-  <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_select :end_time %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="well bs-component col-lg-8">
+	  <fieldset>
+	    <legend>Event Day</legend>
+	    <div class="form-group">
+        <label class="col-lg-2 control-label">RepsWithUs ID</label>
+        <div class="col-lg-9">
+          <%= f.number_field :rwu_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :event_id, class: "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+    		<%= f.select :event_id, 
+    				content_tag(:option, '-- No Event --', 
+    										:value => nil) + options_from_collection_for_select(Event.all, 
+      																																			:id, 
+      																																			:title, 
+      																																			@event_day.event_id),
+      																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :date, class: "col-lg-2 control-label" %>
+        <div class="input-group col-lg-4" id="event-day-date">
+					<%= f.text_field :date, value: @event_day.date.strftime('%m/%d/%Y'), class: "datepicker form-control", placeholder: "Date"%>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">Start Time</label>
+        <div class="input-group col-lg-4" id="event-day-start-time">
+					<%= f.text_field :start_time, value: @event_day.start_time ? @event_day.start_time
+            .in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%I:%M %P') : '',
+             class: "form-control", placeholder: "Start Time"%>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+          </span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label">End Time</label>
+        <div class="input-group col-lg-4" id="event-day-end-time">
+					<%= f.text_field :end_time, value: @event_day.end_time ? @event_day.end_time
+            .in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%I:%M %P') : '',
+             class: "form-control", placeholder: "End Time"%>
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span>
+          </span>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-6 col-lg-offset-2">
+	  	  	<%= link_to 'Cancel', event_days_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
   </div>
 <% end %>
+<script>
+  $('#event-day-date').datetimepicker({
+		format: 'MM/DD/YYYY'
+  });
+  $('#event-day-start-time').datetimepicker({
+		format: 'LT'
+  });
+  $('#event-day-end-time').datetimepicker({
+		format: 'LT'
+  });
+</script>
