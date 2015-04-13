@@ -26,6 +26,7 @@ class EventDaysController < ApplicationController
   # POST /event_days.json
   def create
     @event_day = EventDay.new(event_day_params)
+    @event_day.date = event_day_params[:date] ? DateTime.strptime(event_day_params[:date], '%m/%d/%Y').to_date : nil
 
     respond_to do |format|
       if @event_day.save
@@ -42,7 +43,21 @@ class EventDaysController < ApplicationController
   # PATCH/PUT /event_days/1.json
   def update
     respond_to do |format|
-      if @event_day.update(event_day_params)
+      #this is a little kludgy, but i couldn't figure out how to hack event_day_params w/o cloning it
+      if event_day_params[:date]
+        p = event_day_params.clone
+        #parse and reformat the date to remove timezone and put in a good format for the db
+        p[:date] = DateTime.strptime(event_day_params[:date], '%m/%d/%Y').utc.strftime
+        
+        #similarly, parse and reformat the start and end times, combining them with the event day's date
+        [:start_time, :end_time].each do |t| 
+          if event_day_params[t]
+            p[t] = DateTime.strptime("#{event_day_params[:date]} #{event_day_params[t]} #{timezone_abbr}", "%m/%d/%Y %H:%M %p %Z")
+          end
+        end
+      end
+      
+      if @event_day.update(p)
         format.html { redirect_to @event_day, notice: 'Event day was successfully updated.' }
         format.json { render :show, status: :ok, location: @event_day }
       else
