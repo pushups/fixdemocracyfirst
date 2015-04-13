@@ -53,6 +53,11 @@ class << AMERICA_NEW_YORK_TIME_ZONE
   def desc
     self.to_s
   end
+  
+  def format_time(t, long = true)
+    return '' unless t
+    "#{t.in_time_zone(self).strftime('%I:%M %p')} #{long ? self.desc : self.abbr}"
+  end
 end
 
 REDIS = Redis.new(url: ENV['REDISTOGO_URL'])
