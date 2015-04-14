@@ -1,34 +1,43 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <strong>RepsWithUs ID:</strong>
-  <%= @person.rwu_id %>
-</p>
+<div class="well bs-component col-lg-12">
+  <p>
+    <strong>RepsWithUs ID:</strong>
+    <%= @person.rwu_id %>
+  </p>
 
-<p>
-  <strong>First name:</strong>
-  <%= @person.first_name %>
-</p>
+  <p>
+    <strong>First name:</strong>
+    <%= @person.first_name %>
+  </p>
 
-<p>
-  <strong>Nickname:</strong>
-  <%= @person.nickname %>
-</p>
+  <p>
+    <strong>Nickname:</strong>
+    <%= @person.nickname %>
+  </p>
 
-<p>
-  <strong>Middle name:</strong>
-  <%= @person.middle_name %>
-</p>
+  <p>
+    <strong>Middle name:</strong>
+    <%= @person.middle_name %>
+  </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @person.last_name %>
-</p>
+  <p>
+    <strong>Last name:</strong>
+    <%= @person.last_name %>
+  </p>
 
-<p>
-  <strong>Suffix:</strong>
-  <%= @person.suffix %>
-</p>
-
-<%= link_to 'Edit', edit_person_path(@person) %> |
-<%= link_to 'Back', people_path %>
+  <p>
+    <strong>Suffix:</strong>
+    <%= @person.suffix %>
+  </p>
+  
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_person_path(@person) %></li>
+  	<li class="previous"><%= link_to '← Back', people_path %></li>
+  </ul>
+</div>
