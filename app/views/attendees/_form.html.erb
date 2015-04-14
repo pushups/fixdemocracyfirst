@@ -1,8 +1,7 @@
-<%= form_for(@attendee) do |f| %>
+<%= form_for(@attendee, html: { class: "form-horizontal" }) do |f| %>
   <% if @attendee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@attendee.errors.count, "error") %> prohibited this attendee from being saved:</h2>
-
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
       <ul>
       <% @attendee.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,16 +9,39 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="form-group">
-    <%= f.label :user_id, class: "col-lg-2 control-label" %>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="form-group">
-    <%= f.label :event_day_id, class: "col-lg-2 control-label" %>
-    <%= f.number_field :event_day_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="well bs-component col-lg-12">
+	  <fieldset>
+	    <legend>Attendee</legend>	
+      <div class="form-group">
+        <%= f.label :user_id, class: "col-lg-2 control-label" %>
+        <div class="col-lg-4">
+    		<%= f.select :user_id, 
+    				content_tag(:option, '-- No User --', 
+    										:value => -1) + options_from_collection_for_select(User.all, 
+      																																			:id, 
+      																																			:desc, 
+      																																			@attendee.user_id),
+      																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-2 control-label" for="attendee_event_day_id">Event Day</label>
+        <div class="col-lg-4">
+    		<%= f.select :event_day_id, 
+    				content_tag(:option, '-- No Event Day --', 
+    										:value => -1) + options_from_collection_for_select(EventDay.all, 
+      																																			:id, 
+      																																			:name, 
+      																																			@attendee.event_day_id),
+      																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-6 col-lg-offset-2">
+	  	  	<%= link_to 'Cancel', attendees_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
   </div>
 <% end %>

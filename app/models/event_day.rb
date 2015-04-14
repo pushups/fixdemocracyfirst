@@ -8,11 +8,19 @@ class EventDay < ActiveRecord::Base
 
   before_save { |e| e.event_id = nil if e.event_id < 1 }
 
-  attr_reader :event_name
+  attr_reader :event_name, :name
 
   def event_name
     e = self.event
     e ? "#{e.title}" : "-- No Event --"
+  end
+  
+  def name
+    if self.date
+      "#{event_name} (#{self.date.strftime('%m/%d/%Y')})"
+    else
+      "#{event_name} (ID = #{self.id})"
+    end      
   end
    
   private

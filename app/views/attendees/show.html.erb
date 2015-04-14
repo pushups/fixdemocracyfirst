@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <strong>User:</strong>
-  <%= @attendee.user_id %>
-</p>
+<div class="well bs-component col-lg-12">
+  <p>
+    <strong>User:</strong>
+    <%= @attendee.user_name %>
+  </p>
 
-<p>
-  <strong>Event day:</strong>
-  <%= @attendee.event_day_id %>
-</p>
-
-<%= link_to 'Edit', edit_attendee_path(@attendee) %> |
-<%= link_to 'Back', attendees_path %>
+  <p>
+    <strong>Event day:</strong>
+    <%= @attendee.event_day_name %>
+  </p>
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_attendee_path(@attendee) %></li>
+  	<li class="previous"><%= link_to '← Back', attendees_path %></li>
+  </ul>
+</div>
