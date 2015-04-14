@@ -1,29 +1,38 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <strong>RepsWithUs ID:</strong>
-  <%= @event.rwu_id %>
-</p>
+<div class="well bs-component col-lg-12">
+  <p>
+    <strong>RepsWithUs ID:</strong>
+    <%= @event.rwu_id %>
+  </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @event.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @event.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @event.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @event.description %>
+  </p>
 
-<p>
-  <strong>Venue:</strong>
-  <%= @event.venue_id %>
-</p>
+  <p>
+    <strong>Venue:</strong>
+    <%= @event.venue_id %>
+  </p>
 
-<p>
-  <strong>Public:</strong>
-  <%= @event.public %>
-</p>
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+  <p>
+    <strong>Public:</strong>
+    <%= @event.public %>
+  </p>
+  
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_event_path(@event) %></li>
+  	<li class="previous"><%= link_to '← Back', events_path %></li>
+  </ul>
+</div>
