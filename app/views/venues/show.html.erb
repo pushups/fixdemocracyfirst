@@ -1,59 +1,67 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <strong>RepsWithUs ID:</strong>
-  <%= @venue.rwu_id %>
-</p>
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>RepsWithUs ID:</strong>
+    <%= @venue.rwu_id %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @venue.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @venue.name %>
+  </p>
 
-<p>
-  <strong>Street address1:</strong>
-  <%= @venue.street_address1 %>
-</p>
+  <p>
+    <strong>Street Address 1:</strong>
+    <%= @venue.street_address1 %>
+  </p>
 
-<p>
-  <strong>Street address2:</strong>
-  <%= @venue.street_address2 %>
-</p>
+  <p>
+    <strong>Street Address 2:</strong>
+    <%= @venue.street_address2 %>
+  </p>
 
-<p>
-  <strong>Unit:</strong>
-  <%= @venue.unit %>
-</p>
+  <p>
+    <strong>Unit:</strong>
+    <%= @venue.unit %>
+  </p>
 
-<p>
-  <strong>City:</strong>
-  <%= @venue.city %>
-</p>
+  <p>
+    <strong>City:</strong>
+    <%= @venue.city %>
+  </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @venue.state %>
-</p>
+  <p>
+    <strong>State:</strong>
+    <%= @venue.state %>
+  </p>
 
-<p>
-  <strong>Postal code:</strong>
-  <%= @venue.postal_code %>
-</p>
+  <p>
+    <strong>Postal Code:</strong>
+    <%= @venue.postal_code %>
+  </p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @venue.url %>
-</p>
+  <p>
+    <strong>Url:</strong>
+    <%= @venue.url %>
+  </p>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @venue.latitude %>
-</p>
+  <p>
+    <strong>Latitude:</strong>
+    <%= @venue.latitude %>
+  </p>
 
-<p>
-  <strong>Longitude:</strong>
-  <%= @venue.longitude %>
-</p>
-
-<%= link_to 'Edit', edit_venue_path(@venue) %> |
-<%= link_to 'Back', venues_path %>
+  <p>
+    <strong>Longitude:</strong>
+    <%= @venue.longitude %>
+  </p>
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_venue_path(@venue) %></li>
+  	<li class="previous"><%= link_to '← Back', venues_path %></li>
+  </ul>
+</div>

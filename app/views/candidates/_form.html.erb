@@ -10,18 +10,18 @@
     </div>
   <% end %>
 
-  <div class="well bs-component col-lg-12">
+  <div class="well bs-component col-lg-6">
 	  <fieldset>
 	    <legend>Candidate</legend>
 	    <div class="form-group">
-        <label class="col-lg-2 control-label">RepsWithUs ID</label>
-        <div class="col-lg-6">
+        <label class="col-lg-3 control-label">RepsWithUs ID</label>
+        <div class="col-lg-8">
           <%= f.number_field :rwu_id, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :person_id, class: "col-lg-2 control-label" %>
-        <div class="col-lg-6">
+        <%= f.label :person_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
     		<%= f.select :person_id, 
     				content_tag(:option, '-- No Person --', 
     										:value => nil) + options_from_collection_for_select(Person.all, 
@@ -32,25 +32,25 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 control-label">Office ID</label>
-        <div class="col-lg-6">
+        <label class="col-lg-3 control-label">Office ID</label>
+        <div class="col-lg-8">
           <%= f.text_field :office_id, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :position, class: "col-lg-2 control-label" %>
-        <div class="col-lg-6">
+        <%= f.label :position, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
           <%= f.text_field :position, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :district, class: "col-lg-2 control-label" %>
-        <div class="col-lg-6">
+        <%= f.label :district, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
         <%= f.text_field :district, class: "form-control" %>
         </div>
       </div>
 	    <div class="form-group">
-	      <div class="col-lg-6 col-lg-offset-2">
+	      <div class="col-lg-8 col-lg-offset-3">
 	  	  	<%= link_to 'Cancel', candidates_path, class: "btn btn-default" %>
 		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
 		    </div>

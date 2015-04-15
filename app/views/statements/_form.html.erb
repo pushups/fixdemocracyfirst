@@ -1,8 +1,7 @@
-<%= form_for(@statement) do |f| %>
+<%= form_for(@statement, html: { class: "form-horizontal" }) do |f| %>
   <% if @statement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@statement.errors.count, "error") %> prohibited this statement from being saved:</h2>
-
+		<div class="alert alert-dismissible alert-danger col-lg-12">
+	  	<button type="button" class="close" data-dismiss="alert">×</button>
       <ul>
       <% @statement.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -10,64 +9,124 @@
       </ul>
     </div>
   <% end %>
+  <div class="well bs-component col-lg-8">
+	  <fieldset class="col-lg-6">
+	    <legend>Statement</legend>
+      <div class="form-group">
+        <%= f.label :rwu_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.number_field :rwu_id, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :url, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_field :url, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :description, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :approved, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.check_box :approved, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :campaign_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+    		<%= f.select :campaign_id, 
+    				content_tag(:option, '-- No Campaign --', 
+    										:value => -1) + options_from_collection_for_select(Campaign.all, 
+      																																		 :id, 
+      																																		 :name, 
+      																																		 @statement.campaign_id),
+      																																		 {}, { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :candidate_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+    		<%= f.select :candidate_id, 
+    				content_tag(:option, '-- No Candidate --', 
+    										:value => -1) + options_from_collection_for_select(Candidate.all, 
+      																																		 :id, 
+      																																		 :person_name, 
+      																																		 @statement.candidate_id),
+      																																		 {}, { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label" for="statement_user_id">Submitted By</label>        
+        <div class="col-lg-8">
+    		<%= f.select :user_id, 
+    				content_tag(:option, '-- No User --', 
+    										:value => -1) + options_from_collection_for_select(User.all, 
+      																																			:id, 
+      																																			:desc, 
+      																																			@statement.user_id),
+      																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-lg-3 control-label" for="statement_event_day_id">Event Day</label>
+        <div class="col-lg-8">
+    		<%= f.select :event_day_id, 
+    				content_tag(:option, '-- No Event Day --', 
+    										:value => -1) + options_from_collection_for_select(EventDay.all, 
+      																																			:id, 
+      																																			:name, 
+      																																			@statement.event_day_id),
+      																																			{}, { class: "form-control" } %>
+        </div>
+      </div>
+	    <div class="form-group">
+	      <div class="col-lg-offset-3 col-lg-8">
+	  	  	<%= link_to 'Cancel', statements_path, class: "btn btn-default" %>
+		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
+		    </div>
+			</div>
+    </fieldset>
+    <fieldset class="col-lg-6">
+      <legend>User-Submitted Content</legend>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <p>
+            <strong>Candidate Name:</strong>
+            <%= @statement.ugc_candidate_name %>
+          </p>
 
-  <div class="form-group">
-    <%= f.label :rwu_id, class: "col-lg-2 control-label" %>
-    <%= f.number_field :rwu_id %>
-  </div>
-  <div class="form-group">
-    <%= f.label :user_id, class: "col-lg-2 control-label" %>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="form-group">
-    <%= f.label :event_day_id, class: "col-lg-2 control-label" %>
-    <%= f.number_field :event_day_id %>
-  </div>
-  <div class="form-group">
-    <%= f.label :campaign_id, class: "col-lg-2 control-label" %>
-    <%= f.number_field :campaign_id %>
-  </div>
-  <div class="form-group">
-    <%= f.label :candidate_id, class: "col-lg-2 control-label" %>
-    <%= f.number_field :candidate_id %>
-  </div>
-  <div class="form-group">
-    <%= f.label :title, class: "col-lg-2 control-label" %>
-    <%= f.text_field :title %>
-  </div>
-  <div class="form-group">
-    <%= f.label :url, class: "col-lg-2 control-label" %>
-    <%= f.text_field :url %>
-  </div>
-  <div class="form-group">
-    <%= f.label :description, class: "col-lg-2 control-label" %>
-    <%= f.text_field :description %>
-  </div>
-  <div class="form-group">
-    <%= f.label :approved, class: "col-lg-2 control-label" %>
-    <%= f.check_box :approved %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ugc_candidate_name, class: "col-lg-2 control-label" %>
-    <%= f.text_field :ugc_candidate_name %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ugc_date, class: "col-lg-2 control-label" %>
-    <%= f.datetime_select :ugc_date %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ugc_event_title, class: "col-lg-2 control-label" %>
-    <%= f.text_field :ugc_event_title %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ugc_event_location, class: "col-lg-2 control-label" %>
-    <%= f.text_field :ugc_event_location %>
-  </div>
-  <div class="form-group">
-    <%= f.label :ugc_notes, class: "col-lg-2 control-label" %>
-    <%= f.text_area :ugc_notes %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+          <p>
+            <strong>Date:</strong>
+            <%= @statement.ugc_date ? @statement.ugc_date.in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%m/%d/%Y %H:%M %p %Z') : '' %>
+          </p>
+
+          <p>
+            <strong>Event Title:</strong>
+            <%= @statement.ugc_event_title %>
+          </p>
+
+          <p>
+            <strong>Event Location:</strong>
+            <%= @statement.ugc_event_location %>
+          </p>
+
+          <p>
+            <strong>Notes:</strong>
+            <%= @statement.ugc_notes %>
+          </p>
+        </div>
+      </div>
+    </fieldset>
   </div>
 <% end %>

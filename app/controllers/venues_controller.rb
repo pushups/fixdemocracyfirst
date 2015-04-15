@@ -1,5 +1,5 @@
 class VenuesController < ApplicationController
-  before_filter :require_admin, except: [:index, :show]
+  before_filter :require_admin
   before_action :set_venue, only: [:show, :edit, :update, :destroy]
 
   # GET /venues

@@ -9,18 +9,18 @@
       </ul>
     </div>
   <% end %>
-  <div class="well bs-component col-lg-8">
+  <div class="well bs-component col-lg-6">
 	  <fieldset>
 	    <legend>Event Day</legend>
 	    <div class="form-group">
-        <label class="col-lg-2 control-label">RepsWithUs ID</label>
-        <div class="col-lg-9">
+        <label class="col-lg-3 control-label">RepsWithUs ID</label>
+        <div class="col-lg-8">
           <%= f.number_field :rwu_id, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :event_id, class: "col-lg-2 control-label" %>
-        <div class="col-lg-4">
+        <%= f.label :event_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
     		<%= f.select :event_id, 
     				content_tag(:option, '-- No Event --', 
     										:value => -1) + options_from_collection_for_select(Event.all, 
@@ -31,8 +31,8 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :date, class: "col-lg-2 control-label" %>
-        <div class="input-group col-lg-4" id="event-day-date">
+        <%= f.label :date, class: "col-lg-3 control-label" %>
+        <div class="input-group col-lg-8" id="event-day-date">
 					<%= f.text_field :date, value: @event_day.date ? @event_day.date.strftime('%m/%d/%Y') : '', class: "datepicker form-control", placeholder: "Date"%>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
@@ -40,8 +40,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 control-label">Starts (<%=AMERICA_NEW_YORK_TIME_ZONE.abbr%>)</label>
-        <div class="input-group col-lg-4" id="event-day-start-time">
+        <label class="col-lg-3 control-label">Starts (<%=AMERICA_NEW_YORK_TIME_ZONE.abbr%>)</label>
+        <div class="input-group col-lg-8" id="event-day-start-time">
 					<%= f.text_field :start_time, value: @event_day.start_time ? @event_day.start_time
             .in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%I:%M %P') : '',
              class: "form-control", placeholder: "Start Time"%>
@@ -51,8 +51,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 control-label">Ends (<%=AMERICA_NEW_YORK_TIME_ZONE.abbr%>)</label>
-        <div class="input-group col-lg-4" id="event-day-end-time">
+        <label class="col-lg-3 control-label">Ends (<%=AMERICA_NEW_YORK_TIME_ZONE.abbr%>)</label>
+        <div class="input-group col-lg-8" id="event-day-end-time">
 					<%= f.text_field :end_time, value: @event_day.end_time ? @event_day.end_time
             .in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%I:%M %P') : '',
              class: "form-control", placeholder: "End Time"%>
@@ -62,7 +62,7 @@
         </div>
       </div>
 	    <div class="form-group">
-	      <div class="col-lg-6 col-lg-offset-2">
+	      <div class="col-lg-8 col-lg-offset-3">
 	  	  	<%= link_to 'Cancel', event_days_path, class: "btn btn-default" %>
 		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
 		    </div>

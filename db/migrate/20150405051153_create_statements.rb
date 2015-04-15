@@ -8,7 +8,7 @@ class CreateStatements < ActiveRecord::Migration
       t.integer :candidate_id
       t.string :title
       t.string :url
-      t.string :description
+      t.text :description
       t.boolean :approved
       t.string :ugc_candidate_name
       t.timestamp :ugc_date

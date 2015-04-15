@@ -7,8 +7,7 @@ class Campaign < ActiveRecord::Base
 
   before_save { |c| c.election_id = nil if c.election_id < 1 }
   
-  attr_reader :candidate_name
-  attr_reader :election_name
+  attr_reader :candidate_name, :election_name
 
   def candidate_name
     c = self.candidate
@@ -18,5 +17,9 @@ class Campaign < ActiveRecord::Base
   def election_name
     e = self.election
     e ? e.name : '-- No Election --'
+  end
+  
+  def name
+    "#{self.candidate_name}: #{self.election_name}"
   end
 end

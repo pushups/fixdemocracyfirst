@@ -9,30 +9,30 @@
       </ul>
     </div>
   <% end %>
-  <div class="well bs-component col-lg-8">
+  <div class="well bs-component col-lg-6">
 	  <fieldset>
 	    <legend>Event</legend>
 	    <div class="form-group">
-        <%= f.label :rwu_id, class: "col-lg-2 control-label" %>
-        <div class="col-lg-9">
+        <%= f.label :rwu_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
           <%= f.number_field :rwu_id, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :title, class: "col-lg-2 control-label" %>
-        <div class="col-lg-9">
+        <%= f.label :title, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
           <%= f.text_field :title, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :description, class: "col-lg-2 control-label" %>
-        <div class="col-lg-9">
+        <%= f.label :description, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
           <%= f.text_field :description, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :venue_id, class: "col-lg-2 control-label" %>
-        <div class="col-lg-4">
+        <%= f.label :venue_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
     		<%= f.select :venue_id, 
     				content_tag(:option, '-- No Venue --', 
     										:value => -1) + options_from_collection_for_select(Venue.all, 
@@ -43,9 +43,9 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :public, class: "col-lg-2 control-label" %>
-        <div class="col-lg-9">
-          <%= f.check_box :public %>
+        <%= f.label :public, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.check_box :public, class: "checkbox form-control" %>
         </div>
       </div>
 	    <div class="form-group">

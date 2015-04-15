@@ -12,12 +12,38 @@ BOUNDARY = '¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>'
 
 class Statement < ActiveRecord::Base
   include DirtyColumns
+
   belongs_to :user
   belongs_to :event_day
   belongs_to :campaign
   belongs_to :candidate
+
   accepts_nested_attributes_for :user, allow_destroy: false
-      
+
+  attr_reader :user_name, :event_name, :campaign_name, :candidate_name
+
+  def user_name
+    u = self.user
+    u ? u.desc : '-- No User --'
+  end
+  
+  def event_name
+    ed = self.event_day
+    return '-- No Event --' unless ed
+    e = ed.event
+    e ? e.title : '-- No Event --'
+  end
+  
+  def campaign_name
+    c = self.campaign
+    c ? c.name : '-- No Campaign --'
+  end
+  
+  def candidate_name
+    c = self.candidate
+    c ? c.person_name : '-- No Candidate --'
+  end 
+  
   def upload(video)
     logger.debug ap(video)
     #authenticate as youtube channel user and get an access_token

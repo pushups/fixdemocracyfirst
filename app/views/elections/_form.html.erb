@@ -10,47 +10,47 @@
     </div>
   <% end %>
 
-  <div class="well bs-component col-lg-12">
+  <div class="well bs-component col-lg-6">
 	  <fieldset>
 	    <legend>Election</legend>
 	    <div class="form-group">
-        <label class="col-lg-2 control-label">RepsWithUs ID</label>
-        <div class="col-lg-6">
+        <label class="col-lg-3 control-label">RepsWithUs ID</label>
+        <div class="col-lg-8">
           <%= f.number_field :rwu_id, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :name, class: "col-lg-2 control-label" %>
-        <div class="col-lg-6">
+        <%= f.label :name, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
           <%= f.text_field :name, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :state, class: "col-lg-2 control-label" %>
-        <div class="col-lg-6">
+        <%= f.label :state, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
           <%= f.text_field :state, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 control-label">Office Type ID</label>
-        <div class="col-lg-6">
+        <label class="col-lg-3 control-label">Office Type ID</label>
+        <div class="col-lg-8">
           <%= f.text_field :office_type_id, class: "form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :special, class: "col-lg-2 control-label" %>
-        <div class="col-lg-6">
-          <%= f.check_box :special, class: "checkbox" %>
+        <%= f.label :special, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+          <%= f.check_box :special, class: "checkbox form-control" %>
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 control-label">Election Year</label>
-        <div class="col-lg-6">
+        <label class="col-lg-3 control-label">Election Year</label>
+        <div class="col-lg-8">
           <%= f.number_field :election_year, class: "form-control" %>
         </div>
       </div>
 	    <div class="form-group">
-	      <div class="col-lg-6 col-lg-offset-2">
+	      <div class="col-lg-8 col-lg-offset-3">
 	  	  	<%= link_to 'Cancel', elections_path, class: "btn btn-default" %>
 		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
 		    </div>

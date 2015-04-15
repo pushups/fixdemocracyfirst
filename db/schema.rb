@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20150411190531) do
     t.integer  "candidate_id"
     t.string   "title"
     t.string   "url"
-    t.string   "description"
+    t.text     "description"
     t.boolean  "approved"
     t.string   "ugc_candidate_name"
     t.datetime "ugc_date"

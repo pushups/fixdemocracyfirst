@@ -9,12 +9,12 @@
       </ul>
     </div>
   <% end %>
-  <div class="well bs-component col-lg-12">
+  <div class="well bs-component col-lg-6">
 	  <fieldset>
 	    <legend>Attendee</legend>	
       <div class="form-group">
-        <%= f.label :user_id, class: "col-lg-2 control-label" %>
-        <div class="col-lg-4">
+        <%= f.label :user_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
     		<%= f.select :user_id, 
     				content_tag(:option, '-- No User --', 
     										:value => -1) + options_from_collection_for_select(User.all, 
@@ -25,8 +25,8 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="col-lg-2 control-label" for="attendee_event_day_id">Event Day</label>
-        <div class="col-lg-4">
+        <label class="col-lg-3 control-label" for="attendee_event_day_id">Event Day</label>
+        <div class="col-lg-8">
     		<%= f.select :event_day_id, 
     				content_tag(:option, '-- No Event Day --', 
     										:value => -1) + options_from_collection_for_select(EventDay.all, 
@@ -37,7 +37,7 @@
         </div>
       </div>
 	    <div class="form-group">
-	      <div class="col-lg-6 col-lg-offset-2">
+	      <div class="col-lg-8 col-lg-offset-3">
 	  	  	<%= link_to 'Cancel', attendees_path, class: "btn btn-default" %>
 		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
 		    </div>

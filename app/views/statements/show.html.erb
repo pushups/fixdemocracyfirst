@@ -1,74 +1,58 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <strong>RepsWithUs ID:</strong>
-  <%= @statement.rwu_id %>
-</p>
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>RepsWithUs ID:</strong>
+    <%= @statement.rwu_id %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @statement.user_id %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @statement.title %>
+  </p>
 
-<p>
-  <strong>Event day:</strong>
-  <%= @statement.event_day_id %>
-</p>
+  <p>
+    <strong>Campaign:</strong>
+    <%= @statement.campaign_name %>
+  </p>
 
-<p>
-  <strong>Campaign:</strong>
-  <%= @statement.campaign_id %>
-</p>
+  <p>
+    <strong>Candidate:</strong>
+    <%= @statement.candidate_name %>
+  </p>
 
-<p>
-  <strong>Candidate:</strong>
-  <%= @statement.candidate_id %>
-</p>
+  <p>
+    <strong>Event:</strong>
+    <%= @statement.event_name %>
+  </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @statement.title %>
-</p>
+  <p>
+    <strong>Url:</strong>
+    <%= @statement.url %>
+  </p>
 
-<p>
-  <strong>Url:</strong>
-  <%= @statement.url %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @statement.description %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @statement.description %>
-</p>
+  <p>
+    <strong>User:</strong>
+    <%= @statement.user_name %>
+  </p>
 
-<p>
-  <strong>Approved:</strong>
-  <%= @statement.approved %>
-</p>
-
-<p>
-  <strong>Ugc candidate name:</strong>
-  <%= @statement.ugc_candidate_name %>
-</p>
-
-<p>
-  <strong>Ugc date:</strong>
-  <%= @statement.ugc_date %>
-</p>
-
-<p>
-  <strong>Ugc event title:</strong>
-  <%= @statement.ugc_event_title %>
-</p>
-
-<p>
-  <strong>Ugc event location:</strong>
-  <%= @statement.ugc_event_location %>
-</p>
-
-<p>
-  <strong>Ugc notes:</strong>
-  <%= @statement.ugc_notes %>
-</p>
-
-<%= link_to 'Edit', edit_statement_path(@statement) %> |
-<%= link_to 'Back', statements_path %>
+  <p>
+    <strong>Approved:</strong>
+    <%= @statement.approved %>
+  </p>
+    
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_statement_path(@statement) %></li>
+  	<li class="previous"><%= link_to '← Back', statements_path %></li>
+  </ul>
+</div>

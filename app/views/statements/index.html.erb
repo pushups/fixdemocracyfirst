@@ -1,24 +1,24 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<h2>Listing Statements</h2>
+<div class="page-header">
+	<h2>Statements</h2>
+</div>
 
 <table class="table table-striped table-hover">
   <thead>
     <tr>
       <th>RepsWithUs ID</th>
-      <th>User</th>
-      <th>Event day</th>
+      <th>Title</th>
       <th>Campaign</th>
       <th>Candidate</th>
-      <th>Title</th>
-      <th>Url</th>
-      <th>Description</th>
+      <th>Event</th>
+      <th>User</th>
       <th>Approved</th>
-      <th>Ugc candidate name</th>
-      <th>Ugc date</th>
-      <th>Ugc event title</th>
-      <th>Ugc event location</th>
-      <th>Ugc notes</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -27,19 +27,12 @@
     <% @statements.each do |statement| %>
       <tr>
         <td><%= statement.rwu_id %></td>
-        <td><%= statement.user_id %></td>
-        <td><%= statement.event_day_id %></td>
-        <td><%= statement.campaign_id %></td>
-        <td><%= statement.candidate_id %></td>
         <td><%= statement.title %></td>
-        <td><%= statement.url %></td>
-        <td><%= statement.description %></td>
+        <td><%= statement.campaign_name %></td>
+        <td><%= statement.candidate_name %></td>
+        <td><%= statement.event_name %></td>
+        <td><%= statement.user_name %></td>
         <td><%= statement.approved %></td>
-        <td><%= statement.ugc_candidate_name %></td>
-        <td><%= statement.ugc_date %></td>
-        <td><%= statement.ugc_event_title %></td>
-        <td><%= statement.ugc_event_location %></td>
-        <td><%= statement.ugc_notes %></td>
         <td><%= link_to 'Show', statement %></td>
         <td><%= link_to 'Edit', edit_statement_path(statement) %></td>
         <td><%= link_to 'Destroy', statement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -47,7 +40,4 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Statement', new_statement_path %>
+<%= link_to 'New Statement', new_statement_path, class: "btn btn-primary" %>

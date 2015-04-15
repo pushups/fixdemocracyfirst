@@ -10,18 +10,18 @@
     </div>
   <% end %>
 
-  <div class="well bs-component col-lg-12">
+  <div class="well bs-component col-lg-6">
 	  <fieldset>
 	    <legend>Campaign</legend>			
 	    <div class="form-group">
-        <label class="col-lg-2 control-label">RepsWithUs ID</label>
-        <div class="col-lg-6">
+        <label class="col-lg-3 control-label">RepsWithUs ID</label>
+        <div class="col-lg-8">
           <%= f.number_field :rwu_id, class: "form-control" %>
         </div>
       </div>
 	    <div class="form-group">
-        <%= f.label :election_id, class: "col-lg-2 control-label" %>
-        <div class="col-lg-6">
+        <%= f.label :election_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
     		<%= f.select :election_id, 
     				content_tag(:option, '-- No Election --', 
     										:value => nil) + options_from_collection_for_select(Election.all, 
@@ -32,8 +32,8 @@
         </div>
       </div>
 	    <div class="form-group">
-        <%= f.label :candidate_id, class: "col-lg-2 control-label" %>
-        <div class="col-lg-6">
+        <%= f.label :candidate_id, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
     		<%= f.select :candidate_id, 
     				content_tag(:option, '-- No Candidate --', 
     										:value => nil) + options_from_collection_for_select(Candidate.all, 
@@ -44,7 +44,7 @@
         </div>
       </div>
 	    <div class="form-group">
-	      <div class="col-lg-6 col-lg-offset-2">
+	      <div class="col-lg-8 col-lg-offset-3">
 	  	  	<%= link_to 'Cancel', campaigns_path, class: "btn btn-default" %>
 		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
 		    </div>

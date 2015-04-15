@@ -20,7 +20,7 @@ class StatementsController < ApplicationController
                                                  success_action_status: '201', 
                                                  metadata: { 'original-filename' => '${filename}' } })
     @statement = Statement.new
-    @statement.user_id = @user.id
+    @statement.user_id = @current_user.id
   end
 
   # GET /statements/1/edit

@@ -1,54 +1,58 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>First Name:</strong>
+    <%= @user.first_name %>
+  </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+  <p>
+    <strong>Last Name:</strong>
+    <%= @user.last_name %>
+  </p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @user.location %>
-</p>
+  <p>
+    <strong>Location:</strong>
+    <%= @user.location %>
+  </p>
 
-<p>
-  <strong>Fb uid:</strong>
-  <%= @user.fb_uid %>
-</p>
+  <p>
+    <strong>Postal Code:</strong>
+    <%= @user.postal_code %>
+  </p>
 
-<p>
-  <strong>Fb token:</strong>
-  <%= @user.fb_token %>
-</p>
+  <p>
+    <strong>Facebook UID:</strong>
+    <%= @user.fb_uid %>
+  </p>
 
-<p>
-  <strong>Admin:</strong>
-  <%= @user.admin %>
-</p>
+  <p>
+    <strong>Admin:</strong>
+    <%= @user.admin %>
+  </p>
 
-<p>
-  <strong>Postal code:</strong>
-  <%= @user.postal_code %>
-</p>
+  <p>
+    <strong>Latitude:</strong>
+    <%= @user.latitude %>
+  </p>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @user.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @user.longitude %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  <p>
+    <strong>Longitude:</strong>
+    <%= @user.longitude %>
+  </p>
+  
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_user_path(@user) %></li>
+  	<li class="previous"><%= link_to '← Back', users_path %></li>
+  </ul>
+</div>
