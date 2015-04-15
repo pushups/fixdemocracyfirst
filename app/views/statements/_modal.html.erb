@@ -13,16 +13,16 @@
 			<%= fields_for :user, @statement.user do |u| %>
 				<fieldset class="col-lg-12">
   				<legend>Step 1: Tell us about yourself</legend>
-					<div class="col-lg-8">
+					<div class="col-lg-6">
 						<%=u.text_field :first_name, class: "form-control", placeholder: "First Name"%>
 					</div>
-					<div class="col-lg-8">
+					<div class="col-lg-6">
 						<%=u.text_field :last_name, class: "form-control", placeholder: "Last Name"%>
 					</div>
-					<div class="col-lg-8">
+					<div class="col-lg-6">
 						<%=u.text_field :email, class: "form-control", placeholder: "Email"%>
 					</div>
-					<div class="col-lg-8">
+					<div class="col-lg-6">
 						<%=u.text_field :postal_code, class: "form-control", placeholder: "Postal Code (Zip Code)"%>
 					</div>
 				</fieldset>
@@ -31,7 +31,7 @@
     <% if steps.include? 2 %>
 				<fieldset class="col-lg-12">
   				<legend>Step 2: Tell us what you're sharing</legend>
-					<div class="col-lg-8">
+					<div class="col-lg-6">
 						<%=f.text_field :ugc_candidate_name, class: "form-control", placeholder: "Candidate Name"%>
 					</div>					
           <div class="input-group col-lg-6" style="width: 219px; padding: 0 15px" id="ugc_date">
@@ -40,10 +40,10 @@
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
 					</div>
-					<div class="col-lg-8">
+					<div class="col-lg-6">
 						<%=f.text_field :ugc_event_title, class: "form-control", placeholder: "Event Title"%>
 					</div>
-					<div class="col-lg-8">
+					<div class="col-lg-6">
 						<%=f.text_field :ugc_event_location, class: "form-control", placeholder: "Event Location"%>
 					</div>
 					<div class="col-lg-12">
