@@ -15,6 +15,7 @@ one:
   ugc_event_title: MyString
   ugc_event_location: MyString
   ugc_notes: MyText
+  youtube_url: MyString
 
 two:
   rwu_id: 1
@@ -31,3 +32,4 @@ two:
   ugc_event_title: MyString
   ugc_event_location: MyString
   ugc_notes: MyText
+  youtube_url: MyString
