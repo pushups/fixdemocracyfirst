@@ -41,6 +41,7 @@ module NhrQuestioner
     config.middleware.use ResqueAuth do |username, password|
       username == "questionr" and password == ENV['RESQUE_ADMIN_PASSWORD']
     end
+    #config.threadsafe! unless defined?($rails_rake_task) && $rails_rake_task
   end
 end
 

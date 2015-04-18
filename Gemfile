@@ -65,8 +65,8 @@ gem "twitter-bootstrap-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'mysql2' #sphinx dependency, even though we're using postgres
-gem 'thinking-sphinx'
+gem 'mysql2', '~> 0.3.13' #sphinx dependency, even though we're using postgres
+gem 'thinking-sphinx', '~> 3.1.0'
 gem 'flying-sphinx'
 
 group :development, :test do
