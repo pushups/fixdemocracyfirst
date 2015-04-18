@@ -65,3 +65,23 @@ end
 REDIS = Redis.new url: ENV['REDISTOGO_URL']
 Resque.redis = REDIS
 Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']
+
+#add a reindex method, specific to our data
+module Elasticsearch
+  module Model
+    def self.reindex
+      [Candidate, Event].each do |type| 
+        puts "Indexing #{type.to_s} data"
+        index_name = type.index_name
+        type.__elasticsearch__.create_index! force: true
+        type.all.find_in_batches(batch_size: 1000) do |batch|
+          type.__elasticsearch__.client.bulk(
+            index: index_name,
+            type: "person",
+            body: batch.map { |b| { index: { _id: b.id, data: b.__elasticsearch__.as_indexed_json }}})
+        end
+      end
+      puts "All done"
+    end
+  end
+end
