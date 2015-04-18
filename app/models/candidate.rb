@@ -1,5 +1,7 @@
 class Candidate < ActiveRecord::Base
   include DirtyColumns
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
 
   belongs_to :person
   has_many :statements
