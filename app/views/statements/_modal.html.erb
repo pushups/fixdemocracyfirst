@@ -1,6 +1,7 @@
 <style>fieldset { margin-top: 30px }</style>
 <%= form_for @statement, html: { class: "direct-upload col-lg-12 form-horizontal" } do |f| %>
-<div class="modal fade col-lg-12" id="<%= modal_id %>" tabindex="-1" role="dialog" aria-labelledby="upload_title" aria-hidden="true">
+<div class="modal fade col-lg-12" id="<%= modal_id %>" tabindex="-1" role="dialog" 
+  aria-labelledby="upload_title" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
     <div class="modal-content col-lg-12">
       <div class="modal-header">
