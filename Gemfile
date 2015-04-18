@@ -65,10 +65,6 @@ gem "twitter-bootstrap-rails"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'mysql2' #sphinx dependency, even though we're using postgres
-gem 'thinking-sphinx'
-gem 'flying-sphinx'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
