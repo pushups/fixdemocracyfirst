@@ -44,7 +44,7 @@ class Statement < ActiveRecord::Base
     c ? c.person_name : '-- No Candidate --'
   end 
   
-  def upload(video)
+  def upload(video) #wip TODO clean this up and make it work, prolly wanna async it with resque, too
     logger.debug ap(video)
     #authenticate as youtube channel user and get an access_token
     access_token = JSON.parse(Net::HTTP.post_form(URI.parse(YT_TOKEN_URL), 
