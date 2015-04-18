@@ -4,6 +4,7 @@ class Candidate < ActiveRecord::Base
   belongs_to :person
   has_many :statements
   has_one :campaign
+  has_and_belongs_to_many :events
 
   before_save { |c| c.person_id = nil if c.person_id < 1 }
 

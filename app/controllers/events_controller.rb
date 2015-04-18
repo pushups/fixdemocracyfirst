@@ -1,7 +1,7 @@
 class EventsController < ApplicationController
   before_filter :require_admin, except: [:index, :show]
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-
+    
   # GET /events
   # GET /events.json
   def index
@@ -42,12 +42,22 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1.json
   def update
     respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+      if params[:commit] == '+'
+        @event.add_candidate(event_params[:candidates])        
+        format.html { redirect_to @event, notice: 'Candidate added.' }
         format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
+      elsif params[:commit] == 'x'
+        @event.remove_candidate(params[:candidate_id_to_remove])        
+        format.html { redirect_to @event, notice: 'Candidate removed.' }
+        format.json { render :show, status: :ok, location: @event }      
+      else      
+        if @event.update(event_params)
+          format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+          format.json { render :show, status: :ok, location: @event }
+        else
+          format.html { render :edit }
+          format.json { render json: @event.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -70,6 +80,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:rwu_id, :title, :description, :venue_id, :public)
+      params.require(:event).permit(:rwu_id, :title, :description, :venue_id, :public, :candidates, :candidate_id_to_remove)
     end
 end
