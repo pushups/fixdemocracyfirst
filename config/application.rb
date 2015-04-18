@@ -44,6 +44,7 @@ module NhrQuestioner
   end
 end
 
+#extend the timezone eigenclass so that it makes a *little* more sense
 AMERICA_NEW_YORK_TIME_ZONE = ActiveSupport::TimeZone["America/New_York"]
 class << AMERICA_NEW_YORK_TIME_ZONE
   def abbr
@@ -60,5 +61,7 @@ class << AMERICA_NEW_YORK_TIME_ZONE
   end
 end
 
-REDIS = Redis.new(url: ENV['REDISTOGO_URL'])
+#set up connections to external services
+REDIS = Redis.new url: ENV['REDISTOGO_URL']
 Resque.redis = REDIS
+Elasticsearch::Model.client = Elasticsearch::Client.new host: ENV['SEARCHBOX_URL']

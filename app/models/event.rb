@@ -1,5 +1,7 @@
 class Event < ActiveRecord::Base
   include DirtyColumns
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
   
   belongs_to :venue
   has_many :event_days
