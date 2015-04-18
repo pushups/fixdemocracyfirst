@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :event_days
   resources :events
   resources :venues
+  get 'search' => 'search#search'
   root 'statements#new'
   mount ResqueWeb::Engine => "/resque_web"
 
