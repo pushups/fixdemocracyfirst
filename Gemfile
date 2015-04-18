@@ -56,6 +56,9 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.7.14'
 gem "therubyracer"
 gem "twitter-bootstrap-rails"
 
+gem "xapian-ruby"
+gem "xapian-fu"
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -64,10 +67,6 @@ gem "twitter-bootstrap-rails"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-
-gem 'mysql2' #sphinx dependency, even though we're using postgres
-gem 'thinking-sphinx'
-gem 'flying-sphinx'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
