@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
     user.photo = profile[:photo]
     user.utc_offset = profile[:utcOffset]
     user.gender = profile[:gender]
+    user.provider = profile[:providerName]
     user.save!
     user
   end
