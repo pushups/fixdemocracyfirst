@@ -34,7 +34,7 @@ Local Environment Setup
     AWS_REGION=us-west-1
     REDISTOGO_URL=redis://127.0.0.1:6379/
     RAILS_RESQUE_REDIS=redis://127.0.0.1:6379/
-    RESQUE_ADMIN_PASSWORD=
+    RESQUE_ADMIN_PASSWORD= #set this to whatever value you like
     SEARCHBOX_URL=http://localhost:9200
     JANRAIN_API_KEY=
     ```
@@ -45,6 +45,8 @@ Local Environment Setup
 1. Visit [http://localhost:3000](http://localhost:3000)
 1. Create an account for yourself by visiting [http://localhost:3000/admin](http://localhost:3000/admin) and logging in with Facebook
 1. Launch a rails console `foreman run bundle exec rails c` and execute this command to admin-ize your user account: `User.last.update_attribute(:admin, true)`
+
+Note: When viewing the [Resque Web Console](http://localhost:3000/resque_web) for the first time, you'll receive a basic auth challenge. Respond with username `questionr` and the password you set for `RESQUE_ADMIN_PASSWORD` in your .env file and ask the browser to remember your credentials.
 
 Contributing (using the [fork-and-pull](https://help.github.com/articles/using-pull-requests) model)
 ----------------------------------------------------------------------------------------------------
