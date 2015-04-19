@@ -1,51 +1,53 @@
-nhr-questioner
-==============
+Questionr
+=========
+A simple tool to empower citizens to ask candidates one question: “What specific reforms will you advance to end the corrupting influence of money in politics?”
 
-A simple tool to empower citizen's to ask presidential candidates one question: How will you end the system of corruption in Washington DC?
+Staging Server
+--------------
+http://questionr.herokuapp.com
 
+3rd-Party Depedencies
+---------------------
+1. [RVM](http://rvm.io)
+1. [postgres](http://www.postgresql.org)
+1. [redis](http://redis.io)
+1. [Elastic Search](https://www.elastic.co/products/elasticsearch)
 
-Running locally
----------------
+Do not proceed until you have all the dependencies installed and running. (On OSX, your best bet is to install postgres, redis and elastic search using [homebrew](http://brew.sh/).)
 
-1. `source venv/bin/activate`
-2. `pip install -r requirements.txt`
-2. `foreman start`
+Local Environment Setup
+-----------------------
+1. Clone the git repo
+1. Install Ruby 2.2.1 on RVM: `rvm install 2.2.1`
+1. Select ruby 2.2.1: `rvm use 2.2.1`
+1. Install Bundler in the default gemset: `gem install bundler`
+1. Create a custom gemset for questionr: `rvm gemset create questionr`
+1. Select the gemset and ruby version: `rvm use 2.2.1@questionr`
+1. `cd` into your local project directory
+1. Run bundler: `bundle install`
+1. Set environment variables for foreman by creating a `.env` file in your project directory with these variables:
+```
+S3_BUCKET=questionr-stage
+AWS_ACCESS_KEY_ID=*
+AWS_SECRET_ACCESS_KEY=*
+AWS_REGION=us-west-1
+REDISTOGO_URL=redis://127.0.0.1:6379/
+RAILS_RESQUE_REDIS=redis://127.0.0.1:6379/
+RESQUE_ADMIN_PASSWORD=*
+SEARCHBOX_URL=http://localhost:9200
+JANRAIN_API_KEY=*
+```
+* Ask one of us for these values and we'll get them to you securely.
+1. Seed the database: `foreman run bundle exec rails db:setup`
+1. Start the server locally: `foreman run bundle exec rails s`
+1. Visit http://localhost:3000
 
-Dependencies you may need:
-
-foreman, python, virtualenv, pip
-
-
-Heroku URL
------------
-
-http://nhr-questioner.herokuapp.com/
-
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Contributing (using the [fork-and-pull](https://help.github.com/articles/using-pull-requests) model)
+----------------------------------------------------------------------------------------------------
+1. Fork the repo
+1. Create a topic branch `git checkout -b my-new-feature`
+1. Implement your feature or bug fix and add tests
+1. Ensure that `foreman run bundle exec rake` passes
+1. Commit your changes `git commit -am 'Added some feature and some tests'`
+1. Push to the branch `git push origin my-new-feature`
+1. Create a pull request
