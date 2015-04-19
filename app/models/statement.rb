@@ -44,7 +44,12 @@ class Statement < ActiveRecord::Base
     c ? c.person_name : '-- No Candidate --'
   end 
   
-  def upload(video) #wip TODO clean this up and make it work, prolly wanna async it with resque, too
+  def youtube_embed_url
+    self.youtube_url ? self.youtube_url.gsub('watch?v=', 'embed/') : ''
+  end
+  
+  #TODO (wip) clean this up and make it work, prolly wanna async it with resque, too
+  def upload_to_youtube(video) 
     logger.debug ap(video)
     #authenticate as youtube channel user and get an access_token
     access_token = JSON.parse(Net::HTTP.post_form(URI.parse(YT_TOKEN_URL), 
@@ -109,43 +114,3 @@ class Statement < ActiveRecord::Base
     end
   end
 end
-=begin
-        #if request.location:
-        #    data["location"]: {
-        #        "latitude":
-        #        "longitude":
-        #    }
-
-        #TODO
-
-        params = {
-            "part": "status",
-            "uploadType": "resumable",
-            "alt": "json",
-        }
-
-        r = requests.post(YT_VIDEOS_URL, headers=headers, data=json.dumps(data), params=params)
-        print r.text
-
-        headers = {
-            'Authorization': 'Bearer %s' % access_token,
-            'content-type': f.content_type,
-            'content-length': content_length,
-        }
-
-        stream = f.stream
-        stream.seek(0)
-        r = requests.put(r.headers['Location'], headers=headers, data=stream)
-        print r.text
-        return '<p>Thanks for the video! View it <a href="http://youtube.com/watch?v=%s">here</a></p>' % r.json()['id']
-    else:
-        return "Hello"
-
-
-@app.route('/')
-def index():
-    return render_template('index.html')
-
-
-end
-=end
