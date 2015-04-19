@@ -17,7 +17,8 @@ class Statement < ActiveRecord::Base
   belongs_to :event_day
   belongs_to :campaign
   belongs_to :candidate
-
+  scope :approved, -> { where(approved: true).where('youtube_url is not null').order('updated_at desc') }
+  
   accepts_nested_attributes_for :user, allow_destroy: false
 
   attr_reader :user_name, :event_name, :campaign_name, :candidate_name
