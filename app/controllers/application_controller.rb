@@ -24,13 +24,16 @@ class ApplicationController < ActionController::Base
     
     #if the user_id wasn't cookied or the cookied user_id wasn't found, 
     #we'll end up here, so create a new "guest" user and cookie its id
-    @current_user = User.create
+    reset_current_user(User.create)
+  end
+  
+  def reset_current_user(user)
+    @current_user = user
     cookies[:current_user_id] = { value: @current_user.id, :expires => Time.now + 365 * 24 * 60 * 60 }
     @current_user
   end
   
   def require_admin
-    #TODO put this back in once admin authentication is set up
-    #redirect_to '/' unless @current_user.admin?
+    redirect_to '/' unless @current_user.admin?
   end
 end

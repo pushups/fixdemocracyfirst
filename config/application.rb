@@ -41,6 +41,8 @@ module NhrQuestioner
     config.middleware.use ResqueAuth do |username, password|
       username == "questionr" and password == ENV['RESQUE_ADMIN_PASSWORD']
     end
+    config.janrain_api_url = URI.parse "https://questionr.rpxnow.com/api/v2/auth_info"
+    config.janrain_api_key = ENV['JANRAIN_API_KEY']
   end
 end
 

@@ -1,7 +1,27 @@
 class UsersController < ApplicationController
-  before_filter :require_admin, except: [:create]
+  before_filter :require_admin, except: [:create, :social_auth]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token, only: [:social_auth]
 
+  def social_auth
+    http = Net::HTTP.new Rails.application.config.janrain_api_url.host,
+                         Rails.application.config.janrain_api_url.port
+    http.use_ssl = true    
+    resp = http.post Rails.application.config.janrain_api_url.path,
+                     { token: params[:token],
+                       format: 'json',
+                       apiKey: Rails.application.config.janrain_api_key }.map { |k,v| 
+                         "#{CGI::escape k.to_s}=#{CGI::escape v.to_s}" }.join('&')    
+    if resp.code == '200'
+      @current_user = reset_current_user(User.social_refresh(JSON.parse(resp.body)['profile'].with_indifferent_access))
+    else
+      logger.fatal ap(@current_user)
+      logger.fatal ap(resp)
+      raise "social auth failed"
+    end
+    redirect_to '/', alert: @current_user.admin? ? nil : 'Please contact info@questionr.org to request administrative access.'
+  end
+  
   # GET /users
   # GET /users.json
   def index
@@ -70,6 +90,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :location, :fb_uid, :fb_token, :admin, :postal_code, :latitude, :longitude)
+      params.require(:user).permit(:first_name, :last_name, :email, :location, :fb_uid, :fb_token, :admin, :postal_code, :latitude, :longitude, :name, :provider, :gender, :utc_offset, :url, :photo)
     end
 end

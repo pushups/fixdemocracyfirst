@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :events
   resources :venues
   get 'search' => 'search#search'
+  get 'admin' => 'static_pages#admin'
+  post 'user/social_auth' => 'users#social_auth'
   root 'statements#new'
   mount ResqueWeb::Engine => "/resque_web"
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150419005739) do
+ActiveRecord::Schema.define(version: 20150419050057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -162,11 +162,17 @@ ActiveRecord::Schema.define(version: 20150419005739) do
     t.string   "fb_token"
     t.boolean  "admin"
     t.string   "postal_code"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "dirty",       default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "dirty",       default: 0,  null: false
     t.float    "latitude"
     t.float    "longitude"
+    t.string   "name",        default: ""
+    t.string   "provider",    default: ""
+    t.string   "gender",      default: ""
+    t.string   "utc_offset",  default: ""
+    t.string   "url",         default: ""
+    t.string   "photo",       default: ""
   end
 
   create_table "venues", force: :cascade do |t|

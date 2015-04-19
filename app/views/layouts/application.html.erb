@@ -18,6 +18,35 @@
 		<style>
 			#logo { width: 150px; }
 		</style>
+    
+    <script type="text/javascript">
+      (function() {
+        if (typeof window.janrain !== 'object') window.janrain = {};
+        if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+
+        janrain.settings.tokenUrl = '<%= Rails.application.config.janrain_token_url %>';
+
+        function isReady() { janrain.ready = true; };
+        if (document.addEventListener) {
+          document.addEventListener("DOMContentLoaded", isReady, false);
+        } else {
+          window.attachEvent('onload', isReady);
+        }
+
+        var e = document.createElement('script');
+        e.type = 'text/javascript';
+        e.id = 'janrainAuthWidget';
+
+        if (document.location.protocol === 'https:') {
+          e.src = 'https://rpxnow.com/js/lib/questionr/engage.js';
+        } else {
+          e.src = 'http://widget-cdn.rpxnow.com/js/lib/questionr/engage.js';
+        }
+
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(e, s);
+      })();
+    </script>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse">
@@ -36,6 +65,7 @@
 		        <li<%= URI(request.url).path.starts_with?('/events') ? ' class=active' : '' %>><%= link_to 'Events', :events %></li>
 		        <li<%= URI(request.url).path.starts_with?('/candidates') ? ' class=active' : '' %>><%= link_to 'Candidates', :candidates %></li>
 		      </ul>
+        <% if @current_user.admin? %>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
@@ -55,7 +85,8 @@
 		          </ul>
 		        </li>
 		      </ul>
-		    </div>
+		    <% end %>
+        </div>
 		  </div>
 		</nav>
 		<div id="content" class="container-fluid">
