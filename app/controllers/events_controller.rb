@@ -43,13 +43,27 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if params[:commit] == '+'
-        @event.add_candidate(event_params[:candidates])        
-        format.html { redirect_to @event, notice: 'Candidate added.' }
-        format.json { render :show, status: :ok, location: @event }
+        process_method_and_redirect(format,
+                                    :candidates, 
+                                    :add_candidate, 
+                                    event_params[:candidates],
+                                    'added') if !event_params[:candidates].blank?
+        process_method_and_redirect(format,
+                                    :people, 
+                                    :add_person, 
+                                    event_params[:people],
+                                    'added') if !event_params[:people].blank?
       elsif params[:commit] == 'x'
-        @event.remove_candidate(params[:candidate_id_to_remove])        
-        format.html { redirect_to @event, notice: 'Candidate removed.' }
-        format.json { render :show, status: :ok, location: @event }      
+        process_method_and_redirect(format,
+                                    :candidates, 
+                                    :remove_candidate, 
+                                    params[:candidate_id_to_remove],
+                                    'removed') if !params[:candidate_id_to_remove].blank?
+        process_method_and_redirect(format,
+                                    :people, 
+                                    :remove_person, 
+                                    params[:person_id_to_remove],
+                                    'removed') if !params[:person_id_to_remove].blank?
       else      
         if @event.update(event_params)
           format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -80,6 +94,12 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:rwu_id, :title, :description, :venue_id, :public, :candidates, :candidate_id_to_remove)
+      params.require(:event).permit(:rwu_id, :title, :description, :venue_id, :public, :candidates, :candidate_id_to_remove, :people, :person_id_to_remove)
+    end
+
+    def process_method_and_redirect(format, symbol, method, id, what_happened)
+      @event.send method, id   
+      format.html { redirect_to @event, notice: "#{symbol.to_s.titlecase} #{what_happened}." }
+      format.json { render :show, status: :ok, location: @event }
     end
 end

@@ -2,6 +2,7 @@ class Person < ActiveRecord::Base
   include DirtyColumns
 
   has_many :candidates #candidacies 
+  has_and_belongs_to_many :events #speakers
 
   attr_reader :full_name
 
