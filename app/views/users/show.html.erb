@@ -50,7 +50,37 @@
     <strong>Longitude:</strong>
     <%= @user.longitude %>
   </p>
-  
+
+  <p>
+    <strong>User Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Provider:</strong>
+    <%= @user.provider %>
+  </p>
+
+  <p>
+    <strong>Gender:</strong>
+    <%= @user.gender %>
+  </p>
+
+  <p>
+    <strong>UTC Offset:</strong>
+    <%= @user.utc_offset %>
+  </p>
+
+  <p>
+    <strong>Profile URL:</strong>
+    <%= @user.url %>
+  </p>
+    
+  <p>
+    <strong>Photo URL:</strong>
+    <%= @user.photo %>
+  </p>
+
   <ul class="pager">
   	<li class="next"><%= link_to 'Edit →', edit_user_path(@user) %></li>
   	<li class="previous"><%= link_to '← Back', users_path %></li>
