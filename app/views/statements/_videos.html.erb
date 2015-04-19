@@ -1,0 +1,18 @@
+<% videos.each do |video| %>
+  <div class="col-lg-4" style="padding: 0">
+    <div class="col-lg-12"><%=AMERICA_NEW_YORK_TIME_ZONE.format_date(video.updated_at)%></div>
+    <h4 class="col-lg-12">
+      <% if @current_user.admin? %>
+        <%=link_to "#{video.candidate_name} answers the question", edit_statement_path(video) %>
+      <% else %>    
+        <%=video.candidate_name%> answers the question
+      <% end %>
+    </h4>
+    <iframe class="col-lg-12" 
+            height="315" 
+            style="margin-bottom: 40px" 
+            src="<%=video.youtube_embed_url%>" 
+            frameborder="0" 
+            allowfullscreen></iframe>
+  </div>
+<% end %>
