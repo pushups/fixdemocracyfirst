@@ -23,7 +23,7 @@ class Event < ActiveRecord::Base
   def format_location
     v = self.venue
     if v
-      [v.name, v.city, v.state].delete_if { |d| d.nil? }.join(", ")
+      [v.name, v.city, v.state, v.postal_code].delete_if { |d| d.nil? }.join(", ")
     else
       ""
     end
