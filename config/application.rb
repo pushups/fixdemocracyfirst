@@ -61,6 +61,11 @@ class << AMERICA_NEW_YORK_TIME_ZONE
     return '' unless t
     "#{t.in_time_zone(self).strftime('%I:%M %p')} #{long ? self.desc : self.abbr}"
   end
+  
+  def format_date(t)
+    return '' unless t
+    "#{t.in_time_zone(self).strftime('%B %-d, %Y')}"
+  end
 end
 
 #set up connections to external services
