@@ -26,7 +26,6 @@ Local Environment Setup
 1. `cd` into your local project directory
 1. Run bundler: `bundle install`
 1. Set environment variables for foreman by creating a `.env` file in your project directory with these variables (and ask one of us for the missing values so we can get them to you securely):
-
     ```
     S3_BUCKET=questionr-stage
     AWS_ACCESS_KEY_ID=
@@ -42,8 +41,8 @@ Local Environment Setup
   1. With dev data: `foreman run bundle exec rails db:setup` or
   1. With staging data: `psql questionr_development < db/questionr-db-backup.pgdump`
 1. Start the server locally: `foreman run bundle exec rails s`
-1. Visit http://localhost:3000
-1. Create an admin account for yourself by visiting http://localhost:3000/admin and logging in with Facebook.
+1. Visit [http://localhost:3000](http://localhost:3000)
+1. Create an admin account for yourself by visiting [http://localhost:3000/admin](http://localhost:3000/admin) and logging in with Facebook.
 1. Launch a rails console `foreman run bundle exec rails c` and execute this command to admin-ize your user account: `User.last.update_attribute(:admin, true)`
 
 Contributing (using the [fork-and-pull](https://help.github.com/articles/using-pull-requests) model)
