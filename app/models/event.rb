@@ -11,6 +11,14 @@ class Event < ActiveRecord::Base
   
   attr_reader :venue_name
   
+  def format_candidates
+    self.candidates.map(&:person_name).join(', ')
+  end
+
+  def format_speakers
+
+  end
+  
   def venue_name
     v = self.venue
     v ? v.name : '-- No Venue --'
