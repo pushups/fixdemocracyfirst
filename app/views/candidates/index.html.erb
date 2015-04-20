@@ -9,29 +9,29 @@
   <h2>Candidates</h2>
 </div>
 
-<table class="table table-striped table-hover">
+<table class="table table-striped table-hover col-lg-12">
   <thead>
     <tr>
-      <th>RepsWithUs ID</th>
       <th>Person</th>
       <th>Office</th>
       <th>Position</th>
       <th>District</th>
-      <th colspan="3"></th>
+      <% if @current_user.admin? %><th colspan="1"></th><% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @candidates.each do |candidate| %>
       <tr>
-        <td><%= candidate.rwu_id %></td>
-        <td><%= candidate.person_name %></td>
+        <td><%= link_to candidate.person_name, candidate %></td>
         <td><%= candidate.office_id %></td>
         <td><%= candidate.position %></td>
         <td><%= candidate.district %></td>
-        <td><%= link_to 'Show', candidate %></td>
-        <td><%= link_to 'Edit', edit_candidate_path(candidate) %></td>
-        <td><%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% if @current_user.admin? %>
+        <td><%= link_to 'Show', candidate, class: 'btn btn-info' %></td>
+        <td><%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+      <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -39,4 +39,4 @@
 
 <br>
 
-<%= link_to 'New Candidate', new_candidate_path, class: "btn btn-primary" %>
+<% if @current_user.admin? %><%= link_to 'New Candidate', new_candidate_path, class: "btn btn-primary" %><% end %>

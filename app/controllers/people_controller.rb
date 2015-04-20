@@ -5,7 +5,7 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = Person.all.order(:last_name).order(:first_name).order(:middle_name)
   end
 
   # GET /people/1
@@ -70,6 +70,6 @@ class PeopleController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def person_params
-      params.require(:person).permit(:rwu_id, :first_name, :nickname, :middle_name, :last_name, :suffix)
+      params.require(:person).permit(:rwu_id, :first_name, :nickname, :middle_name, :last_name, :suffix, :image_url)
     end
 end

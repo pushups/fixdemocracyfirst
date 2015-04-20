@@ -3,7 +3,7 @@ class Campaign < ActiveRecord::Base
 
   has_many :statements
   belongs_to :election
-  belongs_to :candidate
+  belongs_to :candidate, lambda { select('candidates.*').select('people.*').joins(:person).order('people.last_name').order('people.first_name').order('people.middle_name') }
 
   before_save { |c| c.election_id = nil if c.election_id < 1 }
   

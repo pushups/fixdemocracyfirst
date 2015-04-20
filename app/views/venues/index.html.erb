@@ -12,7 +12,6 @@
 <table class="table table-striped table-hover">
   <thead>
     <tr>
-      <th>RepsWithUs ID</th>
       <th>Name</th>
       <th>Street 1</th>
       <th>Street 2</th>
@@ -26,16 +25,15 @@
   <tbody>
     <% @venues.each do |venue| %>
       <tr>
-        <td><%= venue.rwu_id %></td>
         <td><%= venue.name %></td>
         <td><%= venue.street_address1 %></td>
         <td><%= venue.street_address2 %></td>
         <td><%= venue.city %></td>
         <td><%= venue.state %></td>
         <td><%= venue.postal_code %></td>
-        <td><%= link_to 'Show', venue %></td>
-        <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
-        <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', venue, class: 'btn btn-info' %></td>
+        <td><%= link_to 'Edit', edit_venue_path(venue), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', venue, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

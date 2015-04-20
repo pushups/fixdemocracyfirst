@@ -6,37 +6,41 @@
 <% end %>
 
 <div class="well bs-component col-lg-6">
-  <p>
-    <strong>RepsWithUs ID:</strong>
-    <%= @person.rwu_id %>
-  </p>
+  <div class="col-lg-6">
+    <p>
+      <strong>RepsWithUs ID:</strong>
+      <%= @person.rwu_id %>
+    </p>
 
-  <p>
-    <strong>First name:</strong>
-    <%= @person.first_name %>
-  </p>
+    <p>
+      <strong>First name:</strong>
+      <%= @person.first_name %>
+    </p>
 
-  <p>
-    <strong>Nickname:</strong>
-    <%= @person.nickname %>
-  </p>
+    <p>
+      <strong>Nickname:</strong>
+      <%= @person.nickname %>
+    </p>
 
-  <p>
-    <strong>Middle name:</strong>
-    <%= @person.middle_name %>
-  </p>
+    <p>
+      <strong>Middle name:</strong>
+      <%= @person.middle_name %>
+    </p>
 
-  <p>
-    <strong>Last name:</strong>
-    <%= @person.last_name %>
-  </p>
+    <p>
+      <strong>Last name:</strong>
+      <%= @person.last_name %>
+    </p>
 
-  <p>
-    <strong>Suffix:</strong>
-    <%= @person.suffix %>
-  </p>
-  
-  <ul class="pager">
+    <p>
+      <strong>Suffix:</strong>
+      <%= @person.suffix %>
+    </p>
+  </div>
+  <div class="col-lg-6">
+    <%= @person.image_url ? image_tag(@person.image_url, width: '200px') : '' %>
+  </div>
+  <ul class="pager col-lg-12">
   	<li class="next"><%= link_to 'Edit →', edit_person_path(@person) %></li>
   	<li class="previous"><%= link_to '← Back', people_path %></li>
   </ul>

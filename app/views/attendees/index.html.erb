@@ -23,9 +23,9 @@
       <tr>
         <td><%= attendee.user_name %></td>
         <td><%= attendee.event_day_name %></td>
-        <td><%= link_to 'Show', attendee %></td>
-        <td><%= link_to 'Edit', edit_attendee_path(attendee) %></td>
-        <td><%= link_to 'Destroy', attendee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', attendee, class: 'btn btn-info' %></td>
+        <td><%= link_to 'Edit', edit_attendee_path(attendee), class: 'btn btn-warning' %></td>
+        <td><%= link_to 'Destroy', attendee, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

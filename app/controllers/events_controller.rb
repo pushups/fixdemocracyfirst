@@ -49,7 +49,7 @@ class EventsController < ApplicationController
                                     event_params[:candidates],
                                     'added') if !event_params[:candidates].blank?
         process_method_and_redirect(format,
-                                    :people, 
+                                    :speaker, 
                                     :add_person, 
                                     event_params[:people],
                                     'added') if !event_params[:people].blank?
@@ -60,7 +60,7 @@ class EventsController < ApplicationController
                                     params[:candidate_id_to_remove],
                                     'removed') if !params[:candidate_id_to_remove].blank?
         process_method_and_redirect(format,
-                                    :people, 
+                                    :speaker, 
                                     :remove_person, 
                                     params[:person_id_to_remove],
                                     'removed') if !params[:person_id_to_remove].blank?

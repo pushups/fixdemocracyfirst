@@ -1,34 +1,44 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>RepsWithUs ID:</strong>
-  <%= @election.rwu_id %>
-</p>
+<% if notice %>
+	<div class="alert alert-dismissible alert-success col-lg-12">
+		<button type="button" class="close" data-dismiss="alert">×</button>
+		<%= notice %>
+	</div>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @election.name %>
-</p>
+<div class="well bs-component col-lg-6">
+  <p>
+    <strong>RepsWithUs ID:</strong>
+    <%= @election.rwu_id %>
+  </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @election.state %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @election.name %>
+  </p>
 
-<p>
-  <strong>Office type:</strong>
-  <%= @election.office_type_id %>
-</p>
+  <p>
+    <strong>State:</strong>
+    <%= @election.state %>
+  </p>
 
-<p>
-  <strong>Special:</strong>
-  <%= @election.special %>
-</p>
+  <p>
+    <strong>Office type:</strong>
+    <%= @election.office_type_id %>
+  </p>
 
-<p>
-  <strong>Election year:</strong>
-  <%= @election.election_year %>
-</p>
+  <p>
+    <strong>Special:</strong>
+    <%= @election.special %>
+  </p>
 
-<%= link_to 'Edit', edit_election_path(@election) %> |
-<%= link_to 'Back', elections_path %>
+  <p>
+    <strong>Election year:</strong>
+    <%= @election.election_year %>
+  </p>
+
+  <ul class="pager">
+  	<li class="next"><%= link_to 'Edit →', edit_election_path(@election) %></li>
+  	<li class="previous"><%= link_to '← Back', elections_path %></li>
+  </ul>
+</div>
