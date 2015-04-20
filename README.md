@@ -38,9 +38,7 @@ Local Environment Setup
     SEARCHBOX_URL=http://localhost:9200
     JANRAIN_API_KEY=
     ```
-1. Seed the database:
-  1. With dev data: `foreman run bundle exec rails db:setup` or
-  1. With staging data: `psql questionr_development < db/questionr-db-backup.pgdump`
+1. Create and seed the database: `foreman run bundle exec rake db:setup`
 1. Start the server locally: `foreman run bundle exec rails s`
 1. Visit [http://localhost:3000](http://localhost:3000)
 1. Create an account for yourself by visiting [http://localhost:3000/admin](http://localhost:3000/admin) and logging in with Facebook
