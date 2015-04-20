@@ -19,11 +19,11 @@ Local Environment Setup
 -----------------------
 1. Clone the git repo
 1. Install Ruby 2.2.1 on RVM: `rvm install 2.2.1`
-1. Select ruby 2.2.1: `rvm use 2.2.1`
-1. Install Bundler in the default gemset: `gem install bundler`
+1. Select the global gemset under ruby 2.2.1: `rvm use 2.2.1@global`
+1. Install Bundler in the global gemset: `gem install bundler`
 1. Create a custom gemset for questionr: `rvm gemset create questionr`
 1. Select the gemset and ruby version: `rvm use 2.2.1@questionr`
-1. `cd` into your local project directory
+1. `cd` into your local git repo's directory
 1. Run bundler: `bundle install`
 1. Set environment variables for foreman by creating a `.env` file in your project directory with these variables (and ask one of us for the missing values so we can get them to you securely):
 
