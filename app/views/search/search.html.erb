@@ -23,8 +23,8 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th>Campaign Name</th>
-        <th>Speaker Name(s)</th>
+        <th>Candidate(s)</th>
+        <th>Speaker(s)</th>
         <th>Event Name</th>
         <th>Location</th>
         <th>Public</th>
@@ -36,7 +36,7 @@
       <tr>
         <th><%= e.format_candidates %></th>
         <th><%= e.format_speakers %></th>
-        <th><%= e.title %></th>
+        <th><%= link_to e.title, e %></th>
         <th><%= e.format_location %></th>
         <th></th>
         <th></th>
