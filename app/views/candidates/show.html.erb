@@ -6,14 +6,35 @@
 <% end %>
 
 <div class="well bs-component col-lg-12">
-  <div class="page-header">
+  <div class="col-lg-3">
+    <%= image_tag @candidate.person_image_url, { width: '300px' } %>
+  </div>
+  <div class="col-lg-6">
     <h1><%= @candidate.person_name %></h1>
     <h4>
-      Candidate for <%= @candidate.office_id %> <%= @candidate.position %>
+      Party: (TODO)
+    </h4>
+    <h4>
+      Role: (TODO)
+    </h4>
+    <h4>
+      Running for: <%= @candidate.office_id %> <%= @candidate.position %>
+    </h4>
+    <h4>
+      Candidate's web site (TODO)
     </h4>
   </div>
-  <ul class="pager">
+  <div class="col-lg-3">
+    <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.events %>
+    <%= render 'events', :panel_title => 'Upcoming Speaking Engagements', :events => @candidate.person.events %>
+  </div>
+  <ul class="pager col-lg-12">
     <% if @current_user.admin? %><li class="next"><%= link_to 'Edit →', edit_candidate_path(@candidate) %></li><% end %>
   	<li class="previous"><%= link_to '← Back', 'javascript:window.history.back()' %></li>
   </ul>
+</div>
+
+<div class="col-lg-12">
+  <h1 class="col-lg-12">Answers from this Candidate</h1>
+  <%= render 'statements/videos' %>
 </div>

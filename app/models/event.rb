@@ -12,6 +12,19 @@ class Event < ActiveRecord::Base
   
   attr_reader :venue_name
   
+  #roll up the statements from all the event days
+  def statements
+    Statement.approved
+      .joins('inner join event_days on statements.event_day_id = event_days.id')
+      .joins('inner join events on event_days.event_id = events.id')
+      .where(['events.id = ?', self.id])
+  end
+  
+  def start_time 
+    start_day = self.event_days.first
+    start_day ? start_day.start_time : nil
+  end
+  
   def format_candidates
     self.candidates.map(&:person_name).join(', ')
   end

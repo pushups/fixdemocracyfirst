@@ -3,7 +3,11 @@ require 'resque_web'
 ResqueWeb::Engine.eager_load!
 
 Rails.application.routes.draw do
+  root 'statements#new'
+  get 'search' => 'search#search'
+  post 'user/social_auth' => 'users#social_auth'
   resources :users
+  get 'statements/browse' => 'statements#browse'
   resources :statements
   resources :people
   resources :candidates
@@ -13,11 +17,8 @@ Rails.application.routes.draw do
   resources :event_days
   resources :events
   resources :venues
-  get 'search' => 'search#search'
-  get 'admin' => 'static_pages#admin'
-  post 'user/social_auth' => 'users#social_auth'
-  root 'statements#new'
   mount ResqueWeb::Engine => "/resque_web"
+  get 'admin' => 'static_pages#admin'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -11,6 +11,7 @@ class CandidatesController < ApplicationController
   # GET /candidates/1
   # GET /candidates/1.json
   def show
+    @videos = @candidate.statements.approved
   end
 
   # GET /candidates/new

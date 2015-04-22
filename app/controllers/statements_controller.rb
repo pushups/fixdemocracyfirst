@@ -1,11 +1,15 @@
 class StatementsController < ApplicationController
-  before_filter :require_admin, except: [:new, :create]
+  before_filter :require_admin, except: [:new, :create, :browse]
   before_action :set_statement, only: [:show, :edit, :update, :destroy]
 
   # GET /statements
   # GET /statements.json
   def index
     @statements = Statement.all
+  end
+
+  def browse
+    @videos = Statement.approved
   end
 
   # GET /statements/1
@@ -21,6 +25,7 @@ class StatementsController < ApplicationController
                                                  metadata: { 'original-filename' => '${filename}' } })
     @statement = Statement.new
     @statement.user_id = @current_user.id
+    @videos = Statement.approved
   end
 
   # GET /statements/1/edit

@@ -16,4 +16,9 @@ class Candidate < ActiveRecord::Base
     p = self.person
     p ? "#{p.first_name} #{p.last_name}" : "-- No Name --"
   end
+  
+  def person_image_url
+    p = self.person
+    p ? "#{p.image_url}" : Person::DEFAULT_IMAGE_URL
+  end   
 end

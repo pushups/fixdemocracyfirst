@@ -65,6 +65,7 @@
 		      <ul class="nav navbar-nav">
 		        <li<%= URI(request.url).path.starts_with?('/events') ? ' class=active' : '' %>><%= link_to 'Events', :events %></li>
 		        <li<%= URI(request.url).path.starts_with?('/candidates') ? ' class=active' : '' %>><%= link_to 'Candidates', :candidates %></li>
+		        <li<%= URI(request.url).path.starts_with?('/statements') ? ' class=active' : '' %>><%= link_to 'Answers', :controller => :statements, :action => :browse %></li>
 		      </ul>
         <% if @current_user.admin? %>
 		      <ul class="nav navbar-nav navbar-right">

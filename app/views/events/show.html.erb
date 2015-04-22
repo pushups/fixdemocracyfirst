@@ -5,48 +5,33 @@
 	</div>
 <% end %>
 
-<div class="well bs-component col-lg-6">
-  <p>
-    <strong>RepsWithUs ID:</strong>
-    <%= @event.rwu_id %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
-    <%= @event.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= @event.description %>
-  </p>
-
-  <p>
-    <strong>Venue:</strong>
-    <%= @event.venue_name %>
-  </p>
-
-  <p>
-    <strong>Public:</strong>
-    <%= @event.public %>
-  </p>
-  
-  <%= render 'container', type: Candidate, 
-                          :symbol => :candidates, 
-                          title: 'Candidates', 
-                          :method => :person_name, 
-                          parent: @event, 
-                          children: @event.candidates %>
-                          
-  <%= render 'container', type: Person, 
-                          :symbol => :people, 
-                          title: 'Speakers', 
-                          :method => :full_name, 
-                          parent: @event, 
-                          children: @event.people %>
-                          
-  <ul class="pager">
-  	<li class="next"><%= link_to 'Edit →', edit_event_path(@event) %></li>
+<div class="well bs-component col-lg-12">
+  <h1><%= @event.title %></h1>
+  <h4><%= @event.description %></h4>
+  <h3><%= @event.venue_name %></h3>
+  <h5>Public? <%= @event.public ? 'Yes' : 'No' %></h5>
+  <div class="col-lg-6">
+    <%= render 'container', type: Candidate, 
+                            :symbol => :candidates, 
+                            title: 'Candidates', 
+                            :method => :person_name, 
+                            parent: @event, 
+                            children: @event.candidates %>
+  </div>
+  <div class="col-lg-6">                        
+    <%= render 'container', type: Person, 
+                            :symbol => :people, 
+                            title: 'Speakers', 
+                            :method => :full_name, 
+                            parent: @event, 
+                            children: @event.people %>
+  </div>
+  <ul class="pager col-lg-12">
+  	<% if @current_user.admin? %><li class="next"><%= link_to 'Edit →', edit_event_path(@event) %></li><% end %>
   	<li class="previous"><%= link_to '← Back', 'javascript:window.history.back()' %></li>
   </ul>
 </div>
+<div class="col-lg-12">
+  <h1 class="col-lg-12">Answers from this Event</h1>
+  <%= render 'statements/videos' %>
+</div>                    
