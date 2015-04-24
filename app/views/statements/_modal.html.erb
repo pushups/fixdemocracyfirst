@@ -12,6 +12,7 @@
 				<em class="col-lg-12">By sharing with Questionr, you grant us permission to edit and distribute your content.</em>
     <% if steps.include? 1 %>
 			<%= fields_for :user, @statement.user do |u| %>
+        <%= u.hidden_field :id %>
 				<fieldset class="col-lg-12">
   				<legend>Step 1: Tell us about yourself</legend>
 					<div class="col-lg-6">

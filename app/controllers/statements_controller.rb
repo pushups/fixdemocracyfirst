@@ -40,7 +40,7 @@ class StatementsController < ApplicationController
     @statement.ugc_date = !statement_params[:ugc_date].empty? ? DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date : nil
 
     respond_to do |format|
-      if @statement.save
+      if @statement.save!
         format.html { redirect_to '/', notice: 'Thank you for contributing to Questionr!' }
         format.json { render :show, status: :created, location: @statement }
       else
@@ -82,6 +82,21 @@ class StatementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def statement_params
-      params.require(:statement).permit(:rwu_id, :user_id, :event_day_id, :campaign_id, :candidate_id, :title, :url, :description, :approved, :ugc_candidate_name, :ugc_date, :ugc_event_title, :ugc_event_location, :ugc_notes, :youtube_url)
+      params.require(:statement).permit(:rwu_id, 
+                                        :user_id, 
+                                        :event_day_id, 
+                                        :campaign_id,
+                                        :candidate_id, 
+                                        :title, 
+                                        :url, 
+                                        :description, 
+                                        :approved, 
+                                        :ugc_candidate_name, 
+                                        :ugc_date,
+                                        :ugc_event_title, 
+                                        :ugc_event_location, 
+                                        :ugc_notes, 
+                                        :youtube_url,
+                                        users_attributes: [:id, :first_name, :last_name, :email, :postal_code])
     end
 end
