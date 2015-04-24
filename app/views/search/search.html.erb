@@ -28,18 +28,22 @@
         <th>Event Name</th>
         <th>Location</th>
         <th>Public</th>
-        <th>Attending?</th>
       </tr>
     </thead>
     <tbody>
     <% @events.each do |e| %>
       <tr>
-        <th><%= e.format_candidates %></th>
-        <th><%= e.format_speakers %></th>
-        <th><%= link_to e.title, e %></th>
-        <th><%= e.format_location %></th>
-        <th></th>
-        <th></th>
+        <td><%= e.format_candidates %></td>
+        <td><%= e.format_speakers %></td>
+        <td><%= link_to e.title, e %></td>
+        <td><%= e.format_location %></td>
+        <td><%= e.public? ? 'Yes' : 'No' %></td>
+      </tr>
+    <% end %>
+    <% @candidates.each do |c| %>
+      <tr>
+        <td><%= c.person_name%></td>
+        <td colspan='4'>&nbsp;</td>
       </tr>
     <% end %>
     </body>

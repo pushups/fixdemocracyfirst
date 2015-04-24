@@ -12,6 +12,12 @@ class Event < ActiveRecord::Base
   
   attr_reader :venue_name
   
+  #configure elastic search
+  def as_indexed_json(options = {})
+    as_json(only: [:title, :description],
+            methods: [:format_candidates, :format_speakers, :format_location])
+  end
+  
   #roll up the statements from all the event days
   def statements
     Statement.approved

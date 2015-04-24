@@ -12,6 +12,13 @@ class Candidate < ActiveRecord::Base
 
   attr_reader :person_name
 
+  #configure elastic search
+  def as_indexed_json(options = {})
+    as_json(only: [:office_id, :posiiton, :district],
+            include: [:person],
+            methods: [:person_name])
+  end
+
   def person_name
     p = self.person
     p ? "#{!p.nickname.blank? ? p.nickname : p.first_name} #{p.last_name}" : "-- No Name --"
