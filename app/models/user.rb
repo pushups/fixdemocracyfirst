@@ -25,4 +25,9 @@ class User < ActiveRecord::Base
   def desc
     "ID = #{id} #{first_name} #{last_name} #{email} #{location} #{fb_uid} #{postal_code}".strip
   end
+  
+  def attending?(event_day)
+    raise "expects a non-nil event_day" unless event_day
+    self.event_days.include?(event_day)
+  end  
 end
