@@ -14,7 +14,7 @@ class Candidate < ActiveRecord::Base
 
   def person_name
     p = self.person
-    p ? "#{p.first_name} #{p.last_name}" : "-- No Name --"
+    p ? "#{!p.nickname.blank? ? p.nickname : p.first_name} #{p.last_name}" : "-- No Name --"
   end
   
   def person_image_url
