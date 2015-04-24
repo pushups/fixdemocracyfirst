@@ -6,10 +6,36 @@
 <% end %>
 
 <div class="well bs-component col-lg-12">
-  <h1><%= @event.title %></h1>
-  <h4><%= @event.description %></h4>
-  <h3><%= @event.venue_name %></h3>
-  <h5>Public? <%= @event.public ? 'Yes' : 'No' %></h5>
+  <div class="col-lg-9">
+    <h1><%= @event.title %></h1>
+    <h4><%= @event.description %></h4>
+    <h3><%= @event.venue_name %></h3>
+    <h5>Public? <%= @event.public ? 'Yes' : 'No' %></h5>
+  </div>
+  <div class="col-lg-3 panel panel-default">
+    <ul class="col-lg-12 list-group">
+      <% @event.event_days.each do |event_day| %>
+        <li class="col-lg-12 list-group-item">
+          <div class="col-lg-8">
+            <strong><%= AMERICA_NEW_YORK_TIME_ZONE.format_date(event_day.date) %></strong>
+          </div>
+          <div class="col-lg-4">
+          <% if @current_user.attending?(event_day) %>
+            <button type="button" class="btn btn-default">
+              I'm Going!
+            </button>
+          <% else %>       
+            <button type="button" class="set-event-day-id btn btn-primary" data-id="<%= event_day.id %>" data-toggle="modal" data-target="#attend_modal">
+              I Want to Go!
+            </button>
+          <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<div class="well bs-component col-lg-12">
   <div class="col-lg-6">
     <%= render 'container', type: Candidate, 
                             :symbol => :candidates, 
@@ -35,3 +61,9 @@
   <h1 class="col-lg-12">Answers from this Event</h1>
   <%= render 'statements/videos' %>
 </div>                    
+<%= render 'modal', modal_id: "attend_modal", modal_title: "We Look Forward to Seeing You" %>
+<script>
+  $(document).on("click", ".set-event-day-id", function () {
+    $("#event_day_id").val( $(this).data('id') );
+  });
+</script>

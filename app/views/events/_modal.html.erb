@@ -1,0 +1,39 @@
+<style>fieldset { margin-top: 30px }</style>
+<%= form_for @attendee, html: { class: "col-lg-12 form-horizontal" } do |f| %>
+  <%= f.hidden_field :event_day_id, id: 'event_day_id' %>
+  <%= f.hidden_field :user_id, value: @current_user.id %>
+<div class="modal fade col-lg-12" id="<%= modal_id %>" tabindex="-1" role="dialog" 
+  aria-labelledby="upload_title" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content col-lg-12">
+      <div class="modal-header">
+        <button id="close-button" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h2 class="modal-title" id="upload_title"><%= modal_title %></h2>
+			</div>
+      <div class="modal-body col-lg-12">
+			<%= fields_for :user, @attendee.user do |u| %>
+        <%= u.hidden_field :id %>
+				<fieldset class="col-lg-12">
+  				<legend>Tell us about yourself</legend>
+					<div class="col-lg-6">
+						<%=u.text_field :first_name, class: "form-control", placeholder: "First Name"%>
+					</div>
+					<div class="col-lg-6">
+						<%=u.text_field :last_name, class: "form-control", placeholder: "Last Name"%>
+					</div>
+					<div class="col-lg-6">
+						<%=u.text_field :email, class: "form-control", placeholder: "Email"%>
+					</div>
+					<div class="col-lg-6">
+						<%=u.text_field :postal_code, class: "form-control", placeholder: "Postal Code (Zip Code)"%>
+					</div>
+				</fieldset>
+			<% end %>
+      </div>
+	    <div class="modal-footer col-lg-12">
+				<%= f.submit 'Save', class: "col-lg-offset-4 col-lg-4 btn btn-primary" %>
+	    </div>
+	  </div>
+	</div>
+</div>
+<% end %>
