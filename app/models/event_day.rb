@@ -3,6 +3,8 @@ class EventDay < ActiveRecord::Base
 
   belongs_to :event
   has_many :statements
+  has_many :attendees
+  has_many :users, through: :attendees
 
   validate :end_time_must_come_after_start_time
 
