@@ -1,5 +1,5 @@
 class AttendeesController < ApplicationController
-  before_filter :require_admin, except: [:create, :destroy]
+  before_filter :require_admin, except: [:create]
   before_action :set_attendee, only: [:show, :edit, :update, :destroy]
 
   # GET /attendees
@@ -29,7 +29,7 @@ class AttendeesController < ApplicationController
 
     respond_to do |format|
       if @attendee.save
-        format.html { redirect_to @attendee, notice: 'Attendee was successfully created.' }
+        format.html { redirect_to @attendee.event_day.event, notice: 'Thanks for letting us know!' }
         format.json { render :show, status: :created, location: @attendee }
       else
         format.html { render :new }
@@ -70,6 +70,8 @@ class AttendeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attendee_params
-      params.require(:attendee).permit(:user_id, :event_day_id)
+      params.require(:attendee).permit(:user_id, 
+                                       :event_day_id,
+                                       users_attributes: [:id, :first_name, :last_name, :email, :postal_code])
     end
 end

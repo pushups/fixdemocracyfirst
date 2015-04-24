@@ -4,6 +4,8 @@ class Attendee < ActiveRecord::Base
   belongs_to :user
   belongs_to :event_day
 
+  accepts_nested_attributes_for :user, allow_destroy: false
+
   attr_reader :user_name, :event_day_name
   
   def user_name

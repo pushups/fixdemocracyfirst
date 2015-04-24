@@ -12,6 +12,9 @@ class EventsController < ApplicationController
   # GET /events/1.json
   def show
     @videos = @event.statements
+    @attendee = Attendee.new
+    @attendee.user = @current_user
+    @attendee.event_day = @event.event_days.first
   end
 
   # GET /events/new
