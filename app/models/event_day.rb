@@ -14,7 +14,7 @@ class EventDay < ActiveRecord::Base
 
   def event_name
     e = self.event
-    e ? "#{e.title}" : "-- No Event --"
+    e ? "#{e.title}" : ""
   end
   
   def name

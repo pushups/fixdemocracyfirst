@@ -10,11 +10,11 @@ class Attendee < ActiveRecord::Base
   
   def user_name
     u = self.user
-    u ? "#{u.desc}" : "-- No User --"
+    u ? "#{u.desc}" : ""
   end  
   
   def event_day_name
     ed = self.event_day
-    ed ? "#{ed.name}" : "-- No Event Day --"
+    ed ? "#{ed.name}" : ""
   end
 end 

@@ -50,7 +50,7 @@ class Event < ActiveRecord::Base
 
   def venue_name
     v = self.venue
-    v ? v.name : '-- No Venue --'
+    v ? v.name : ''
   end
   
   def add_candidate(candidate_id)

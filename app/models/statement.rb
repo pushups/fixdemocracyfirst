@@ -25,24 +25,24 @@ class Statement < ActiveRecord::Base
 
   def user_name
     u = self.user
-    u ? u.desc : '-- No User --'
+    u ? u.desc : ''
   end
   
   def event_name
     ed = self.event_day
-    return '-- No Event --' unless ed
+    return '' unless ed
     e = ed.event
-    e ? e.title : '-- No Event --'
+    e ? e.title : ''
   end
   
   def campaign_name
     c = self.campaign
-    c ? c.name : '-- No Campaign --'
+    c ? c.name : ''
   end
   
   def candidate_name
     c = self.candidate
-    c ? c.person_name : '-- No Candidate --'
+    c ? c.person_name : ''
   end 
   
   def youtube_embed_url
