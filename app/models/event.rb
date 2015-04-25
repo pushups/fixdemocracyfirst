@@ -12,6 +12,10 @@ class Event < ActiveRecord::Base
   
   attr_reader :venue_name
   
+  def self.default_scope
+    includes(:event_days)
+  end
+  
   #configure elastic search
   def as_indexed_json(options = {})
     as_json(only: [:title, :description],
@@ -29,6 +33,11 @@ class Event < ActiveRecord::Base
   def start_time 
     start_day = self.event_days.first
     start_day ? start_day.start_time : nil
+  end
+  
+  def format_start_date
+    start_day = self.event_days.first
+    (start_day ? (start_day.date ? AMERICA_NEW_YORK_TIME_ZONE.format_date(start_day.date) : '') : '').gsub(' ', '&nbsp;').html_safe
   end
   
   def format_candidates
@@ -50,7 +59,7 @@ class Event < ActiveRecord::Base
 
   def venue_name
     v = self.venue
-    v ? v.name : ''
+    (v ? v.name : '').gsub(' ', '&nbsp;').html_safe
   end
   
   def add_candidate(candidate_id)
