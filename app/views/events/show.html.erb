@@ -16,18 +16,26 @@
     <ul class="col-lg-12 list-group">
       <% @event.event_days.each do |event_day| %>
         <li class="col-lg-12 list-group-item">
-          <div class="col-lg-8">
+          <div class="col-lg-7">
             <strong><%= AMERICA_NEW_YORK_TIME_ZONE.format_date(event_day.date) %></strong>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-5">
           <% if @current_user.attending?(event_day) %>
-            <button type="button" class="btn btn-default">
-              I'm Going!
-            </button>
+            <p>
+              <% if Date.today <= event_day.date %>
+                I'm Going!
+              <% else %>
+                I Went!
+              <% end %>
+            </p>
           <% else %>       
+            <% if Date.today <= event_day.date %>
             <button type="button" class="set-event-day-id btn btn-primary" data-id="<%= event_day.id %>" data-toggle="modal" data-target="#attend_modal">
               I Want to Go!
             </button>
+            <% else %>
+            <p>I Missed It!</p>
+            <% end %>
           <% end %>
           </div>
         </li>
