@@ -18,7 +18,6 @@ class Statement < ActiveRecord::Base
   belongs_to :campaign
   belongs_to :candidate
   scope :approved, -> { includes(:event_day)
-                          .references(:event_day)
                           .where(approved: true)
                           .where('youtube_url is not null')
                           .order('event_days.date desc') }
