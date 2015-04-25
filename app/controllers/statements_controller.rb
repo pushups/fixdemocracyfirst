@@ -24,7 +24,7 @@ class StatementsController < ApplicationController
                                                  success_action_status: '201', 
                                                  metadata: { 'original-filename' => '${filename}' } })
     @statement = Statement.new
-    @statement.user_id = @current_user.id
+    @statement.user = @current_user
     @videos = Statement.approved
   end
 
@@ -38,7 +38,8 @@ class StatementsController < ApplicationController
     @statement = Statement.new(statement_params)
     @statement.title = "New #{@statement.url.blank? ? 'Tip' : 'Video'} #{DateTime.now}"
     @statement.ugc_date = !statement_params[:ugc_date].empty? ? DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date : nil
-
+    @statement.user_id = @current_user.id
+    @current_user.update(statement_params['user_attributes'])
     respond_to do |format|
       if @statement.save!
         format.html { redirect_to '/', notice: 'Thank you for contributing to Questionr!' }
@@ -97,6 +98,6 @@ class StatementsController < ApplicationController
                                         :ugc_event_location, 
                                         :ugc_notes, 
                                         :youtube_url,
-                                        users_attributes: [:id, :first_name, :last_name, :email, :postal_code])
+                                        user_attributes: [:first_name, :last_name, :email, :postal_code])
     end
 end

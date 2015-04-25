@@ -26,9 +26,9 @@ class AttendeesController < ApplicationController
   # POST /attendees.json
   def create
     @attendee = Attendee.new(attendee_params)
-
+    @current_user.update(attendee_params['user_attributes'])
     respond_to do |format|
-      if @attendee.save
+      if @attendee.save!
         format.html { redirect_to @attendee.event_day.event, notice: 'Thanks for letting us know!' }
         format.json { render :show, status: :created, location: @attendee }
       else
@@ -72,6 +72,6 @@ class AttendeesController < ApplicationController
     def attendee_params
       params.require(:attendee).permit(:user_id, 
                                        :event_day_id,
-                                       users_attributes: [:id, :first_name, :last_name, :email, :postal_code])
+                                       user_attributes: [:id, :first_name, :last_name, :email, :postal_code])
     end
 end

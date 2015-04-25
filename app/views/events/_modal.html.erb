@@ -11,8 +11,7 @@
         <h2 class="modal-title" id="upload_title"><%= modal_title %></h2>
 			</div>
       <div class="modal-body col-lg-12">
-			<%= fields_for :user, @attendee.user do |u| %>
-        <%= u.hidden_field :id %>
+			<%= f.fields_for :user, @attendee.user do |u| %>
 				<fieldset class="col-lg-12">
   				<legend>Tell us about yourself</legend>
 					<div class="col-lg-6">
