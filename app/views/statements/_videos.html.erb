@@ -9,12 +9,7 @@
         <%=video.candidate_name%> answers the question
       <% end %>
     </h4>
-    <iframe class="col-lg-12" 
-            height="315" 
-            style="margin-bottom: 40px" 
-            src="<%=video.youtube_embed_url%>" 
-            frameborder="0" 
-            allowfullscreen></iframe>
+    <iframe style="margin-bottom: 40px" src="<%=video.youtube_embed_url%>?hd=1&rel=0&autohide=1&showinfo=0" frameborder="0" width="500" height="280"></iframe>
   </div>
 <% end %>
 </div>
