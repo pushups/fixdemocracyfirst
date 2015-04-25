@@ -64,7 +64,7 @@ class << AMERICA_NEW_YORK_TIME_ZONE
   
   def format_date(t)
     return '' unless t
-    "#{t.in_time_zone(self).strftime('%B %-d, %Y')}"
+    "#{t.strftime('%B %-d, %Y')}"
   end
 end
 

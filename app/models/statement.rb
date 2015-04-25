@@ -17,8 +17,11 @@ class Statement < ActiveRecord::Base
   belongs_to :event_day
   belongs_to :campaign
   belongs_to :candidate
-  scope :approved, -> { where(approved: true).where('youtube_url is not null').order('updated_at desc') }
-  
+  scope :approved, -> { includes(:event_day)
+                          .references(:event_day)
+                          .where(approved: true)
+                          .where('youtube_url is not null')
+                          .order('event_days.date desc') }
   accepts_nested_attributes_for :user, allow_destroy: false
 
   attr_reader :user_name, :event_name, :campaign_name, :candidate_name
@@ -47,6 +50,10 @@ class Statement < ActiveRecord::Base
   
   def youtube_embed_url
     self.youtube_url ? self.youtube_url.gsub('watch?v=', 'embed/') : ''
+  end
+  
+  def date
+    self.event_day ? self.event_day.date : self.created_at 
   end
   
   #TODO (wip) clean this up and make it work, prolly wanna async it with resque, too
