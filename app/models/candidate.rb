@@ -12,6 +12,14 @@ class Candidate < ActiveRecord::Base
 
   attr_reader :person_name
 
+  def self.default_scope
+    includes(:person)
+      .order('people.last_name asc')
+      .order('people.nickname asc')
+      .order('people.first_name asc')
+      .order('people.middle_name asc')
+  end
+
   #configure elastic search
   def as_indexed_json(options = {})
     as_json(only: [:office_id, :posiiton, :district],

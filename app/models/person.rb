@@ -5,9 +5,16 @@ class Person < ActiveRecord::Base
 
   has_many :candidates #candidacies 
   has_and_belongs_to_many :events #speakers
-
+  
   attr_reader :full_name
-
+  
+  def self.default_scope
+    order('last_name asc')
+      .order('nickname asc')
+      .order('first_name asc')
+      .order('middle_name asc')
+  end
+  
   def full_name(include_middle = false)
     "#{self.first_name}#{include_middle ? ' ' + self.middle_name : ''} #{self.last_name}"
   end

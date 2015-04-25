@@ -17,10 +17,12 @@ class Statement < ActiveRecord::Base
   belongs_to :event_day
   belongs_to :campaign
   belongs_to :candidate
+
   scope :approved, -> { includes(:event_day)
                           .where(approved: true)
                           .where('youtube_url is not null')
                           .order('event_days.date desc') }
+
   accepts_nested_attributes_for :user, allow_destroy: false
 
   attr_reader :user_name, :event_name, :campaign_name, :candidate_name

@@ -4,7 +4,7 @@ class Event < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
   
   belongs_to :venue
-  has_many :event_days, -> { order 'date desc' }
+  has_many :event_days, -> { order('date desc').order('start_time desc') }
   has_many :attendees
   has_many :users, through: :attendees
   has_and_belongs_to_many :candidates
