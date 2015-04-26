@@ -5,60 +5,49 @@
 </div>
 <% end %>
 
-<style>div.tryptic { height: 312px }</style>
+<style>
+  div.tryptic-large { 
+    background: url('<%= image_path "whitehouse.png" %>');
+    background-repeat: no-repeat;
+    background-size: contain;
+    color: #fff;
+    padding-bottom: 180px;
+    border-radius: 0 !important }
+  div.tryptic-small { margin-bottom: 0; border-radius: 0 !important }
+  div.tryptic-search { background-color: #e43725; padding-bottom: 100px; }
+  div.tryptic-answer { background-color: #3498db; padding-bottom: 115px; }
+</style>
 
-<div class="col-lg-4">
-	<div class="tryptic panel panel-primary">
-	  <div class="panel-heading">
-	    <div class="panel-title"><h1 style="color:white">1. Find a Candidate</h1></div>
-	  </div>
-	  <div class="panel-body">
-			<p>We're traking where candidates are appearing so you can talk to them.</p>
-			<p>Search by city, state, zip code or candidate name.</p>
-      <form method="get" action="search">
-        <input name="q" type="text" class="form-control" style="margin-bottom:10px" placeholder="12345 or name"/>
- 		    <input type="submit" value="Search" class="col-lg-offset-4 col-lg-4 btn btn-info"/>
-      </form>
-	  </div>
-	</div>
-</div>
+<div class="row" style="height: 631px">
+  <div class="col-lg-8 jumbotron tryptic-large">
+    <h3>We demand every presidential candidate answer <u>one</u> question:</h3>
+    <h1 style="margin-top: 30px">&ldquo;What specific reforms will you advance to end the corrupting influence of money in politics?&rdquo;</h1>
+    <a target="_blank" href="https://youtu.be/yuGTg2CLwPc">How to question the candidates</a>
+  </div>
 
-<div class="col-lg-4">
-	<div class="tryptic panel panel-primary">
-	  <div class="panel-heading">
-	    <div class="panel-title"><h1 style="color:white">2. Ask the Question</h1></div>
-		</div>
-	  <div class="panel-body">
-			<p>At the candidate event, find a good spot to ask the question and set up to record. When 
-        the time comes, start your video or audio recording, and ask the candidate:</p>
-      <h3>&ldquo;What specific reforms will you advance to end the corrupting influence of money in politics?&rdquo;</h3>
-      <a class="col-lg-offset-3 col-lg-7" target="_blank" href="https://youtu.be/yuGTg2CLwPc">&ldquo;Ask the Question&rdquo; Guide</a>
-	  </div>  
-	</div>
-</div>
-
-<div class="col-lg-4">
-	<div class="tryptic panel panel-primary">
-	  <div class="panel-heading">
-	    <div class="panel-title"><h1 style="color:white">3. Share the Answer</h1></div>
-		</div>
-	  <div class="panel-body">
-			<div class="col-lg-12">
-        <p>Kickstarter mixtape Vice XOXO, slow-carb vegan organic cray Thundercats tofu Williamsburg before they sold out.</p>
-  			<button type="button" class="col-lg-offset-4 col-lg-4 btn btn-success" data-toggle="modal" data-target="#upload_modal">
-  				Upload
-  			</button>
+  <div class="col-lg-4 jumbotron tryptic-small tryptic-search">
+    <h3 class="col-lg-12" style="color: #fff">Find candidates to question</h3>
+    <form class="col-lg-12" method="get" action="search">
+      <div class="input-group" style="margin-top: 20px">
+        <input name="q" type="text" class="form-control" placeholder="Candidate name, city, state, zip"/>
+        <span class="input-group-btn">
+          <input type="submit" value="Search" class="btn btn-default"/>
+        </span>
       </div>
-			<div class="col-lg-12">
-  			<p>Crucifix roof party swag retro master cleanse wolf, polaroid sustainable mixtape Tumblr.</p>
-  			<button type="button" class="col-lg-offset-4 col-lg-4 btn btn-warning" data-toggle="modal" data-target="#tip_modal">
-  				Tip
-  			</button>
-      </div>
-	  </div>
-	</div>
+    </form>
+  </div>
+
+  <div class="col-lg-4 jumbotron tryptic-small tryptic-answer">
+    <h3 class="row col-lg-12" style="color: #fff">Share candidate answers</h3>
+    <p class="row col-lg-12" style="color: #fff; font-size: 18px">Do this to save the world. This is critically important so we can stop XYZ. Make a difference.</p>
+  	<div class="row col-lg-12">
+      <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#upload_modal">
+        Share the answers
+  	  </button>
+    </div>
+  </div>
 </div>
-<h1 class="col-lg-12">The Answers</h1>
+<h1 class="col-lg-12" style="margin-left:35px">The Answers</h1>
 <%= render 'videos' %>
 <%= render 'modal', modal_id: "upload_modal", modal_title: "Share Video or Audio", steps: [1,2,3] %>
 <%= render 'modal', modal_id: "tip_modal", modal_title: "Share a Tip", steps: [1,2] %>
