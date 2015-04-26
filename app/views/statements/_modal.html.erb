@@ -28,6 +28,7 @@
 					</div>
 				</fieldset>
 			<% end %>
+		  <em class="col-lg-offset-1 col-lg-11">Want to remain anonymous? That's cool. All fields are optional.</em>
     <% end %>
     <% if steps.include? 2 %>
 				<fieldset class="col-lg-12">
@@ -51,7 +52,6 @@
 						<%=f.text_area :ugc_notes, class: "form-control", placeholder: "Notes"%>
 					</div>
 				</fieldset>
-				<em class="col-lg-offset-1 col-lg-11">Want to remain anonymous? That's cool. All fields are optional.</em>
     <% end %>
     <% if steps.include? 3 %>
 				<fieldset class="col-lg-12">
