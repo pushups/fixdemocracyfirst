@@ -12,13 +12,14 @@
     background-size: contain;
     color: #fff;
     padding-bottom: 180px;
-    border-radius: 0 !important }
+    border-radius: 0 !important;
+    background-color: #2C3E50 }
   div.tryptic-small { margin-bottom: 0; border-radius: 0 !important }
   div.tryptic-search { background-color: #e43725; padding-bottom: 100px; }
   div.tryptic-answer { background-color: #3498db; padding-bottom: 115px; }
 </style>
 
-<div class="row" style="height: 631px">
+<div class="row">
   <div class="col-lg-8 jumbotron tryptic-large">
     <h3>We demand every presidential candidate answer <u>one</u> question:</h3>
     <h1 style="margin-top: 30px">&ldquo;What specific reforms will you advance to end the corrupting influence of money in politics?&rdquo;</h1>
@@ -47,7 +48,7 @@
     </div>
   </div>
 </div>
-<h1 class="col-lg-12" style="margin-left:35px">The Answers</h1>
+<h1 class="col-lg-12">The Answers</h1>
 <%= render 'videos' %>
 <%= render 'modal', modal_id: "upload_modal", modal_title: "Share Video or Audio", steps: [1,2,3] %>
 <%= render 'modal', modal_id: "tip_modal", modal_title: "Share a Tip", steps: [1,2] %>
