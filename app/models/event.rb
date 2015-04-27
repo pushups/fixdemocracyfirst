@@ -13,7 +13,7 @@ class Event < ActiveRecord::Base
   attr_reader :venue_name
   
   def self.default_scope
-    includes(:event_days)
+    includes(:event_days).order('event_days.date desc').order('event_days.start_time desc')
   end
   
   scope :upcoming, -> { references(:event_days).where('event_days.start_time >= now()') }
@@ -50,6 +50,10 @@ class Event < ActiveRecord::Base
     self.people.map(&:full_name).join(', ')
   end
   
+  def format_people
+    (self.candidates.map(&:person_name) + self.people.map(&:full_name)).uniq.join(', ')
+  end 
+  
   def format_location
     v = self.venue
     if v
@@ -58,10 +62,13 @@ class Event < ActiveRecord::Base
       ""
     end
   end
-
-  def venue_name
+  
+  def location
     v = self.venue
-    (v ? v.name : '').gsub(' ', '&nbsp;').html_safe
+    return '' if v.city.blank? and v.state.blank?
+    return "#{v.city}, #{v.state}" if !v.city.blank? and !v.state.blank?
+    return v.state unless v.state.blank?
+    return ''
   end
   
   def add_candidate(candidate_id)

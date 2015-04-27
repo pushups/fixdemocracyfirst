@@ -16,7 +16,7 @@ class Person < ActiveRecord::Base
   end
   
   def full_name(include_middle = false)
-    "#{self.first_name}#{include_middle ? ' ' + self.middle_name : ''} #{self.last_name}"
+    "#{self.nickname ? self.nickname : self.first_name}#{include_middle ? ' ' + self.middle_name : ''} #{self.last_name}"
   end
   
   def image_url
