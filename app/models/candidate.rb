@@ -20,7 +20,11 @@ class Candidate < ActiveRecord::Base
       .order('people.first_name asc')
       .order('people.middle_name asc')
   end
-
+  scope :declared, -> { where("status = 'Declared'") }
+  scope :undeclared, -> { where("status <> 'Declared'") } #TODO this is an oversimplification -- candidates have several other statuses
+  scope :republicans, -> { where("party = 'Republican'") }
+  scope :democrats, -> { where("party = 'Democrat'") }
+  scope :others, -> { where("party <> 'Republican' and party <> 'Democrat'") }
 
   def upcoming_events
     (self.events.upcoming + self.person.events.upcoming).sort_by(&:start_time).reverse!

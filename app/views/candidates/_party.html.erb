@@ -1,0 +1,33 @@
+  <div class="col-lg-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= party %></h3>
+      </div>      
+      <div class="panel-body">
+        <ul class="list-group">
+          <li style="border: 0" class="list-group-item"><strong>Declared</strong></li>
+        <% candidates.declared.each do |candidate| %>      
+          <li style="border: 0" class="list-group-item">
+            <%= link_to candidate.person_name, candidate %>
+          <% if @current_user.admin? %>
+            | <%= link_to 'Show', candidate, class: 'btn btn-info' %> | 
+            <%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-warning' %> |
+            <%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <% end %>
+          </li>
+        <% end %>
+          <li style="border: 0" class="list-group-item"><strong>Undeclared</strong></li>
+        <% candidates.undeclared.each do |candidate| %>      
+          <li style="border: 0" class="list-group-item">
+            <%= link_to candidate.person_name, candidate %>
+          <% if @current_user.admin? %>
+            | <%= link_to 'Show', candidate, class: 'btn btn-info' %> | 
+            <%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-warning' %> |
+            <%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+          <% end %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
