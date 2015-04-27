@@ -9,32 +9,29 @@
   <div class="col-lg-3">
     <%= image_tag @candidate.person_image_url, { width: '300px' } %>
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-5">
     <h1><%= @candidate.person_name %></h1>
-    <h4>
-      <%= @candidate.party %> 
-    </h4>
     <h4>
       <%= @candidate.person_title %>
     </h4>
     <h4>
-      Candidate for <%= @candidate.office_id %> <%= @candidate.position %>
+      <%= @candidate.party %> 
     </h4>
     <h4>
-      official url from campaign
+      <%= @candidate.official_url ? link_to('Official Web Site', @candidate.official_url) : '' %>
     </h4>
   </div>
-  <div class="col-lg-3">
-    <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.events %>
-    <%= render 'events', :panel_title => 'Upcoming Speaking Engagements', :events => @candidate.person.events %>
+  <div class="col-lg-4">
+    <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.upcoming_events %>
   </div>
   <ul class="pager col-lg-12">
     <% if @current_user.admin? %><li class="next"><%= link_to 'Edit →', edit_candidate_path(@candidate) %></li><% end %>
-  	<li class="previous"><%= link_to '← Back', 'javascript:window.history.back()' %></li>
   </ul>
 </div>
 
-<div class="col-lg-12">
-  <h1 class="col-lg-12">Answers from this Candidate</h1>
-  <%= render 'statements/videos' %>
-</div>
+<% if @videos.size > 0 %>
+  <div class="col-lg-12">
+    <h1 class="col-lg-12">Answers from <%= @candidate.person_name %></h1>
+    <%= render 'statements/videos' %>
+  </div>
+<% end %>

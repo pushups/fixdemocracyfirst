@@ -14,10 +14,16 @@ class Candidate < ActiveRecord::Base
 
   def self.default_scope
     includes(:person)
+      .references(:person)
       .order('people.last_name asc')
       .order('people.nickname asc')
       .order('people.first_name asc')
       .order('people.middle_name asc')
+  end
+
+
+  def upcoming_events
+    (self.events.upcoming + self.person.events.upcoming).sort_by(&:start_time).reverse!
   end
 
   #configure elastic search
@@ -40,5 +46,10 @@ class Candidate < ActiveRecord::Base
   def person_title
     p = self.person
     p ? p.title : ''
-  end   
+  end  
+  
+  def official_url
+    c = self.campaign
+    c ? c.official_url : ''
+  end
 end

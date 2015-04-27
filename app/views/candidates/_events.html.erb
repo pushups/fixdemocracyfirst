@@ -5,7 +5,7 @@
       <div class="panel-body">
         <ul class="list-group">
         <% events.each do |event| %>
-          <li class="list-group-item"><%= AMERICA_NEW_YORK_TIME_ZONE.format_date(event.start_time)%>: <%= link_to event.title, event %></li>
+          <li style="border: 0" class="list-group-item"><%= AMERICA_NEW_YORK_TIME_ZONE.format_date(event.start_time)%>: <%= link_to event.title, event %></li>
         <% end %>
         </ul>
       </div>

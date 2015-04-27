@@ -16,6 +16,8 @@ class Event < ActiveRecord::Base
     includes(:event_days)
   end
   
+  scope :upcoming, -> { references(:event_days).where('event_days.start_time >= now()') }
+  
   #configure elastic search
   def as_indexed_json(options = {})
     as_json(only: [:title, :description],
