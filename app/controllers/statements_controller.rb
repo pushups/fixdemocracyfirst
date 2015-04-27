@@ -19,12 +19,6 @@ class StatementsController < ApplicationController
 
   # GET /statements/new
   def new
-    @s3_direct_post = S3_BUCKET.presigned_post({ key: "uploads/#{SecureRandom.uuid}/${filename}", 
-                                                 acl: 'public-read', 
-                                                 success_action_status: '201', 
-                                                 metadata: { 'original-filename' => '${filename}' } })
-    @statement = Statement.new
-    @statement.user = @current_user
     @videos = Statement.approved
   end
 
@@ -37,7 +31,7 @@ class StatementsController < ApplicationController
   def create
     @statement = Statement.new(statement_params)
     @statement.title = "New #{@statement.url.blank? ? 'Tip' : 'Video'} #{DateTime.now}"
-    @statement.ugc_date = !statement_params[:ugc_date].empty? ? DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date : nil
+    @statement.ugc_date = !statement_params[:ugc_date].nil? and !statement_params[:ugc_date].empty? ? DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date : nil
     @statement.user_id = @current_user.id
     @current_user.update(statement_params['user_attributes'])
     respond_to do |format|

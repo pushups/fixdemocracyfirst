@@ -3,7 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :set_current_user
-  
+  before_filter :set_default_statement
+    
   def set_current_user
     #try to get the user from the rails session
     return @current_user if @current_user
@@ -25,6 +26,10 @@ class ApplicationController < ActionController::Base
     #if the user_id wasn't cookied or the cookied user_id wasn't found, 
     #we'll end up here, so create a new "guest" user and cookie its id
     reset_current_user(User.create)
+  end
+  
+  def set_default_statement
+    @default_statement ||= Statement.new(:user => @current_user)
   end
   
   def reset_current_user(user)
