@@ -18,12 +18,9 @@
 		
     <style>
       #logo { width: 150px }
-      #footer-content a { color: #2C3E50 }
+      #footer-content { color: #fff; background-color: #2C3E50; }
       div.checkbox-left { width: 70px }
-      .container-fluid {
-        margin-right: auto !important;
-        margin-left: auto !important;
-        max-width: 1340px !important; }
+      .container-fluid { max-width: 1340px !important; }
 		</style>
     
     <script type="text/javascript">
@@ -100,14 +97,14 @@
 		<div id="content" class="container-fluid">
 			<%= yield %>
 		</div>
-    <nav class="navbar navbar-inverse footer" style="margin-top: 20px">
+    <nav class="navbar navbar-inverse footer" style="background-color: #2C3E50; margin-top: 20px">
       <div stlye="text-align: center; color: #fff" class="container-fluid">
         <div class="col-lg-offset-3 col-lg-9"> 
           <h2 class="col-lg-12"><%= link_to image_tag('questionr-logo.png', { id: 'logo' }),
             '/', class: 'navbar-brand' %></h2>
         </div>
         <div id="footer-content" class="col-lg-offset-3 col-lg-5"> 
-          <h3 class="col-lg-12">a project of the <%=link_to 'NH Rebellion',
+          <h3 class="col-lg-12">Questionr is a project of the <%=link_to 'NH Rebellion',
             'http://nhrebellion.org', target: '_blank' %></h3>
           <h4 class="col-lg-12" style="color: #fff">We're going to make systemic political corruption the 
             central issue of the 2016 presidential primary by asking every candidate, &ldquo;What specific 
@@ -120,12 +117,29 @@
         <div class="col-lg-3">
           <ul class="list-group">
             <li class="list-group-item">Contact Us</li>
-            <li class="list-group-item">Send Us a Tip</li>
+            <li class="list-group-item"><%= link_to 'Send Us a Tip', '#', 'data-toggle' => 'modal', 'data-target' => '#tip_modal'%></li>
             <li class="list-group-item"><%= link_to 'Privacy', 'http://www.nhrebellion.org/privacy_policy', target: '_blank' %></li>
             <li class="list-group-item">Attributions</li>
           </ul>
         </div>
       </div>
     </nav>
+    <%= render 'statements/modal', 
+        modal_id: "upload_modal", 
+        modal_title: "Share Video or Audio", 
+        modal_description: "By sharing your content with us, you grand us permission to share it with others.", 
+        include_candidate_and_event_fields: true,
+        steps: {
+          1 => "Step 1: Tell us about yourself",
+          2 => "Step 2: Tell us what you're sharing",
+          3 => "Step 3: Select the video (or audio) file" } %>
+    <%= render 'statements/modal', 
+        modal_id: "tip_modal", 
+        modal_title: "Tip Line",
+        modal_description: "By sharing this tip with us, you grant us permission to share it with others.",
+        include_candidate_and_event_fields: false,
+        steps: {
+          1 => "Step 1: Tell us about yourself",
+          2 => "Step 2: Tell us the scoop" } %>
 	</body>
 </html>

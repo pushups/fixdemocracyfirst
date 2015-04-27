@@ -49,6 +49,34 @@
         <%= f.text_field :district, class: "form-control" %>
         </div>
       </div>
+      <div class="form-group">
+        <%= f.label :party, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+    		<%= f.select :party, 
+    				content_tag(:option, '-- No Party --', 
+    										:value => nil) + options_for_select({
+                          'Democrat' => 'Democrat',
+                          'Republican' => 'Republican',
+                          'Green' => 'Green',
+                          'Independent' => 'Independent' }, @candidate.party),
+    											{}, { class: "form-control" } %>
+        </div>
+      </div>  
+      <div class="form-group">
+        <%= f.label :status, class: "col-lg-3 control-label" %>
+        <div class="col-lg-8">
+    		<%= f.select :status, 
+    				content_tag(:option, '-- No Status --', 
+    										:value => nil) + options_for_select({
+                          'Undeclared' => 'Undeclared',
+                          'Announced' => 'Announced',
+                          'Declared' => 'Declared',
+                          'Dropped Out' => 'Dropped Out',
+                          'Lost' => 'Lost',
+                          'Won' => 'Won'}, @candidate.status),
+                          {}, { class: "form-control" } %>
+        </div>
+      </div>
 	    <div class="form-group">
 	      <div class="col-lg-8 col-lg-offset-3">
 	  	  	<%= link_to 'Cancel', candidates_path, class: "btn btn-default" %>

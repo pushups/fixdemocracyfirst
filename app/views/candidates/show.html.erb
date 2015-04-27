@@ -12,16 +12,16 @@
   <div class="col-lg-6">
     <h1><%= @candidate.person_name %></h1>
     <h4>
-      Party: (TODO)
+      <%= @candidate.party %> 
     </h4>
     <h4>
-      Role: (TODO)
+      <%= @candidate.person_title %>
     </h4>
     <h4>
-      Running for: <%= @candidate.office_id %> <%= @candidate.position %>
+      Candidate for <%= @candidate.office_id %> <%= @candidate.position %>
     </h4>
     <h4>
-      Candidate's web site (TODO)
+      official url from campaign
     </h4>
   </div>
   <div class="col-lg-3">

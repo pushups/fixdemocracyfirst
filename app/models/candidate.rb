@@ -35,5 +35,10 @@ class Candidate < ActiveRecord::Base
   def person_image_url
     p = self.person
     p ? "#{p.image_url}" : Person::DEFAULT_IMAGE_URL
+  end
+  
+  def person_title
+    p = self.person
+    p ? p.title : ''
   end   
 end

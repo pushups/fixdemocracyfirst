@@ -16,6 +16,8 @@
       <th>Office</th>
       <th>Position</th>
       <th>District</th>
+      <th>Party</th>
+      <th>Status</th>
       <% if @current_user.admin? %><th colspan="1"></th><% end %>
     </tr>
   </thead>
@@ -27,6 +29,8 @@
         <td><%= candidate.office_id %></td>
         <td><%= candidate.position %></td>
         <td><%= candidate.district %></td>
+        <td><%= candidate.party %></td>
+        <td><%= candidate.status %></td>
       <% if @current_user.admin? %>
         <td><%= link_to 'Show', candidate, class: 'btn btn-info' %></td>
         <td><%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-warning' %></td>

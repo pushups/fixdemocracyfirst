@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150420171758) do
+ActiveRecord::Schema.define(version: 20150427013604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150420171758) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "dirty",        default: 0, null: false
+    t.string   "official_url"
   end
 
   add_index "campaigns", ["candidate_id"], name: "index_campaigns_on_candidate_id", using: :btree
@@ -49,6 +50,8 @@ ActiveRecord::Schema.define(version: 20150420171758) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.integer  "dirty",      default: 0, null: false
+    t.string   "party"
+    t.string   "status"
   end
 
   add_index "candidates", ["person_id"], name: "index_candidates_on_person_id", using: :btree
@@ -96,9 +99,10 @@ ActiveRecord::Schema.define(version: 20150420171758) do
     t.string   "description"
     t.integer  "venue_id"
     t.boolean  "public"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "dirty",       default: 0, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "dirty",        default: 0, null: false
+    t.string   "official_url"
   end
 
   add_index "events", ["rwu_id"], name: "index_events_on_rwu_id", using: :btree
@@ -123,6 +127,7 @@ ActiveRecord::Schema.define(version: 20150420171758) do
     t.datetime "updated_at",              null: false
     t.integer  "dirty",       default: 0, null: false
     t.string   "image_url"
+    t.string   "title"
   end
 
   add_index "people", ["rwu_id"], name: "index_people_on_rwu_id", using: :btree

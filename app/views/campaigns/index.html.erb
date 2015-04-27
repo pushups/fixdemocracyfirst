@@ -14,6 +14,7 @@
     <tr>
       <th>Candidate</th>
       <th>Election</th>
+      <th>Official URL</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,6 +24,7 @@
       <tr>
         <td><%= campaign.candidate_name %></td>
         <td><%= campaign.election_name %></td>
+        <td><%= campaign.official_url %></td>
         <td><%= link_to 'Show', campaign, class: 'btn btn-info' %></td>
         <td><%= link_to 'Edit', edit_campaign_path(campaign), class: 'btn btn-warning' %></td>
         <td><%= link_to 'Destroy', campaign, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>

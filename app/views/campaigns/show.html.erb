@@ -20,6 +20,11 @@
     <strong>Election:</strong>
     <%= @campaign.election_name %>
   </p>
+
+  <p>
+    <strong>Official URL:</strong>
+    <%= @campaign.official_url %>
+  </p>
   
   <ul class="pager">
   	<li class="next"><%= link_to 'Edit →', edit_campaign_path(@campaign) %></li>

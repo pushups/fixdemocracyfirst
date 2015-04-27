@@ -1,5 +1,8 @@
-<style>fieldset { margin-top: 30px }</style>
-<%= form_for @statement, html: { class: "direct-upload col-lg-12 form-horizontal" } do |f| %>
+<style>
+  fieldset { margin-top: 30px }
+  .input-group-addon { padding: 10px 11px !important }
+</style>
+<%= form_for @default_statement, html: { class: "direct-upload col-lg-12 form-horizontal" } do |f| %>
 <div class="modal fade col-lg-12" id="<%= modal_id %>" tabindex="-1" role="dialog" 
   aria-labelledby="upload_title" aria-hidden="true" data-keyboard="false" data-backdrop="static">
   <div class="modal-dialog">
@@ -9,11 +12,11 @@
         <h2 class="modal-title" id="upload_title"><%= modal_title %></h2>
 			</div>
       <div class="modal-body col-lg-12">
-				<em class="col-lg-12">By sharing with Questionr, you grant us permission to edit and distribute your content.</em>
-    <% if steps.include? 1 %>
-			<%= f.fields_for :user, @statement.user do |u| %>
+				<em class="col-lg-12"><%= modal_description %></em>
+    <% if steps.keys.include? 1 %>
+			<%= f.fields_for :user, @default_statement.user do |u| %>
 				<fieldset class="col-lg-12">
-  				<legend>Step 1: Tell us about yourself</legend>
+  				<legend><%= steps[1] %></legend>
 					<div class="col-lg-6">
 						<%=u.text_field :first_name, class: "form-control", placeholder: "First Name"%>
 					</div>
@@ -24,15 +27,16 @@
 						<%=u.text_field :email, class: "form-control", placeholder: "Email"%>
 					</div>
 					<div class="col-lg-6">
-						<%=u.text_field :postal_code, class: "form-control", placeholder: "Postal Code (Zip Code)"%>
+						<%=u.text_field :postal_code, class: "form-control", placeholder: "ZIP Code"%>
 					</div>
 				</fieldset>
 			<% end %>
 		  <em class="col-lg-offset-1 col-lg-11">Want to remain anonymous? That's cool. All fields are optional.</em>
     <% end %>
-    <% if steps.include? 2 %>
+    <% if steps.keys.include? 2 %>
 				<fieldset class="col-lg-12">
-  				<legend>Step 2: Tell us what you're sharing</legend>
+  				<legend><%= steps[2] %></legend>
+        <% if include_candidate_and_event_fields %>
 					<div class="col-lg-6">
 						<%=f.text_field :ugc_candidate_name, class: "form-control", placeholder: "Candidate Name"%>
 					</div>					
@@ -48,14 +52,19 @@
 					<div class="col-lg-6">
 						<%=f.text_field :ugc_event_location, class: "form-control", placeholder: "Event Location"%>
 					</div>
+        <% end %>
 					<div class="col-lg-12">
 						<%=f.text_area :ugc_notes, class: "form-control", placeholder: "Notes"%>
 					</div>
 				</fieldset>
     <% end %>
-    <% if steps.include? 3 %>
+    <% if steps.keys.include? 3 %>
+      <% @s3_direct_post = S3_BUCKET.presigned_post({ key: "uploads/#{SecureRandom.uuid}/${filename}", 
+                                                      acl: 'public-read', 
+                                                      success_action_status: '201', 
+                                                      metadata: { 'original-filename' => '${filename}' } }) %>
 				<fieldset class="col-lg-12">
-  				<legend>Step 3: Select the video file</legend>
+  				<legend><%= steps[3] %></legend>
 					<div class="col-lg-12">
 						<%= f.file_field :url, accept: "*", id: 'direct-upload', class: "col-lg-5" %>
 					</div>
@@ -99,6 +108,7 @@
 	  var pb_container = $("<div class='progress'></div>").append(progress_bar);
 	  file_input.after(pb_container);
 	  file_input.fileupload({
+      maxFileSize: 1,
 	    fileInput: file_input,
 	    url: '<%= @s3_direct_post.url %>',
 	    type: 'POST',

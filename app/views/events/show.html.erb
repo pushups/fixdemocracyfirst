@@ -9,7 +9,8 @@
   <div class="col-lg-9">
     <h1><%= @event.title %></h1>
     <h4><%= @event.description %></h4>
-    <h3><%= @event.venue_name %></h3>
+    <h4><%= @event.venue_name %></h4>
+    <h4><%= @event.official_url %></h4>
     <h5>Public? <%= @event.public ? 'Yes' : 'No' %></h5>
   </div>
   <div class="col-lg-3 panel panel-default">

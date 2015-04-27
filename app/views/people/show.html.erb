@@ -36,6 +36,11 @@
       <strong>Suffix:</strong>
       <%= @person.suffix %>
     </p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @person.title %>
+    </p>
   </div>
   <div class="col-lg-6">
     <%= @person.image_url ? image_tag(@person.image_url, width: '200px') : '' %>
