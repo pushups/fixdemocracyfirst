@@ -1,0 +1,10 @@
+        <% candidates.each do |candidate| %>      
+          <li style="border: 0" class="list-group-item">
+            <%= link_to candidate.person_name, candidate %>
+          <% if @current_user.admin? %>
+            <%= link_to 'Show', candidate, class: 'btn btn-xs btn-info' %>
+            <%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-xs btn-warning' %>
+            <%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
+          <% end %>
+          </li>
+        <% end %>

@@ -6,27 +6,9 @@
       <div class="panel-body">
         <ul class="list-group">
           <li style="border: 0" class="list-group-item"><strong>Declared</strong></li>
-        <% candidates.declared.each do |candidate| %>      
-          <li style="border: 0" class="list-group-item">
-            <%= link_to candidate.person_name, candidate %>
-          <% if @current_user.admin? %>
-            <%= link_to 'Show', candidate, class: 'btn btn-xs btn-info' %>
-            <%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-xs btn-warning' %>
-            <%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xsbtn-danger' %>
-          <% end %>
-          </li>
-        <% end %>
+          <%= render 'candidates', candidates: candidates.declared %>
           <li style="border: 0" class="list-group-item"><strong>Undeclared</strong></li>
-        <% candidates.undeclared.each do |candidate| %>      
-          <li style="border: 0" class="list-group-item">
-            <%= link_to candidate.person_name, candidate %>
-          <% if @current_user.admin? %>
-            <%= link_to 'Show', candidate, class: 'btn btn-xs btn-info' %> 
-            <%= link_to 'Edit', edit_candidate_path(candidate), class: 'btn btn-xs btn-warning' %>
-            <%= link_to 'Destroy', candidate, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-xs btn-danger' %>
-          <% end %>
-          </li>
-        <% end %>
+          <%= render 'candidates', candidates: candidates.undeclared %>
         </ul>
       </div>
     </div>
