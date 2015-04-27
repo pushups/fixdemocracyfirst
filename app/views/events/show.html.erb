@@ -5,70 +5,67 @@
 	</div>
 <% end %>
 
-<div class="well bs-component col-lg-12">
-  <div class="col-lg-9">
+<div class="row well bs-component col-lg-12">
+  <div class="col-lg-8">
     <h1><%= @event.title %></h1>
-    <h4><%= @event.description %></h4>
-    <h4><%= @event.venue_name %></h4>
-    <h4><%= @event.official_url %></h4>
-    <h5>Public? <%= @event.public ? 'Yes' : 'No' %></h5>
+    <h3><%= @event.format_location %></h3>
+    <ul class="col-lg-8 list-group">
+    <% @event.event_days.each do |event_day| %>  
+      <li class="list-group-item">
+        <%= event_day.name %> 
+        <span class="pull-right">
+        <% if @current_user.attending?(event_day) %>
+          I'm Going!
+        <% else %>
+          <button type="button" class="set-event-day-id btn btn-xs btn-primary" data-id="<%= event_day.id %>" data-toggle="modal" data-target="#attend_modal">
+            Sign me up!
+          </button>
+        <% end %>
+        </span>
+      </li>
+    <% end %>
+    </ul>
+    <h4 class="col-lg-8"><%= @event.official_url ? link_to('Event web site', @event.official_url) : '' %></h4>                
+    <h4 class="col-lg-8">Event Details</h4>
+    <h5 class="col-lg-8"><%= @event.description %></h5>
+    <h5 class="col-lg-8"><em>Note: Event details are subject to change. New information 
+      may not be reflected here. Please check the original event website or 
+      contact the organizers for updates.</em></h5>
   </div>
-  <div class="col-lg-3 panel panel-default">
-    <ul class="col-lg-12 list-group">
-      <% @event.event_days.each do |event_day| %>
-        <li class="col-lg-12 list-group-item">
-          <div class="col-lg-7">
-            <strong><%= AMERICA_NEW_YORK_TIME_ZONE.format_date(event_day.date) %></strong>
-          </div>
-          <div class="col-lg-5">
-          <% if @current_user.attending?(event_day) %>
-            <p>
-              <% if Date.today <= event_day.date %>
-                I'm Going!
-              <% else %>
-                I Went!
-              <% end %>
-            </p>
-          <% else %>       
-            <% if Date.today <= event_day.date %>
-            <button type="button" class="set-event-day-id btn btn-primary" data-id="<%= event_day.id %>" data-toggle="modal" data-target="#attend_modal">
-              I Want to Go!
-            </button>
-            <% else %>
-            <p>I Missed It!</p>
-            <% end %>
-          <% end %>
-          </div>
-        </li>
-      <% end %>
+  <div class="col-lg-4 panel panel-default">
+    <h3>Appearances By</h3>
+    <h4><%= @event.format_people %></h4>
+  </div>
+</div>
+<% if @current_user.admin? %>
+  <div class="well bs-component col-lg-12">
+    <div class="col-lg-6">
+      <%= render 'container', type: Candidate, 
+                              :symbol => :candidates, 
+                              title: 'Candidates', 
+                              :method => :person_name, 
+                              parent: @event, 
+                              children: @event.candidates %>
+    </div>
+    <div class="col-lg-6">                        
+      <%= render 'container', type: Person, 
+                              :symbol => :people, 
+                              title: 'Speakers', 
+                              :method => :full_name, 
+                              parent: @event, 
+                              children: @event.people %>
+    </div>
+    <ul class="pager col-lg-12">
+    	<% if @current_user.admin? %><li class="next"><%= link_to 'Edit →', edit_event_path(@event) %></li><% end %>
     </ul>
   </div>
-</div>
-<div class="well bs-component col-lg-12">
-  <div class="col-lg-6">
-    <%= render 'container', type: Candidate, 
-                            :symbol => :candidates, 
-                            title: 'Candidates', 
-                            :method => :person_name, 
-                            parent: @event, 
-                            children: @event.candidates %>
-  </div>
-  <div class="col-lg-6">                        
-    <%= render 'container', type: Person, 
-                            :symbol => :people, 
-                            title: 'Speakers', 
-                            :method => :full_name, 
-                            parent: @event, 
-                            children: @event.people %>
-  </div>
-  <ul class="pager col-lg-12">
-  	<% if @current_user.admin? %><li class="next"><%= link_to 'Edit →', edit_event_path(@event) %></li><% end %>
-  </ul>
-</div>
-<div class="col-lg-12">
-  <h1 class="col-lg-12">Answers from this Event</h1>
-  <%= render 'statements/videos' %>
-</div>                    
+<% end %>
+<% if @videos.size > 0 %>
+  <div class="col-lg-12">
+    <h1 class="col-lg-12">Answers from this Event</h1>
+    <%= render 'statements/videos' %>
+  </div>    
+<% end %>                
 <%= render 'modal', modal_id: "attend_modal", modal_title: "We Look Forward to Seeing You" %>
 <script>
   $(document).on("click", ".set-event-day-id", function () {

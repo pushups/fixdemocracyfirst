@@ -12,14 +12,6 @@ class Candidate < ActiveRecord::Base
 
   attr_reader :person_name
 
-  def self.default_scope
-    includes(:person)
-      .references(:person)
-      .order('people.last_name asc')
-      .order('people.nickname asc')
-      .order('people.first_name asc')
-      .order('people.middle_name asc')
-  end
   scope :declared, -> { where("status = 'Declared'") }
   scope :undeclared, -> { where("status <> 'Declared'") } #TODO this is an oversimplification -- candidates have several other statuses
   scope :republicans, -> { where("party = 'Republican'") }

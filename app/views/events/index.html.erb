@@ -26,7 +26,7 @@
         <td><%= event.format_start_date %></td>
         <td><%= link_to event.title, event %></td>
         <td><%= event.format_people %></td>
-        <td><%= event.location %></td>
+        <td><%= event.format_location %></td>
       <% if @current_user.admin? %>
         <td><%= link_to 'Show', event, class: 'btn btn-info' %></td>
         <td><%= link_to 'Edit', edit_event_path(event), class: 'btn btn-warning' %></td>

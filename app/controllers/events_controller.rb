@@ -98,7 +98,9 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:rwu_id, :title, :description, :venue_id, :public, :candidates, :candidate_id_to_remove, :people, :person_id_to_remove, :offical_url)
+      params.require(:event).permit(:rwu_id, :title, :description, 
+        :venue_id, :public, :candidates, :candidate_id_to_remove, 
+        :people, :person_id_to_remove, :official_url)
     end
 
     def process_method_and_redirect(format, symbol, method, id, what_happened)
