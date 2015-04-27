@@ -11,14 +11,12 @@ class Event < ActiveRecord::Base
   has_and_belongs_to_many :people
   
   attr_reader :venue_name
-  
-  def self.default_scope
+    
+  scope :upcoming, -> { 
     joins('inner join event_days on event_days.event_id = events.id')
-      .order('event_days.date desc')
-      .order('event_days.start_time desc')
-  end
-  
-  scope :upcoming, -> { where('event_days.start_time >= now()') }
+    .order('event_days.date desc')
+    .order('event_days.start_time desc')
+    .where('event_days.start_time >= now()') }
   
   #configure elastic search
   def as_indexed_json(options = {})
@@ -59,18 +57,10 @@ class Event < ActiveRecord::Base
   def format_location
     v = self.venue
     if v
-      [v.name, v.city, v.state, v.postal_code].delete_if { |d| d.nil? }.join(", ")
+      [v.name, v.city, v.state, v.postal_code].delete_if { |d| d.nil? or d.blank? }.join(", ")
     else
       ""
     end
-  end
-  
-  def location
-    v = self.venue
-    return '' if v.city.blank? and v.state.blank?
-    return "#{v.city}, #{v.state}" if !v.city.blank? and !v.state.blank?
-    return v.state unless v.state.blank?
-    return ''
   end
   
   def add_candidate(candidate_id)
