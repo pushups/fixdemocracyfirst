@@ -29,9 +29,9 @@
         <td><%= election.office_type_id %></td>
         <td><%= election.special %></td>
         <td><%= election.election_year %></td>
-        <td><%= link_to 'Show', election, class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_election_path(election), class: 'btn btn-warning' %></td>
-        <td><%= link_to 'Destroy', election, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'Show', election, class: 'btn btn-sm btn-info' %></td>
+        <td><%= link_to 'Edit', edit_election_path(election), class: 'btn btn-sm btn-warning' %></td>
+        <td><%= link_to 'Destroy', election, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

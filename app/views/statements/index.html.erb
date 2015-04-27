@@ -31,9 +31,9 @@
         <td><%= statement.event_name %></td>
         <td><%= statement.user_name %></td>
         <td><%= statement.approved %></td>
-        <td><%= link_to 'Show', statement, class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_statement_path(statement), class: 'btn btn-warning' %></td>
-        <td><%= link_to 'Destroy', statement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'Show', statement, class: 'btn btn-sm btn-info' %></td>
+        <td><%= link_to 'Edit', edit_statement_path(statement), class: 'btn btn-sm btn-warning' %></td>
+        <td><%= link_to 'Destroy', statement, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

@@ -26,9 +26,9 @@
         <td><%= event_day.date ? event_day.date.strftime('%m/%d/%Y') : ''%></td>
         <td><%= AMERICA_NEW_YORK_TIME_ZONE.format_time(event_day.start_time, false) %></td>
         <td><%= AMERICA_NEW_YORK_TIME_ZONE.format_time(event_day.end_time, false) %></td>
-        <td><%= link_to 'Show', event_day, class: 'btn btn-info' %></td>
-        <td><%= link_to 'Edit', edit_event_day_path(event_day), class: 'btn btn-warning' %></td>
-        <td><%= link_to 'Destroy', event_day, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></td>
+        <td><%= link_to 'Show', event_day, class: 'btn btn-sm btn-info' %></td>
+        <td><%= link_to 'Edit', edit_event_day_path(event_day), class: 'btn btn-sm btn-warning' %></td>
+        <td><%= link_to 'Destroy', event_day, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>
