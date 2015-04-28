@@ -25,9 +25,9 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label :url, class: "col-lg-3 control-label" %>
+        <%= f.label 'Content', class: "col-lg-3 control-label" %>
         <div class="col-lg-8">
-          <%= f.text_field :url, class: "form-control" %>
+          <%= @statement.url ? link_to('Download', "http:#{@statement.url}") : "-- No Content Uploaded --" %>
         </div>
       </div>
       <div class="form-group">
@@ -113,7 +113,7 @@
           </p>
 
           <p>
-            <strong>Date:</strong>
+            <strong>Event Date:</strong>
             <%= @statement.ugc_date ? @statement.ugc_date.in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%m/%d/%Y %H:%M %p %Z') : '' %>
           </p>
 
