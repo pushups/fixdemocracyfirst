@@ -12,9 +12,9 @@
               <tr>
                 <td><%= child.send(method) %></td>
               <% if @current_user.admin? %>
-                <td style="float: right; padding-right: 22px">
-                  <%= f.submit 'x', onclick: "$('##{type.to_s.downcase}_id_to_remove').val(#{child.id})", 
-                                    class: "btn btn-danger" %>
+                <td class="pull-right">
+                  <%= f.submit 'X', onclick: "$('##{type.to_s.downcase}_id_to_remove').val(#{child.id})", 
+                                    class: "btn btn-xs btn-danger" %>
               <% end %>
               </tr>
             <% end %>
@@ -25,15 +25,15 @@
         <% if remaining_candidates.size > 0 %>
     	    <fieldset>
             <div class="form-group">
-              <div class="col-lg-10">
+              <div class="col-lg-11">
               <%= f.select symbol, options_from_collection_for_select(remaining_candidates, 
       																															 :id, 
       																															 method, 
       																															 nil),
-      																															 {}, { class: "form-control" } %>
+      																															 {}, { class: "col-lg-11 form-control" } %>
               </div>
               <div class="col-lg-1">
-                <%= f.submit '+', class: "btn btn-primary" %>
+                <%= f.submit '+', class: "pull-right btn btn-primary" %>
               </div>
             </div>
           </fieldset>
