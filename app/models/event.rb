@@ -12,11 +12,16 @@ class Event < ActiveRecord::Base
   
   attr_reader :venue_name
     
-  scope :upcoming, -> { 
+  scope :joins_event_days, -> {
     joins('inner join event_days on event_days.event_id = events.id')
-    .order('event_days.date desc')
-    .order('event_days.start_time desc')
-    .where('event_days.start_time >= now()') }
+      .order('event_days.date desc')
+      .order('event_days.start_time desc') }
+  
+  scope :upcoming, -> {
+    joins_event_days.where('event_days.start_time > now()') }
+
+  scope :past, -> {
+    joins_event_days.where('event_days.end_time < now()') }
   
   #configure elastic search
   def as_indexed_json(options = {})
