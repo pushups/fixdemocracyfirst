@@ -40,6 +40,4 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   
   config.consider_all_requests_local = true
-  
-  config.janrain_token_url = 'http://localhost:3000/user/social_auth'
 end

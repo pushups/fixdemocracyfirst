@@ -76,6 +76,5 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  
-  config.janrain_token_url = 'http://questionr.herokuapp.com/user/social_auth'
+
 end

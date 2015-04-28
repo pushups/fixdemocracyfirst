@@ -43,6 +43,7 @@ module NhrQuestioner
     end
     config.janrain_api_url = URI.parse "https://questionr.rpxnow.com/api/v2/auth_info"
     config.janrain_api_key = ENV['JANRAIN_API_KEY']
+    config.janrain_token_url = "#{ENV['URL']}/user/social_auth"
   end
 end
 
