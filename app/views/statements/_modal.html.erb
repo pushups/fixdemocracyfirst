@@ -108,7 +108,7 @@
 	  var pb_container = $("<div class='progress'></div>").append(progress_bar);
 	  file_input.after(pb_container);
 	  file_input.fileupload({
-      maxFileSize: 1,
+      maxFileSize: 1000000000,
 	    fileInput: file_input,
 	    url: '<%= @s3_direct_post.url %>',
 	    type: 'POST',
