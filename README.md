@@ -2,10 +2,6 @@ Questionr
 =========
 A simple tool to empower citizens to ask candidates one question: “What specific reforms will you advance to end the corrupting influence of money in politics?”
 
-Staging Server
---------------
-http://questionr.herokuapp.com
-
 3rd-Party Depedencies
 ---------------------
 1. [RVM](http://rvm.io)
@@ -37,6 +33,7 @@ Local Environment Setup
     RESQUE_ADMIN_PASSWORD= #set this to whatever value you like
     SEARCHBOX_URL=http://localhost:9200
     JANRAIN_API_KEY=
+    URL=http://localhost:3000
     ```
 1. Create and seed the database: `foreman run bundle exec rake db:setup`
 1. Start the server locally: `foreman run bundle exec rails s`
