@@ -13,8 +13,7 @@ class EventDay < ActiveRecord::Base
   attr_reader :event_name, :name
 
   def self.default_scope
-    order('date desc')
-      .order('start_time desc')
+    order('date desc').order('start_time desc')
   end
 
   def event_name
