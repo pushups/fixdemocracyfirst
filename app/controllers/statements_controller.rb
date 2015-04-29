@@ -92,6 +92,7 @@ class StatementsController < ApplicationController
                                         :ugc_event_location, 
                                         :ugc_notes, 
                                         :youtube_url,
-                                        user_attributes: [:first_name, :last_name, :email, :postal_code])
+                                        :third_party_url,
+                                        user_attributes: [:first_name, :last_name, :email, :mobile_phone, :postal_code])
     end
 end
