@@ -25,6 +25,7 @@
       .container-fluid { max-width: 1340px !important; }
       .alert { margin-top: 21px }
       div.panel-heading { background-color: #134061 !important }
+      ul.dropdown-menu li.nav-list-heading { padding-left: 10px }
       div#video-answers iframe { width: 400px; height: 224px; margin-bottom: 35px; }}                                  
       @media (max-width: 1024px) { 
         h1 { font-size: 6em !important }
@@ -37,6 +38,7 @@
         div#video-answers iframe { width: 708px; height: 396px }}                                  
       @media (max-width: 640px) { 
         h1 { font-size: 3.7em  !important }
+        ul.dropdown-menu li.nav-list-heading { color: #fff }
         div#video-answers iframe { width: 580px; height: 324px }}
       @media (max-width: 600px) { 
         h1 { font-size: 3em  !important }
@@ -105,7 +107,7 @@
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Admin <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li style="color: #fff; padding-left: 10px">Manage Campaigns</li>
+		            <li class="nav-list-heading">Manage Campaigns</li>
                 <li class="divider"></li>
 		            <li><%=link_to 'People', :people%></li>
 		            <li><%=link_to 'Candidates', :candidates%></li>
@@ -113,7 +115,7 @@
 		            <li><%=link_to 'Statements (Videos)', :statements%></li>
 		            <li><%=link_to 'Elections', :elections%></li>
                 <li class="divider"></li>
-		            <li style="color: #fff; padding-left: 10px">Manage Events</li>
+		            <li class="nav-list-heading">Manage Events</li>
                 <li class="divider"></li>
 		            <li><%=link_to 'Venues', :venues%></li>
 		            <li><%=link_to 'Events', :events%></li>
