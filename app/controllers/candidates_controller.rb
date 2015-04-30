@@ -77,6 +77,7 @@ class CandidatesController < ApplicationController
                                         :position, 
                                         :district,
                                         :party,
-                                        :status)
+                                        :status,
+                                        :description)
     end
 end

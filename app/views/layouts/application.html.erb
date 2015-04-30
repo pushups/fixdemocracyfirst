@@ -83,8 +83,8 @@
                 <li class="divider"></li>
 		            <li><%=link_to 'People', :people%></li>
 		            <li><%=link_to 'Candidates', :candidates%></li>
-		            <li><%=link_to 'Statements (Videos)', :statements%></li>
 		            <li><%=link_to 'Campaigns', :campaigns%></li>
+		            <li><%=link_to 'Statements (Videos)', :statements%></li>
 		            <li><%=link_to 'Elections', :elections%></li>
                 <li class="divider"></li>
 		            <li style="padding-left: 10px">Manage Events</li>
@@ -126,9 +126,10 @@
         </div>
         <div class="col-lg-3">
           <ul class="list-group">
-            <li class="list-group-item">Contact Us</li>
+            <li class="list-group-item"><%= link_to 'Contact Us', 'mailto:questionr@nhrebellion.org?subject=A%20Question%20about%20Questionr.us' %></li>
             <li class="list-group-item"><%= link_to 'Send Us a Tip', '#', 'data-toggle' => 'modal', 'data-target' => '#tip_modal'%></li>
             <li class="list-group-item"><%= link_to 'Privacy', 'http://www.nhrebellion.org/privacy_policy', target: '_blank' %></li>
+            <li class="list-group-item"><%= link_to 'Press/Media Inquiries', 'mailto:media@nhrebellion.org?subject=Questionr%20Media%20Inquiry' %></li>
             <li class="list-group-item">Attributions</li>
           </ul>
         </div>
@@ -137,7 +138,7 @@
     <%= render 'statements/modal', 
         modal_id: "upload_modal", 
         modal_title: "Share Video or Audio", 
-        modal_description: "By sharing your content with us, you grand us permission to share it with others.", 
+        modal_description: "By sharing your content with us, you grant us permission to share it with others.", 
         include_candidate_and_event_fields: true,
         steps: {
           1 => "Step 1: Tell us about yourself",

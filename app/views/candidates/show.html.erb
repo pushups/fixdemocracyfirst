@@ -20,6 +20,7 @@
     <h4>
       <%= @candidate.official_url ? link_to('Official Web Site', @candidate.official_url) : '' %>
     </h4>
+    <p><%= @candidate.description %></p>
   </div>
   <div class="col-lg-4">
     <%= render 'events', :panel_title => 'Upcoming Events', :events => @candidate.upcoming_events %>

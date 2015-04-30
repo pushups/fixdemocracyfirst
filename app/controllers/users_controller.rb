@@ -2,6 +2,10 @@ class UsersController < ApplicationController
   before_filter :require_admin, except: [:create, :social_auth]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token, only: [:social_auth]
+  
+  def self.default_scope
+    order('last_name').order('first_name')
+  end
 
   def social_auth
     http = Net::HTTP.new Rails.application.config.janrain_api_url.host,
@@ -90,6 +94,22 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :location, :fb_uid, :fb_token, :admin, :postal_code, :latitude, :longitude, :name, :provider, :gender, :utc_offset, :url, :photo)
+      params.require(:user).permit(:first_name, 
+                                   :last_name, 
+                                   :email, 
+                                   :location, 
+                                   :fb_uid, 
+                                   :fb_token, 
+                                   :admin, 
+                                   :postal_code, 
+                                   :latitude, 
+                                   :longitude, 
+                                   :name, 
+                                   :provider, 
+                                   :gender, 
+                                   :utc_offset, 
+                                   :url, 
+                                   :photo,
+                                   :mobile_phone)
     end
 end

@@ -57,7 +57,7 @@ class EventsController < ApplicationController
                                     :add_person, 
                                     event_params[:people],
                                     'added') if !event_params[:people].blank?
-      elsif params[:commit] == 'x'
+      elsif params[:commit] == 'X'
         process_method_and_redirect(format,
                                     :candidates, 
                                     :remove_candidate, 

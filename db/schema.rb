@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150427013604) do
+ActiveRecord::Schema.define(version: 20150429204806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150427013604) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "dirty",        default: 0, null: false
+    t.text     "notes"
   end
 
   add_index "attendees", ["event_day_id", "user_id"], name: "index_attendees_on_event_day_id_and_user_id", using: :btree
@@ -47,11 +48,12 @@ ActiveRecord::Schema.define(version: 20150427013604) do
     t.string   "office_id"
     t.string   "position"
     t.string   "district"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "dirty",      default: 0, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "dirty",       default: 0, null: false
     t.string   "party"
     t.string   "status"
+    t.text     "description"
   end
 
   add_index "candidates", ["person_id"], name: "index_candidates_on_person_id", using: :btree
@@ -151,6 +153,7 @@ ActiveRecord::Schema.define(version: 20150427013604) do
     t.datetime "updated_at",                     null: false
     t.integer  "dirty",              default: 0, null: false
     t.string   "youtube_url"
+    t.string   "third_party_url"
   end
 
   add_index "statements", ["campaign_id"], name: "index_statements_on_campaign_id", using: :btree
@@ -168,17 +171,18 @@ ActiveRecord::Schema.define(version: 20150427013604) do
     t.string   "fb_token"
     t.boolean  "admin"
     t.string   "postal_code"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "dirty",       default: 0,  null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "dirty",        default: 0,  null: false
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "name",        default: ""
-    t.string   "provider",    default: ""
-    t.string   "gender",      default: ""
-    t.string   "utc_offset",  default: ""
-    t.string   "url",         default: ""
-    t.string   "photo",       default: ""
+    t.string   "name",         default: ""
+    t.string   "provider",     default: ""
+    t.string   "gender",       default: ""
+    t.string   "utc_offset",   default: ""
+    t.string   "url",          default: ""
+    t.string   "photo",        default: ""
+    t.string   "mobile_phone"
   end
 
   create_table "venues", force: :cascade do |t|

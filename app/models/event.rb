@@ -7,8 +7,8 @@ class Event < ActiveRecord::Base
   has_many :event_days, -> { order('date desc').order('start_time desc') }
   has_many :attendees
   has_many :users, through: :attendees
-  has_and_belongs_to_many :candidates
-  has_and_belongs_to_many :people
+  has_and_belongs_to_many :candidates #TODO add ordering through people
+  has_and_belongs_to_many :people, -> { order('last_name').order('nickname').order('first_name').order('middle_name') }
   
   attr_reader :venue_name
     
@@ -47,10 +47,6 @@ class Event < ActiveRecord::Base
     (start_day ? (start_day.date ? AMERICA_NEW_YORK_TIME_ZONE.format_date(start_day.date) : '') : '').gsub(' ', '&nbsp;').html_safe
   end
   
-  def format_candidates
-    self.candidates.map(&:person_name).join(', ')
-  end
-
   def format_speakers
     self.people.map(&:full_name).join(', ')
   end

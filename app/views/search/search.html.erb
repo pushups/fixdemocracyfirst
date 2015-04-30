@@ -33,7 +33,9 @@
     <tbody>
     <% @events.each do |e| %>
       <tr>
-        <td><%= e.format_candidates %></td>
+        <td><%e.candidates.each do |c| %>
+              <%=link_to(c.person_name, c) %>
+            <% end %></td>
         <td><%= e.format_speakers %></td>
         <td><%= link_to e.title, e %></td>
         <td><%= e.format_location %></td>
@@ -42,7 +44,7 @@
     <% end %>
     <% @candidates.each do |c| %>
       <tr>
-        <td><%= c.person_name%></td>
+        <td><%= link_to(c.person_name, c)%></td>
         <td colspan='4'>&nbsp;</td>
       </tr>
     <% end %>

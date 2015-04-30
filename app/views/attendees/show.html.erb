@@ -15,6 +15,12 @@
     <strong>Event day:</strong>
     <%= @attendee.event_day_name %>
   </p>
+
+  <p>
+    <strong>Notes:</strong>
+    <%= @attendee.notes %>
+  </p>
+
   <ul class="pager">
   	<li class="next"><%= link_to 'Edit →', edit_attendee_path(@attendee) %></li>
   </ul>

@@ -9,15 +9,15 @@ class User < ActiveRecord::Base
   
   def User.social_refresh(profile)        
     user = User.where(:fb_uid => profile[:identifier]).first_or_initialize
-    user.name = profile[:preferredUsername]
-    user.first_name = profile[:name][:givenName]
-    user.last_name = profile[:name][:familyName]
-    user.email = profile[:verifiedEmail] || profile[:email]
-    user.url = profile[:url]
-    user.photo = profile[:photo]
-    user.utc_offset = profile[:utcOffset]
-    user.gender = profile[:gender]
-    user.provider = profile[:providerName]
+    user.name ||= profile[:preferredUsername]
+    user.first_name ||= profile[:name][:givenName]
+    user.last_name ||= profile[:name][:familyName]
+    user.email ||= profile[:verifiedEmail] || profile[:email]
+    user.url ||= profile[:url]
+    user.photo ||= profile[:photo]
+    user.utc_offset ||= profile[:utcOffset]
+    user.gender ||= profile[:gender]
+    user.provider ||= profile[:providerName]
     user.save!
     user
   end
