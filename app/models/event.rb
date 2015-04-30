@@ -47,10 +47,6 @@ class Event < ActiveRecord::Base
     (start_day ? (start_day.date ? AMERICA_NEW_YORK_TIME_ZONE.format_date(start_day.date) : '') : '').gsub(' ', '&nbsp;').html_safe
   end
   
-  def format_candidates
-    self.candidates.map(&:person_name).join(', ')
-  end
-
   def format_speakers
     self.people.map(&:full_name).join(', ')
   end
