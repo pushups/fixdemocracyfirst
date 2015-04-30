@@ -1,3 +1,5 @@
+require 'rss'
+
 class Event < ActiveRecord::Base
   include DirtyColumns
   include Elasticsearch::Model
@@ -86,5 +88,34 @@ class Event < ActiveRecord::Base
     person = Person.find(person_id)
     self.people.delete(person) if person
     person
+  end
+    
+  def Event.sync(_logger = logger)
+    logger = _logger if _logger
+    logger.debug 'Starting event sync...'
+    RSS::Parser.parse(open('http://gui.afsc.org/events-new-hampshire/rss').read, false).items.each do |e|
+      #use link as the GUID for now
+      event = Event.find_or_initialize_by(rwu_id: Zlib.crc32(e.link.strip) % PG_MAX_INT)
+    
+      #ignore dirty fields for now and just overwrite everything (TODO add support for dirty fields)
+      event.title = e.title
+      event.official_url = e.link.strip
+      
+      #description (first sanitize the html embedded therein)
+      html_desc = Nokogiri::HTML::DocumentFragment.parse(e.description)
+      date_span = html_desc.at_css('span').remove
+      html_desc.at_css('br').remove
+      event.description = html_desc.to_s
+      
+      event.save!
+      
+      event_date = DateTime.parse(date_span.attributes['content'].value)
+      if event_date and event.event_days.empty?
+        EventDay.create(rwu_id: e.link,
+          event_id: event.id,
+          date: event_date,
+          start_time: event_date)
+      end
+    end
   end
 end

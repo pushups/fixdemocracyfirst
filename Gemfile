@@ -26,6 +26,7 @@ gem 'turbolinks' #commented out because of angular (NOT)
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+# pretty log messages
 gem 'awesome_print'
 
 # non-volitle, fast in-memory key/value store
@@ -67,6 +68,8 @@ gem "twitter-bootstrap-rails"
 
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
+
+gem 'nokogiri'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

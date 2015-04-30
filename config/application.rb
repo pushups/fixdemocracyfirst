@@ -72,3 +72,5 @@ end
 #set up connections to external services
 REDIS = Redis.new url: ENV['REDISTOGO_URL']
 Resque.redis = REDIS
+
+PG_MAX_INT = 2147483647
