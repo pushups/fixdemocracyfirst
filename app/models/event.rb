@@ -7,8 +7,8 @@ class Event < ActiveRecord::Base
   has_many :event_days, -> { order('date desc').order('start_time desc') }
   has_many :attendees
   has_many :users, through: :attendees
-  has_and_belongs_to_many :candidates
-  has_and_belongs_to_many :people
+  has_and_belongs_to_many :candidates #TODO add ordering through people
+  has_and_belongs_to_many :people, -> { order('last_name').order('nickname').order('first_name').order('middle_name') }
   
   attr_reader :venue_name
     
