@@ -1,7 +1,7 @@
-class StaticPagesController < ApplicationController
-  def index
+class StaticPagesController < ApplicationController  
+  def admin
   end
   
-  def admin
+  def attributions
   end
 end
