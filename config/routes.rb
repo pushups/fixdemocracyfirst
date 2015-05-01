@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   mount ResqueWeb::Engine => "/resque_web"
   get 'admin' => 'static_pages#admin'
   get 'attributions' => 'static_pages#attributions'
+  get 'ask_the_question_guide' => 'static_pages#ask_the_question_guide'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

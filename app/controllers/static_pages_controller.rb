@@ -4,4 +4,7 @@ class StaticPagesController < ApplicationController
   
   def attributions
   end
+  
+  def ask_the_question_guide
+  end
 end
