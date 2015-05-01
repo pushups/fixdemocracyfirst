@@ -1,7 +1,10 @@
 require 'rss'
 
-class Event < ActiveRecord::Base
+class Event < ActiveRecord::Base  
+  def self._sync_columns; ["title", "description", "official_url"]; end      
+  def _sync_columns; Event._sync_columns; end  
   include DirtyColumns
+  
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   
@@ -24,7 +27,7 @@ class Event < ActiveRecord::Base
 
   scope :past, -> {
     joins_event_days.where('event_days.end_time < now()') }
-  
+        
   #configure elastic search
   def as_indexed_json(options = {})
     as_json(only: [:title, :description],
@@ -92,29 +95,54 @@ class Event < ActiveRecord::Base
     
   def Event.sync(_logger = logger)
     logger = _logger if _logger
-    logger.debug 'Starting event sync...'
+    logger.info 'Starting event sync...'
     RSS::Parser.parse(open('http://gui.afsc.org/events-new-hampshire/rss').read, false).items.each do |e|
+      updated_fields = []
+      logger.info "Syncing #{e.link}"
+      
       #use link as the GUID for now
       event = Event.find_or_initialize_by(rwu_id: Zlib.crc32(e.link.strip) % PG_MAX_INT)
     
-      #ignore dirty fields for now and just overwrite everything (TODO add support for dirty fields)
-      event.title = e.title
-      event.official_url = e.link.strip
+      #title
+      unless event.title_dirty?
+        event.title = e.title 
+        updated_fields << :title
+      end
+      
+      #official url
+      unless event.official_url_dirty?
+        event.official_url = e.link.strip 
+        updated_fields << :official_url
+      end
       
       #description (first sanitize the html embedded therein)
       html_desc = Nokogiri::HTML::DocumentFragment.parse(e.description)
       date_span = html_desc.at_css('span').remove
       html_desc.at_css('br').remove
-      event.description = html_desc.to_s
-      
-      event.save!
+      unless event.description_dirty?
+        event.description = html_desc.to_s
+        updated_fields << :description
+      end
+
+      event.clean_save!(updated_fields)
       
       event_date = DateTime.parse(date_span.attributes['content'].value)
-      if event_date and event.event_days.empty?
-        EventDay.create(rwu_id: e.link,
-          event_id: event.id,
-          date: event_date,
-          start_time: event_date)
+      if event_date
+        updated_event_date_fields = []
+        event_day = EventDay.find_or_initialize_by(rwu_id: Zlib.crc32(e.link.strip) % PG_MAX_INT)
+        event_day.event_id = event.id
+        
+        unless event_day.date_dirty?
+          event_day.date = event_date
+          updated_event_date_fields << :date
+        end
+        
+        unless event_day.start_time_dirty?
+          event_day.start_time = event_date
+          updated_event_date_fields << :start_time
+        end
+        
+        event_day.clean_save!(updated_event_date_fields)
       end
     end
   end

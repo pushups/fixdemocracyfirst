@@ -14,13 +14,13 @@
 	    <legend>Event Day</legend>
 	    <div class="form-group">
         <label class="col-lg-3 control-label">Sync ID</label>
-        <div class="col-lg-8">
+        <div class="input-group col-lg-8">
           <%= f.number_field :rwu_id, class: "form-control", disabled: true %>
         </div>
       </div>
-      <div class="form-group">
+      <div class="row form-group">
         <%= f.label :event_id, class: "col-lg-3 control-label" %>
-        <div class="col-lg-8">
+        <div class="input-group col-lg-8">
     		<%= f.select :event_id, 
     				content_tag(:option, '-- No Event --', 
     										:value => -1) + options_from_collection_for_select(Event.all, 
@@ -30,27 +30,45 @@
       																																			{}, { class: "form-control" } %>
         </div>
       </div>
-      <div class="form-group">
+      <div class="row form-group">
         <%= f.label :date, class: "col-lg-3 control-label" %>
         <div class="input-group col-lg-8" id="event-day-date">
-					<%= f.text_field :date, value: @event_day.date ? @event_day.date.strftime('%m/%d/%Y') : '', class: "datepicker form-control", placeholder: "Date"%>
+					<%= f.text_field :date, 
+            value: @event_day.date ? @event_day.date.strftime('%m/%d/%Y') : '', 
+            class: "datepicker form-control", 
+            placeholder: "Date",
+            disabled: (@event_day.date_sync? and !@event_day.date_dirty?) %>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-calendar"></span>
+          <% if @event_day.date_sync? and !@event_day.date_dirty? %>
+            <a href="#" 
+              id="event_day_date_lock" 
+              class="lock"
+              onclick="enableField('#event_day_date_lock', '#event_day_date')">&#128274;</a>
+          <% end %>
           </span>
         </div>
-      </div>
-      <div class="form-group">
+      </div>      
+      <div class="row form-group">
         <label class="col-lg-3 control-label">Starts (<%=AMERICA_NEW_YORK_TIME_ZONE.abbr%>)</label>
         <div class="input-group col-lg-8" id="event-day-start-time">
-					<%= f.text_field :start_time, value: @event_day.start_time ? @event_day.start_time
-            .in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%I:%M %P') : '',
-             class: "form-control", placeholder: "Start Time"%>
+					<%= f.text_field :start_time, 
+            value: @event_day.start_time ? @event_day.start_time.in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%I:%M %P') : '',
+            class: "form-control", 
+            placeholder: "Start Time",
+            disabled: (@event_day.start_time_sync? and !@event_day.start_time_dirty?) %>
           <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span>
+          <% if @event_day.start_time_sync? and !@event_day.start_time_dirty? %>
+            <a href="#" 
+              id="event_day_start_time_lock" 
+              class="lock"
+              onclick="enableField('#event_day_start_time_lock', '#event_day_start_time')">&#128274;</a>
+          <% end %>
           </span>
         </div>
       </div>
-      <div class="form-group">
+      <div class="row form-group">
         <label class="col-lg-3 control-label">Ends (<%=AMERICA_NEW_YORK_TIME_ZONE.abbr%>)</label>
         <div class="input-group col-lg-8" id="event-day-end-time">
 					<%= f.text_field :end_time, value: @event_day.end_time ? @event_day.end_time
@@ -61,7 +79,7 @@
           </span>
         </div>
       </div>
-	    <div class="form-group">
+	    <div class="row form-group">
 	      <div class="col-lg-8 col-lg-offset-3">
 	  	  	<%= link_to 'Cancel', event_days_path, class: "btn btn-default" %>
 		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
@@ -80,4 +98,10 @@
   $('#event-day-end-time').datetimepicker({
 		format: 'LT'
   });
+  function enableField(a, id) {
+    if (confirm("If you unlock this field, it will no longer get synchronized automatically. Are you sure you wish to make this a manually-edited field?")) {
+      $(a).css('display', 'none');
+      $(id).prop('disabled', false);
+    }
+  }  
 </script>

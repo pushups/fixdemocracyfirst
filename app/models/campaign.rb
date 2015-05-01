@@ -1,4 +1,6 @@
 class Campaign < ActiveRecord::Base
+  def self._sync_columns; []; end      
+  def _sync_columns; self._sync_columns; end  
   include DirtyColumns
 
   has_many :statements

@@ -1,4 +1,6 @@
 class Person < ActiveRecord::Base
+  def self._sync_columns; []; end      
+  def _sync_columns; Person._sync_columns; end  
   include DirtyColumns
   
   DEFAULT_IMAGE_URL = 'default_person.png'

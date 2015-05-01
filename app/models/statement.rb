@@ -11,6 +11,8 @@ YT_VIDEOS_URL = 'https://www.googleapis.com/upload/youtube/v3/videos'
 BOUNDARY = '¸.·´¯`·.´¯`·.¸¸.·´¯`·.¸><(((º>'
 
 class Statement < ActiveRecord::Base
+  def self._sync_columns; []; end      
+  def _sync_columns; Statement._sync_columns; end  
   include DirtyColumns
 
   belongs_to :user
