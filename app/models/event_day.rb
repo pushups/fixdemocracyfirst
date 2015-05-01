@@ -1,4 +1,6 @@
 class EventDay < ActiveRecord::Base
+  def self._sync_columns; ["date", "start_time"]; end      
+  def _sync_columns; EventDay._sync_columns; end  
   include DirtyColumns
 
   belongs_to :event

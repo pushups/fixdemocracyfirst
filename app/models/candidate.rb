@@ -1,4 +1,6 @@
 class Candidate < ActiveRecord::Base
+  def self._sync_columns; []; end      
+  def _sync_columns; Candidate._sync_columns; end  
   include DirtyColumns
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks

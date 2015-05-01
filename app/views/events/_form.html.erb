@@ -12,27 +12,45 @@
   <div class="well bs-component col-lg-6">
 	  <fieldset>
 	    <legend>Event</legend>
-	    <div class="form-group">
+	    <div class="row form-group">
         <label class="col-lg-3 control-label">Sync ID</label>
-        <div class="col-lg-8">
+        <div class="input-group col-lg-8">
           <%= f.number_field :rwu_id, class: "form-control", disabled: true %>
         </div>
       </div>
-      <div class="form-group">
+      <div class="row form-group">
         <%= f.label :title, class: "col-lg-3 control-label" %>
-        <div class="col-lg-8">
-          <%= f.text_field :title, class: "form-control" %>
+        <div class="input-group col-lg-8">
+          <%= f.text_field :title, 
+            class: "form-control", 
+            id: "event_title", 
+            disabled: (@event.title_sync? and !@event.title_dirty?) %>
+          <% if @event.title_sync? and !@event.title_dirty? %>
+            <span class="input-group-addon"><a href="#" 
+              id="event_title_lock" 
+              class="lock"
+              onclick="enableField('#event_title_lock', '#event_title')">&#128274;</a></span>
+          <% end %>
         </div>
       </div>
-      <div class="form-group">
+      <div class="row form-group">
         <%= f.label :description, class: "col-lg-3 control-label" %>
-        <div class="col-lg-8">
-          <%= f.text_field :description, class: "form-control" %>
+        <div class="input-group col-lg-8">
+          <%= f.text_area :description, 
+            class: "form-control", 
+            id: "event_description", 
+            disabled: (@event.description_sync? and !@event.description_dirty?) %>
+          <% if @event.description_sync? and !@event.description_dirty? %>
+            <span class="input-group-addon"><a href="#" 
+              id="event_description_lock" 
+              class="lock"
+              onclick="enableField('#event_description_lock', '#event_description')">&#128274;</a></span>
+          <% end %>
         </div>
       </div>
-      <div class="form-group">
+      <div class="row form-group">
         <%= f.label :venue_id, class: "col-lg-3 control-label" %>
-        <div class="col-lg-8">
+        <div class="input-group col-lg-8">
     		<%= f.select :venue_id, 
     				content_tag(:option, '-- No Venue --', 
     										:value => -1) + options_from_collection_for_select(Venue.all, 
@@ -42,19 +60,28 @@
       																																			{}, { class: "form-control" } %>
         </div>
       </div>
-      <div class="form-group">
+      <div class="row form-group">
         <%= f.label :public, class: "col-lg-3 control-label" %>
-        <div class="col-lg-8 checkbox-left">
+        <div class="input-group col-lg-8 checkbox-left">
           <%= f.check_box :public, class: "checkbox form-control" %>
         </div>
       </div>
-      <div class="form-group">
+      <div class="row form-group">
         <%= f.label :official_url, class: "col-lg-3 control-label" %>
-        <div class="col-lg-8">
-          <%= f.text_field :official_url, class: "form-control" %>
+        <div class="input-group col-lg-8">
+          <%= f.text_field :official_url, 
+            class: "form-control", 
+            id: "event_title", 
+            disabled: (@event.official_url_sync? and !@event.official_url_dirty?) %>
+          <% if @event.official_url_sync? and !@event.official_url_dirty? %>
+            <span class="input-group-addon"><a href="#" 
+              id="event_official_url_lock" 
+              class="lock"
+              onclick="enableField('#event_official_url_lock', '#event_official_url')">&#128274;</a></span>
+          <% end %>
         </div>
       </div>
-	    <div class="form-group">
+	    <div class="row form-group">
 	      <div class="col-lg-8 col-lg-offset-3">
 	  	  	<%= link_to 'Cancel', events_path, class: "btn btn-default" %>
 		  	  <%= f.submit 'Save', class: "btn btn-primary" %>
@@ -63,3 +90,11 @@
     </fieldset>
   </div>
 <% end %>
+<script>
+  function enableField(a, id) {
+    if (confirm("If you unlock this field, it will no longer get synchronized automatically. Are you sure you wish to make this a manually-edited field?")) {
+      $(a).css('display', 'none');
+      $(id).prop('disabled', false);
+    }
+  }
+</script>
