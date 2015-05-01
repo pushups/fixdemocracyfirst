@@ -71,7 +71,7 @@
         <div class="input-group col-lg-8">
           <%= f.text_field :official_url, 
             class: "form-control", 
-            id: "event_title", 
+            id: "event_official_url", 
             disabled: (@event.official_url_sync? and !@event.official_url_dirty?) %>
           <% if @event.official_url_sync? and !@event.official_url_dirty? %>
             <span class="input-group-addon"><a href="#" 
