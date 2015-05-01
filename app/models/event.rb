@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   include Elasticsearch::Model::Callbacks
   
   belongs_to :venue
-  has_many :event_days, -> { order('date desc').order('start_time desc') }
+  has_many :event_days, -> { order('date').order('start_time') }
   has_many :attendees
   has_many :users, through: :attendees
   has_and_belongs_to_many :candidates #TODO add ordering through people
@@ -19,8 +19,8 @@ class Event < ActiveRecord::Base
     
   scope :joins_event_days, -> {
     joins('inner join event_days on event_days.event_id = events.id')
-      .order('event_days.date desc')
-      .order('event_days.start_time desc') }
+      .order('event_days.date')
+      .order('event_days.start_time') }
   
   scope :upcoming, -> {
     joins_event_days.where('event_days.start_time > now()') }
