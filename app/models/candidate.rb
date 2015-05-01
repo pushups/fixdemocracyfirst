@@ -21,7 +21,7 @@ class Candidate < ActiveRecord::Base
   scope :others, -> { where("party <> 'Republican' and party <> 'Democrat'") }
 
   def upcoming_events
-    (self.events.upcoming + self.person.events.upcoming).sort_by(&:start_time).reverse!
+    (self.events.upcoming + self.person.events.upcoming).sort_by(&:start_time)
   end
 
   #configure elastic search
