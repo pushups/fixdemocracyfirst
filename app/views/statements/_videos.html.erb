@@ -1,4 +1,4 @@
-<div class="row col-lg-12">
+<div id="video-answers" class="row col-lg-12">
 <% @videos.each do |video| %>  
   <div class="col-lg-4">
     <div style="padding: 0">
@@ -6,9 +6,7 @@
       <h4 class="col-lg-12">
         <%=link_to "#{video.title}", edit_statement_path(video) %>
       </h4>
-      <iframe style="margin-bottom: 35px" src="<%=video.youtube_embed_url%>?hd=1&rel=0&autohide=1&showinfo=0" 
-        frameborder="0" width="400" height="224">
-      </iframe>
+      <iframe src="<%=video.youtube_embed_url%>?hd=1&rel=0&autohide=1&showinfo=0" frameborder="0"></iframe>
     </div>
   </div>
 <% end %>
