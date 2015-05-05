@@ -40,7 +40,8 @@
           <%= f.text_area :description, 
             class: "form-control", 
             id: "event_description", 
-            disabled: (@event.description_sync? and !@event.description_dirty?) %>
+            disabled: (@event.description_sync? and !@event.description_dirty?),
+            rows: 10 %>
           <% if @event.description_sync? and !@event.description_dirty? %>
             <span class="input-group-addon"><a href="#" 
               id="event_description_lock" 
