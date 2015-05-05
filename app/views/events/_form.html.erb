@@ -36,6 +36,7 @@
       <div class="row form-group">
         <%= f.label :description, class: "col-lg-3 control-label" %>
         <div class="input-group col-lg-8">
+          <em>Supported HTML tags: <%= SUPPORTED_HTML_TAGS.join(' ') %></em>
           <%= f.text_area :description, 
             class: "form-control", 
             id: "event_description", 

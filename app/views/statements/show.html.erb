@@ -33,7 +33,7 @@
 
   <p>
     <strong>Description:</strong>
-    <%= @statement.description %>
+    <%= raw(sanitize(@statement.description, tags: SUPPORTED_HTML_TAGS)) %>
   </p>
 
   <p>
