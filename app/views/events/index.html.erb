@@ -13,10 +13,10 @@
 
 <% if @current_user.admin? %>
   <div class="page-header">
-  	<h2>All Events</h2>
+  	<h2>Past Events</h2>
   </div>
 
-  <%= render 'table', events: Event.joins_event_days %>
+  <%= render 'table', events: Event.past %>
 <% end %>
 
 <% if @current_user.admin? %><%= link_to 'New Event', new_event_path, class: "btn btn-primary" %><% end %>
