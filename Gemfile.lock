@@ -242,6 +242,7 @@ DEPENDENCIES
   elasticsearch-model
   elasticsearch-rails
   faker
+  faraday
   flag_shih_tzu
   foreman
   jbuilder (~> 2.0)

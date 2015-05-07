@@ -69,6 +69,9 @@ gem "twitter-bootstrap-rails"
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 
+# HTTP client
+gem 'faraday'
+
 gem 'nokogiri'
 
 group :development, :test do

@@ -33,6 +33,9 @@ module NhrQuestioner
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    config.autoload_paths << Rails.root.join('lib')
+
     # add paths for bower    
     config.assets.paths << Rails.root.join("vendor","assets","bower_components")
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
@@ -44,6 +47,8 @@ module NhrQuestioner
     config.janrain_api_url = URI.parse "https://questionr.rpxnow.com/api/v2/auth_info"
     config.janrain_api_key = ENV['JANRAIN_API_KEY']
     config.janrain_token_url = "#{ENV['URL']}/user/social_auth"
+
+    config.active_job.queue_adapter = :resque
   end
 end
 
