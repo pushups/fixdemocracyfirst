@@ -19,7 +19,7 @@ class Geocoder
       [{ error: "address not recognized" }]
     end
   rescue JSON::ParserError => e
-    [{ error: "Bad JSON: #{e.message}" }]
+    [{ error: "bad JSON: #{e.message}" }]
   end
 
   def self.build_url(params = {})
