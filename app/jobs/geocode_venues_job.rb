@@ -3,15 +3,20 @@ class GeocodeVenuesJob < ActiveJob::Base
 
   def perform
     Venue.where(latitude: nil, longitude: nil).each do |venue|
-      results = nil
-      if venue.street_address1 && venue.city && venue.state
-        address = [venue.street_address1, venue.city, venue.state].join(',')
+      if venue.street_address1 && ((venue.city && venue.state) || venue.postal_code)
+        address = [venue.street_address1, venue.city, venue.state, venue.postal_code]
+          .compact.join(',')
         results = Geocoder.geocode(address: address)
-      end
-      if !results && venue.postal_code
+      elsif venue.postal_code
         results = Geocoder.geocode(zip: venue.postal_code)
+      else
+        next
       end
-      venue.update(latitude: results[:lat], longitude: results[:long]) if results
+      if results[:error]
+        logger.info "Couldn't geocode venue #{venue.id}. Error: #{results[:error]}"
+      else
+        venue.update(latitude: results[:lat], longitude: results[:long]) 
+      end
     end
   end
 end

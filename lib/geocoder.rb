@@ -8,13 +8,18 @@ class Geocoder
   private
 
   def self.parse_response(response)
-    # TODO: handle multiple responses?
-    response.first.symbolize_keys
+    response.try(:first).try(:symbolize_keys) || { error: "response not in expected format" }
   end
 
   def self.get_json(url)
     response = Faraday.get(url)
-    JSON.parse(response.body)
+    if response.status == 200
+      JSON.parse(response.body)
+    else
+      [{ error: "address not recognized" }]
+    end
+  rescue JSON::ParserError => e
+    [{ error: "Bad JSON: #{e.message}" }]
   end
 
   def self.build_url(params = {})
