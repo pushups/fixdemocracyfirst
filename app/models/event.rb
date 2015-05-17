@@ -93,57 +93,62 @@ class Event < ActiveRecord::Base
     person
   end
     
-  def Event.sync(_logger = logger)
+  def Event.sync_all(_logger = logger)
     logger = _logger if _logger
     logger.info 'Starting event sync...'
     RSS::Parser.parse(open('http://gui.afsc.org/events-new-hampshire/rss').read, false).items.each do |e|
-      updated_fields = []
       logger.info "Syncing #{e.link}"
-      
-      #use link as the GUID for now
-      event = Event.find_or_initialize_by(rwu_id: Zlib.crc32(e.link.strip) % PG_MAX_INT)
-    
-      #title
-      unless event.title_dirty?
-        event.title = e.title 
-        updated_fields << :title
-      end
-      
-      #official url
-      unless event.official_url_dirty?
-        event.official_url = e.link.strip 
-        updated_fields << :official_url
-      end
-      
-      #description (first sanitize the html embedded therein)
-      html_desc = Nokogiri::HTML::DocumentFragment.parse(e.description)
-      date_span = html_desc.at_css('span').remove
-      html_desc.at_css('br').remove
-      unless event.description_dirty?
-        event.description = html_desc.to_s
-        updated_fields << :description
-      end
-
-      event.clean_save!(updated_fields)
-      
-      event_date = DateTime.parse(date_span.attributes['content'].value)
-      if event_date
-        updated_event_date_fields = []
-        event_day = EventDay.find_or_initialize_by(rwu_id: Zlib.crc32(e.link.strip) % PG_MAX_INT)
-        event_day.event_id = event.id
-        
-        unless event_day.date_dirty?
-          event_day.date = event_date
-          updated_event_date_fields << :date
-        end
-        
-        unless event_day.start_time_dirty?
-          event_day.start_time = event_date
-          updated_event_date_fields << :start_time
-        end
-        
-        event_day.clean_save!(updated_event_date_fields)
-      end
+      Event.find_or_initialize_by(rwu_id: Zlib.crc32(e.link.strip) % PG_MAX_INT).sync(e)
     end
+    logger.info 'Finished event sync'
+  end
+  
+  def sync(e, _logger = logger)
+    logger = _logger if _logger
+    updated_fields = []
+
+    #title
+    unless self.title_dirty?
+      self.title = e.title 
+      updated_fields << :title
+    end
+  
+    #official url
+    unless self.official_url_dirty?
+      self.official_url = e.link.strip 
+      updated_fields << :official_url
+    end
+  
+    #description (first sanitize the html embedded therein)
+    html_desc = Nokogiri::HTML::DocumentFragment.parse(e.description)
+    date_span = html_desc.at_css('span').remove
+    html_desc.at_css('br').remove
+    unless self.description_dirty?
+      self.description = html_desc.to_s
+      updated_fields << :description
+    end
+
+    self.clean_save!(updated_fields)
+  
+    event_date = DateTime.parse(date_span.attributes['content'].value)
+    if event_date
+      updated_event_date_fields = []
+      event_day = EventDay.find_or_initialize_by(rwu_id: Zlib.crc32(e.link.strip) % PG_MAX_INT)
+      event_day.event_id = self.id
+    
+      unless event_day.date_dirty?
+        event_day.date = event_date
+        updated_event_date_fields << :date
+      end
+    
+      unless event_day.start_time_dirty?
+        event_day.start_time = event_date
+        updated_event_date_fields << :start_time
+      end
+    
+      event_day.clean_save!(updated_event_date_fields)
+    end
+  rescue Exception => e
+    logger.error e
   end
 end
