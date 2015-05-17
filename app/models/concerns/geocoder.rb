@@ -1,4 +1,4 @@
-class Geocoder
+module Geocoder
   URL = 'rpc.geocoder.us/service/json'
 
   def self.geocode(params)

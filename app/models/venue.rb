@@ -3,7 +3,11 @@ class Venue < ActiveRecord::Base
   def _sync_columns; Venue._sync_columns; end  
   include DirtyColumns
   has_many :events
-    
+  after_save { |v| v.geocode if self.street_address1_changed? or
+                                self.city_changed? or
+                                self.state_changed? or
+                                self.postal_code_changed? }
+                                    
   def Venue.geocode_all(_logger = logger)
     logger = _logger if _logger
     logger.info 'Starting venue geocoding...'
@@ -27,7 +31,7 @@ class Venue < ActiveRecord::Base
       logger.info "Couldn't geocode venue #{self.id}. Error: #{results[:error]}"
       false
     else
-      self.update(latitude: results[:lat], longitude: results[:long])
+      self.update_columns(latitude: results[:lat], longitude: results[:long])
       true
     end
   end
