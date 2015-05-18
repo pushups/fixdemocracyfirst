@@ -16,7 +16,7 @@ class Candidate < ActiveRecord::Base
 
   def self.default_scope
     includes(:person)
-      .references(:person)
+      .references(:people)
       .order('people.last_name')
       .order('people.nickname')
       .order('people.first_name')
