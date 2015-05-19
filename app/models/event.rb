@@ -70,13 +70,13 @@ class Event < ActiveRecord::Base
   end
   
   def add_candidate(candidate_id)
-    candidate = Candidate.find(candidate_id)
+    candidate = Candidate.includes(:person).find(candidate_id)
     self.candidates << candidate if candidate
     candidate
   end
   
   def remove_candidate(candidate_id)
-    candidate = Candidate.find(candidate_id)
+    candidate = Candidate.includes(:person).find(candidate_id)
     self.candidates.delete(candidate) if candidate
     candidate
   end
