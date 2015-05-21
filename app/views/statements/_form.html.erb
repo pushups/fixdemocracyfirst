@@ -84,7 +84,7 @@
         <div class="col-lg-8">
     		<%= f.select :user_id, 
     				content_tag(:option, '-- No User --', 
-    										:value => -1) + options_from_collection_for_select(User.all, 
+    										:value => -1) + options_from_collection_for_select(User.named, 
       																																			:id, 
       																																			:desc, 
       																																			@statement.user_id),

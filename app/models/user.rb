@@ -5,6 +5,22 @@ class User < ActiveRecord::Base
   
   attr_reader :desc
   
+  scope :anonymous, -> { 
+    where("first_name is null")
+    .where("last_name is null")
+    .where("email is null")
+    .where("location is null")
+    .where("fb_uid is null")
+    .where("postal_code is null") }
+
+  scope :named, -> {
+    where("first_name is not null or 
+           last_name is not null or
+           email is not null or
+           location is not null or
+           fb_uid is not null or
+           postal_code is not null") }
+
   def User.social_refresh(profile)        
     user = User.where(:fb_uid => profile[:identifier]).first_or_initialize
     user.name ||= profile[:preferredUsername]
