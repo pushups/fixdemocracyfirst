@@ -7,6 +7,10 @@ class Venue < ActiveRecord::Base
                                 self.city_changed? or
                                 self.state_changed? or
                                 self.postal_code_changed? }
+                                
+  def self.default_scope
+    order(:name)
+  end
                                     
   def Venue.geocode_all(_logger = logger)
     logger = _logger if _logger

@@ -5,6 +5,10 @@ class User < ActiveRecord::Base
   
   attr_reader :desc
   
+  def self.default_scope
+    order('last_name').order('first_name')
+  end
+
   scope :anonymous, -> { 
     where("first_name is null")
     .where("last_name is null")
