@@ -79,4 +79,4 @@ REDIS = Redis.new url: ENV['REDISTOGO_URL']
 Resque.redis = REDIS
 
 PG_MAX_INT = 2147483647
-SUPPORTED_HTML_TAGS = %w(h1 h2 h3 h4 h5 h6 a p em strong br ol ul li)
+SUPPORTED_HTML_TAGS = %w(h3 h4 h5 h6 a p em strong br ol ul li)
