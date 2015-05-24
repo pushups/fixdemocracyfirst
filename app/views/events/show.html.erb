@@ -31,6 +31,9 @@
     <h5 class="col-lg-8"><em>Note: Event details are subject to change. New information 
       may not be reflected here. Please check the original event website or 
       contact the organizers for updates.</em></h5>
+    <% if @event.rwu_id %>
+      <h6 class="col-lg-8"><em>Event information thanks to AFSC</em></h6>
+    <% end %>
   </div>
   <div class="col-lg-4 panel panel-default">
     <h3>Appearances By</h3>
