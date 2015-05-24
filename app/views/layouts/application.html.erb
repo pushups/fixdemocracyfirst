@@ -187,7 +187,8 @@
         steps: {
           1 => "Step 1: Tell us about yourself",
           2 => "Step 2: Tell us what you're sharing",
-          3 => "Step 3: Select the video (or audio) file" } %>
+          3 => "Step 3: Select the video (or audio) file" },
+        notes_placeholder: 'Please share any additional info about your submission' %>
     <%= render 'statements/modal', 
         modal_id: "tip_modal", 
         modal_title: "Tip Line",
@@ -195,6 +196,7 @@
         include_candidate_and_event_fields: false,
         steps: {
           1 => "Step 1: Tell us about yourself",
-          2 => "Step 2: Tell us the scoop" } %>
+          2 => "Step 2: Tell us the scoop" },
+        notes_placeholder: "Know where a presidential candidate is making an appearance? Read an interesting quote from a candidate in a paper that we haven't captured? Have some other useful information? Send us a tip!" %>
 	</body>
 </html>
