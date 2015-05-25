@@ -10,7 +10,7 @@ class Event < ActiveRecord::Base
   
   belongs_to :venue
   has_many :event_days, -> { order('date').order('start_time') }
-  has_many :attendees
+  has_many :attendees, through: :event_days
   has_many :users, through: :attendees
   has_and_belongs_to_many :candidates #TODO add ordering through people
   has_and_belongs_to_many :people, -> { order('last_name').order('nickname').order('first_name').order('middle_name') }

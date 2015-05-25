@@ -10,8 +10,8 @@
           <tbody>
             <% children.each do |child| %>
               <tr>
-                <td><%= child.send(method) %></td>
-              <% if @current_user.admin? %>
+                <td><%= link_to child.send(method), child %></td>
+              <% if @current_user.admin? and !read_only %>
                 <td class="pull-right">
                   <%= f.submit 'X', onclick: "$('##{type.to_s.downcase}_id_to_remove').val(#{child.id})", 
                                     class: "btn btn-xs btn-danger" %>
@@ -20,20 +20,20 @@
             <% end %>
           </tbody>
         </table>
-      <% if @current_user.admin? %>
+      <% if @current_user.admin? and !read_only %>
         <% remaining_candidates = type.all - children %>
         <% if remaining_candidates.size > 0 %>
     	    <fieldset>
-            <div class="form-group">
+            <div class="form-group row">
               <div class="col-lg-11">
               <%= f.select symbol, options_from_collection_for_select(remaining_candidates, 
       																															 :id, 
       																															 method, 
       																															 nil),
-      																															 {}, { class: "col-lg-11 form-control" } %>
+      																															 {}, { class: "form-control input-sm pull-right" } %>
               </div>
               <div class="col-lg-1">
-                <%= f.submit '+', class: "pull-right btn btn-primary" %>
+                <%= f.submit '+', class: "btn btn-sm btn-primary pull-right" %>
               </div>
             </div>
           </fieldset>

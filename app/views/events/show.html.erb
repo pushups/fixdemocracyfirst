@@ -42,21 +42,32 @@
 </div>
 <% if @current_user.admin? %>
   <div class="well bs-component col-lg-12">
-    <div class="col-lg-6">
+    <div class="col-lg-4">
       <%= render 'container', type: Candidate, 
                               :symbol => :candidates, 
                               title: 'Candidates', 
                               :method => :person_name, 
                               parent: @event, 
-                              children: @event.candidates %>
+                              children: @event.candidates,
+                              read_only: false %>
     </div>
-    <div class="col-lg-6">                        
+    <div class="col-lg-4">                        
       <%= render 'container', type: Person, 
                               :symbol => :people, 
                               title: 'Speakers', 
                               :method => :full_name, 
                               parent: @event, 
-                              children: @event.people %>
+                              children: @event.people,
+                              read_only: false %>
+    </div>
+    <div class="col-lg-4">                        
+      <%= render 'container', type: Attendee, 
+                              :symbol => :attendees, 
+                              title: 'Attendees', 
+                              :method => :user_name, 
+                              parent: @event, 
+                              children: @event.attendees,
+                              read_only: true %>
     </div>
     <ul class="pager col-lg-12">
     	<% if @current_user.admin? %><li class="next"><%= link_to 'Edit →', edit_event_path(@event) %></li><% end %>
