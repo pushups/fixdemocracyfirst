@@ -121,7 +121,7 @@
 
           <p>
             <strong>Event Date:</strong>
-            <%= @statement.ugc_date ? @statement.ugc_date.in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%m/%d/%Y %H:%M %p %Z') : '' %>
+            <%= @statement.ugc_date ? @statement.ugc_date.in_time_zone(AMERICA_NEW_YORK_TIME_ZONE).strftime('%m/%d/%Y') : '' %>
           </p>
 
           <p>

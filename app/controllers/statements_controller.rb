@@ -31,7 +31,7 @@ class StatementsController < ApplicationController
   def create
     @statement = Statement.new(statement_params)
     @statement.title = "New #{@statement.url.blank? ? 'Tip' : 'Video'} #{DateTime.now}"
-    @statement.ugc_date = !statement_params[:ugc_date].nil? and !statement_params[:ugc_date].empty? ? DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date : nil
+    @statement.ugc_date = DateTime.strptime(statement_params[:ugc_date], '%m/%d/%Y').to_date unless statement_params[:ugc_date].nil? or statement_params[:ugc_date].empty?
     @statement.user_id = @current_user.id
     @current_user.update(statement_params['user_attributes'])
     respond_to do |format|
