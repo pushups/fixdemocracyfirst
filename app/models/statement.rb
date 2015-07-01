@@ -20,6 +20,7 @@ class Statement < ActiveRecord::Base
   belongs_to :campaign
   belongs_to :candidate
 
+  default_scope { includes(:event_day).order("event_days.date desc").order("statements.created_at desc") } 
   scope :approved, -> { includes(:event_day)
                           .where(approved: true)
                           .where('youtube_url is not null')
