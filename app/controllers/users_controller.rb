@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       logger.fatal ap(resp)
       raise "social auth failed"
     end
-    redirect_to '/', alert: @current_user.admin? ? nil : 'Please contact info@questionr.org to request administrative access.'
+    redirect_to '/', alert: @current_user.admin? ? nil : 'Please contact info@fixdemocracyfirst.us to request administrative access.'
   end
   
   # GET /users

@@ -2,7 +2,7 @@
 <html>
 	<head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	  <title>Questionr</title>
+	  <title>Fix Democracy First</title>
     <%= favicon_link_tag 'favicon.ico' %>
 	  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -74,10 +74,11 @@
         e.type = 'text/javascript';
         e.id = 'janrainAuthWidget';
 
+        //TODO CAB fix auth  
         if (document.location.protocol === 'https:') {
-          e.src = 'https://rpxnow.com/js/lib/questionr/engage.js';
+          e.src = 'https://rpxnow.com/js/lib/fixdemocracyfirst/engage.js';
         } else {
-          e.src = 'http://widget-cdn.rpxnow.com/js/lib/questionr/engage.js';
+          e.src = 'http://widget-cdn.rpxnow.com/js/lib/fixdemocracyfirst/engage.js';
         }
 
         var s = document.getElementsByTagName('script')[0];
@@ -162,8 +163,8 @@
             <h4 class="col-lg-12" style="color: #fff">We're going to make systemic political corruption the 
               central issue of the 2016 presidential primary by asking every candidate, &ldquo;What specific 
               reforms will you advance to end the corrupting influence of money in politics?&rdquo;</h4>
-            <h5 class="col-lg-12">&copy;2015 <%=link_to 'NH Rebellion',
-              'http://nhrebellion.org', target: '_blank' %>. Some rights reserved.</h5>          
+            <h5 class="col-lg-12">&copy;2015 <%=link_to 'Lessig2016.us',
+              'http://Lessig2016.us', target: '_blank' %>. Some rights reserved.</h5>          
             <h5 class="col-lg-12"><%= link_to image_tag("https://i.creativecommons.org/l/by/3.0/80x15.png"), 
               "http://creativecommons.org/licenses/by-sa/4.0/", target: '_blank' %></h5>
           </div>

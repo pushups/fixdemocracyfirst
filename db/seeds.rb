@@ -9,7 +9,7 @@
 # admin user
 User.create first_name: 'Questionr',
             last_name: 'Admin',
-            email: 'admin@questionr.org',
+            email: 'admin@fixdemocracyfirst.us',
             location: 'San Francisco, CA',
             fb_uid: nil,
             fb_token: nil,
