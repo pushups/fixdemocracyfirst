@@ -10,11 +10,7 @@ class Attendee < ActiveRecord::Base
   after_create :notify_nhr
   
   def notify_nhr
-    Emailer.email("ellen@nhrebellion.org", 
-                  "Ellen", 
-                  "New Event RSVP from Questionr", 
-                  "rsvp_details", 
-                  attendee: self)
+    #no-op
   end
   
   def user_name

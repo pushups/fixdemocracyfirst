@@ -36,7 +36,7 @@ class StatementsController < ApplicationController
     @current_user.update(statement_params['user_attributes'])
     respond_to do |format|
       if @statement.save!
-        format.html { redirect_to '/', notice: 'Thank you for contributing to Questionr!' }
+        format.html { redirect_to '/', notice: 'Thank you for contributing to Fix Democracy First!' }
         format.json { render :show, status: :created, location: @statement }
       else
         format.html { redirect_to '/', alert: 'Sorry, your contribution cannot be processed at this time. Please try again later.' }

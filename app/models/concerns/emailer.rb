@@ -7,8 +7,8 @@ module Emailer
       "html" => ERB.new(IO.read("#{Rails.root}/app/views/email_templates/#{template}.html.erb"))
                           .result(OpenStruct.new(options).instance_eval { binding }),
       "subject" => subject,
-      "from_email" => "questionr@nhrebellion.org",
-      "from_name" => "The Questionr Team",
+      "from_email" => "info@fixdemocracyfirst.us",
+      "from_name" => "Fix Democract First",
       "to" => [{ 'email' => to_email, 'name' => to_name }],
       "headers"=> {},
       "track_opens" => true,
@@ -21,7 +21,7 @@ module Emailer
       "global_merge_vars" => [],
       "merge_vars" => [],
       "tags" => [],
-      "google_analytics_domains" => [ "questionr.us", "questionr.org" ],
+      "google_analytics_domains" => [ "fixdemocracyfirst.us" ],
       "google_analytics_campaign" => "",
       "metadata" => { 'env' => Rails.env, 'template' => template },
       "recipient_metadata" => [],
@@ -29,4 +29,3 @@ module Emailer
     true)
   end
 end
-
