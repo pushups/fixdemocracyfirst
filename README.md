@@ -1,6 +1,6 @@
-ThenWhat
-========
-This web site and platform supports uploading, approval and redistribution of videos answering the question: "Let's #FixDemocracyFirst, #ThenWhat reforms should we enact next?"
+YourStory
+=========
+This web site and platform supports uploading, approval and redistribution of videos answering the question: "Tell us #YourStory of why we need to #FixDemocracyFirst." http://yourstory.lessig2016.us 
 
 3rd-Party Depedencies
 ---------------------
@@ -17,14 +17,14 @@ Local Environment Setup
 1. Install Ruby 2.2.1 on RVM: `rvm install 2.2.1`
 1. Select the global gemset under ruby 2.2.1: `rvm use 2.2.1@global`
 1. Install Bundler in the global gemset: `gem install bundler`
-1. Create a custom gemset for thenwhat: `rvm gemset create thenwhat`
-1. Select the gemset and ruby version: `rvm use 2.2.1@thenwhat`
+1. Create a custom gemset for yourstory: `rvm gemset create yourstory`
+1. Select the gemset and ruby version: `rvm use 2.2.1@yourstory`
 1. `cd` into your local git repo's directory
 1. Run bundler: `bundle install`
 1. Set environment variables for foreman by creating a `.env` file in your project directory with these variables (and ask one of us for the missing values so we can get them to you securely):
 
     ```
-    S3_BUCKET=thenwhat-stage
+    S3_BUCKET=yourstory-stage
     AWS_ACCESS_KEY_ID=
     AWS_SECRET_ACCESS_KEY=
     AWS_REGION=us-west-1
@@ -41,7 +41,7 @@ Local Environment Setup
 1. Create an account for yourself by visiting [http://localhost:3000/admin](http://localhost:3000/admin) and logging in with Facebook
 1. Launch a rails console `foreman run bundle exec rails c` and execute this command to admin-ize your user account: `User.last.update_attribute(:admin, true)`
 
-Note: When viewing the [Resque Web Console](http://localhost:3000/resque_web) for the first time, you'll receive a basic auth challenge. Respond with username `thenwhat` and the password you set for `RESQUE_ADMIN_PASSWORD` in your .env file and ask the browser to remember your credentials (if you want).
+Note: When viewing the [Resque Web Console](http://localhost:3000/resque_web) for the first time, you'll receive a basic auth challenge. Respond with username `yourstory` and the password you set for `RESQUE_ADMIN_PASSWORD` in your .env file and ask the browser to remember your credentials (if you want).
 
 Contributing (using the [fork-and-pull](https://help.github.com/articles/using-pull-requests) model)
 ----------------------------------------------------------------------------------------------------
