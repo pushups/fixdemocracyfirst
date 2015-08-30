@@ -18,14 +18,30 @@
 	  <%= csrf_meta_tags %>
 		    
     <style>
-      a { color: #f39c12 }
-      a:hover { color: #f39c12 !important }
-      #logo { width: 150px }
-      #footer-content { color: #fff; background-color: #134061; }
+      a { 
+        color: #ff4e4e !important;
+        text-decoration: none;
+      }
+      a:active, a:focus, a:hover, a:link, a:visited {
+        outline: 0 none;
+        text-decoration: none;
+      }
+      .nav a {
+        border: 3px solid transparent;
+        display: block;
+        height: 26px;
+        line-height: 26px;
+        padding: 0 9px;
+        transition: all 0.2s ease-in 0s;
+      }
+      #logo { width: 200px }
+      #footer-content { }
       div.checkbox-left { width: 70px }
+      .navbar { max-width: 1340px !important; margin: 0 auto !important; }
+      .navbar .container { width: 1340px !important; max-width: 1340px !important; margin: 0 auto !important; }
+      .navbar .nav { margin-top: 15px; }
       .container-fluid { max-width: 1340px !important; }
       .alert { margin-top: 21px }
-      div.panel-heading { background-color: #134061 !important }
       ul.dropdown-menu li.nav-list-heading { padding-left: 10px }
       div#video-answers iframe { width: 400px; height: 224px; margin-bottom: 35px; }}                                  
       @media (max-width: 1024px) { 
@@ -74,7 +90,6 @@
         e.type = 'text/javascript';
         e.id = 'janrainAuthWidget';
 
-        //TODO CAB fix auth  
         if (document.location.protocol === 'https:') {
           e.src = 'https://rpxnow.com/js/lib/fixdemocracyfirst/engage.js';
         } else {
@@ -89,29 +104,24 @@
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-62491528-1', 'auto');
+      ga('create', 'TODO -- get new key', 'auto');
       ga('send', 'pageview');
   	<% end %>
     </script>
   </head>
 	<body>
-		<nav class="navbar navbar-default" style="background-color: #134061; margin: 0 !important; border-radius: 0 !important">
+		<nav class="navbar navbar-default" style="background-color: #fff; border-radius: 0 !important">
 		  <div class="container">
-		    <div class="navbar-header">
+		    <div class="navbar-header" style="padding-bottom: 5px">
 		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
 		        <span class="sr-only">Toggle navigation</span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <%= link_to image_tag('questionr-logo.png', { id: 'logo' }), '/', class: 'navbar-brand' %>
+		      <%= link_to image_tag('FixDemocracyFirstLogo.png', { id: 'logo' }), '/', class: 'navbar-brand' %>
 		    </div>
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
-		      <ul class="nav navbar-nav">
-		        <li<%= URI(request.url).path.starts_with?('/events') ? ' class=active' : '' %>><%= link_to 'Events', :events %></li>
-		        <li<%= URI(request.url).path.starts_with?('/candidates') ? ' class=active' : '' %>><%= link_to 'Candidates', :candidates %></li>
-		        <li<%= URI(request.url).path.starts_with?('/statements') ? ' class=active' : '' %>><%= link_to 'Answers', :controller => :statements, :action => :browse %></li>
-		      </ul>
         <% if @current_user.admin? %>
 		      <ul class="nav navbar-nav navbar-right">
 		        <li class="dropdown">
@@ -126,10 +136,14 @@
         </div>
 		  </div>
 		</nav>
-		<div id="content" class="container-fluid">
+    <div id="content" class="container-fluid">
+      <hr/>
+      <div class="col-lg-12">
+        <h1>FIX DEMOCRACY FIRST</h1>
+      </div>
 			<%= yield %>
 		</div>
-    <nav class="navbar navbar-inverse footer" style="background-color: #134061; margin-top: 20px">
+    <nav class="navbar navbar-inverse footer" style="background-color: #fff; margin-top: 20px">
       <div stlye="text-align: center; color: #fff" class="container-fluid">
         <div class="row">
           <div class="col-lg-offset-3 col-lg-9"> 
