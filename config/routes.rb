@@ -3,7 +3,7 @@ require 'resque_web'
 ResqueWeb::Engine.eager_load!
 
 Rails.application.routes.draw do
-  root 'statements#new'
+  root 'static_pages#home'
   get 'search' => 'search#search'
   post 'user/social_auth' => 'users#social_auth'
   resources :users
