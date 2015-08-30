@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post 'user/social_auth' => 'users#social_auth'
   resources :users
   get 'statements/browse' => 'statements#browse'
+  get 'statements/new' => 'statements#new'
   resources :statements
   resources :people
   resources :candidates
