@@ -77,18 +77,21 @@
     }
   }
 </style>
-
-<div class="row" style="background-color: #134061">
-  <div class="col-md-8 panel tryptic-small tryptic-answer">
-      <%=image_tag "lessig.png"%>
-      This is some text.
+<div class="row well">
+  <div class="col-lg-3">
+    <iframe width="300" height="300" src="https://www.youtube.com/embed/6L54o_H_D6E" frameborder="0" allowfullscreen></iframe>
   </div>
-  <div class="col-md-4 panel tryptic-small tryptic-answer">
-    <ol style="visibility:hidden;"><li>&nbsp;</li></ol>
-    <ol style="visibility:hidden;"><li>&nbsp;</li></ol>
-    <ol style="visibility:hidden;"><li>&nbsp;</li></ol>
-    <ol style="visibility:hidden;"><li>&nbsp;</li></ol>
-    <%= link_to 'Tell us your story!', {controller: :statements, action: :new}, class: "btn btn-default" %>
+  <div class="col-lg-6">
+    <h2>FIX<br/>
+        DEMOCRACY</br>
+        FIRST</h2>
+    <p>Semiotics dreamcatcher quinoa, scenester meh kale chips butcher cliche polaroid iPhone fingerstache. 
+      Intelligentsia +1 master cleanse twee post-ironic Etsy wayfarers banh mi mixtape tofu aesthetic shabby chic. 
+      Drinking vinegar Blue Bottle fingerstache taxidermy bicycle rights. Blue Bottle 3 wolf moon gentrify, 
+      before they sold out sustainable meditation tousled bitters kale chips farm-to-table health goth swag 
+      Portland cold-pressed brunch.</p>
+  </div>
+  <div class="col-lg-3" style="margin-top: 250px">
+    <%= link_to 'Tell us your story!', {controller: :statements, action: :new}, class: "btn btn-default", style: "width: 300px" %>
   </div>
 </div>
-<h1 class="col-lg-12">The Answers</h1>
