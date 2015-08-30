@@ -84,6 +84,6 @@ test:
 #
 production:
   <<: *default
-  database: questionr_production
-  username: questionr
-  password: <%= ENV['QUESTIONR_DATABASE_PASSWORD'] %>
+  database: fixdemocracyfirst_test
+  username: fixdemocracyfirst
+  password: <%= ENV['FIXDEMOCRACYFIRST_DATABASE_PASSWORD'] %>
