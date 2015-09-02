@@ -10,6 +10,6 @@ if ARGV[0] == 'start'
 elsif ARGV[0] == 'stop'
   ['[p]ostgres', '[r]edis-server', '[e]lasticsearch'].each do |service|
     id = `pgrep -f #{service}`
-    `kill -s SIGKILL #{id}`
+    `kill -s QUIT #{id}`
   end
 end
